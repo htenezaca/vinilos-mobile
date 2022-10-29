@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/welcome_nav_graph"
+    app:startDestination="@id/welcomeGuestFragment">
+
+    <fragment
+        android:id="@+id/welcomeGuestFragment"
+        android:name="com.example.vinilos_mobile.view.WelcomeGuestFragment"
+        android:label="fragment_welcome_guest"
+        tools:layout="@layout/fragment_welcome_guest" >
+        <action
+            android:id="@+id/action_welcomeGuestFragment_to_welcomeCollectorFragment"
+            app:destination="@id/welcomeCollectorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeCollectorFragment"
+        android:name="com.example.vinilos_mobile.view.WelcomeCollectorFragment"
+        android:label="fragment_welcome_collector"
+        tools:layout="@layout/fragment_welcome_collector" />
+</navigation>
