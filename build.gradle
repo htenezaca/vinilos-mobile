@@ -4,20 +4,30 @@ buildscript {
         google()
     }
 
+
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.4"
-        classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.5.2'
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        // For control over item selection of both touch and mouse driven selection
+        classpath "com.android.tools.build:gradle:7.2.2"
+        classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3'
+
     }
+
+    ext {
+        nav_version = "2.5.2"
+    }
+
+
+
 }
 
 plugins {
     id 'com.android.application' version '7.2.2' apply false
     id 'com.android.library' version '7.2.2' apply false
-    id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
+    id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
 }
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
