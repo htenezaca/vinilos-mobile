@@ -11,8 +11,6 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
 
-        Log.d("aber","olam")
-
         var vinilosRepositoryinilosRepository = VinilosRepository()
         vinilosRepositoryinilosRepository.getCollectors(this.applicationContext, {
             Log.d("SUCCESS", it.toString())

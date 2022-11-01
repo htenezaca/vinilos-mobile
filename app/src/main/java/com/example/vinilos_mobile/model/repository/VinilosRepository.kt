@@ -19,7 +19,7 @@ class VinilosRepository {
 
         vinilosApiService.instance.add(VinilosApiService.getCollectors(
             { response ->
-                Log.d("TAG1", response.toString())
+                Log.d("GET COLLECTORS", "response: $response")
                 val collectorsList = mutableListOf<Collector>()
 
                 for (i in 0 until response.length()) {
@@ -37,7 +37,7 @@ class VinilosRepository {
                 onComplete(collectorsList)
             },
             {
-                Log.d("TAG2", it.toString())
+                Log.d("GET COLLECTORS", "error: $it")
                 onError(it)
             }
         ))
@@ -53,7 +53,7 @@ class VinilosRepository {
 
             vinilosApiService.instance.add(VinilosApiService.getAlbums(
                 { response ->
-                    Log.d("TAG1", response.toString())
+                    Log.d("GET ALBUMS", "response: $response")
                     val albumsList = mutableListOf<Album>()
 
                     for (i in 0 until response.length()) {
@@ -74,7 +74,7 @@ class VinilosRepository {
                     onComplete(albumsList)
                 },
                 {
-                    Log.d("TAG2", it.toString())
+                    Log.d("GET ALBUMS", "error: $it")
                     onError(it)
                 }
             ))

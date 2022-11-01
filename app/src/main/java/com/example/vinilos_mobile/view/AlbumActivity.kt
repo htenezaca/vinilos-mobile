@@ -11,8 +11,6 @@ class AlbumActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album)
 
-        Log.d("aber", "olam")
-
         var vinilosRepositoryinilosRepository = VinilosRepository()
         vinilosRepositoryinilosRepository.getAlbums(this.applicationContext, {
             Log.d("SUCCESS", it.toString())

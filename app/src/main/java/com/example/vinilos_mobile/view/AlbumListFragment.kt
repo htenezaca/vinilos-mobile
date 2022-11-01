@@ -14,6 +14,7 @@ import com.example.vinilos_mobile.databinding.FragmentAlbumListBinding
 import com.example.vinilos_mobile.viewmodel.AlbumViewModel
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos_mobile.model.models.Album
 
 class AlbumListFragment :Fragment() {
@@ -21,9 +22,9 @@ class AlbumListFragment :Fragment() {
 
     private var _binding: FragmentAlbumListBinding? = null
     private val binding get() = _binding!!
+    private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel : AlbumViewModel
-
-
+    private var viewModelAdapter: AlbumsAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,16 +33,14 @@ class AlbumListFragment :Fragment() {
     ): View {
         _binding = FragmentAlbumListBinding.inflate(inflater, container, false)
         val view = binding.root
+        viewModelAdapter = AlbumsAdapter()
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView = binding.recyclerView
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = AlbumsAdapter()
-        recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
-
-
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = viewModelAdapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -53,12 +52,7 @@ class AlbumListFragment :Fragment() {
         viewModel = ViewModelProvider(this, AlbumViewModel.Factory(activity.application)).get(AlbumViewModel::class.java)
         viewModel.albums.observe(viewLifecycleOwner, Observer<List<Album>> {
             it.apply {
-                val listAlbums: AutoCompleteTextView = activity.findViewById(R.id.albumsList)
-
-                val albums = this
-                val arrayAdapter = ArrayAdapter(requireContext(), R.layout.album_item, albums)
-                listAlbums.setAdapter(arrayAdapter)
-
+                viewModelAdapter!!.albums=this
             }
         })
     }
