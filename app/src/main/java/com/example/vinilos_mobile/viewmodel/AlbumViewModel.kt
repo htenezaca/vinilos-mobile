@@ -20,16 +20,6 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
     val albums: LiveData<List<Album>>
         get() = _albums
 
-    private var _eventNetworkError = MutableLiveData<Boolean>(false)
-
-    val eventNetworkError: LiveData<Boolean>
-        get() = _eventNetworkError
-
-    private var _isNetworkErrorShown = MutableLiveData<Boolean>(false)
-
-    val isNetworkErrorShown: LiveData<Boolean>
-        get() = _isNetworkErrorShown
-
     init {
         refreshDataFromNetwork()
     }
@@ -37,12 +27,9 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
     private fun refreshDataFromNetwork() {
         vinilosRepository.getAlbums(getApplication(), { albumsResponse ->
             _albums.postValue(albumsResponse)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
         },
             {
                 Log.d("NETWORK_ERROR", it.toString())
-                _eventNetworkError.value = true
             })
     }
 
