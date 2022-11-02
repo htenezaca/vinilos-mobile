@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_welcome_collector" />
     <activity
         android:id="@+id/albumActivity"
-        android:name="com.example.vinilos_mobile.view.AlbumActivity"
+        android:name="com.example.vinilos_mobile.view.MainActivity"
         android:label="activity_album"
         tools:layout="@layout/activity_album" />
 </navigation>
