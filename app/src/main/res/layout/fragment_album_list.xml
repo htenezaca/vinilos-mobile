@@ -11,50 +11,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50sp"
-        android:clipToPadding="false"
-        android:padding="16dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:gravity="start"
-        android:paddingStart="20dp"
-        android:paddingTop="5dp"
-        android:text="Albums"
-        android:textColor="@color/black"
-        android:textSize="30sp" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="590dp"
-        android:layout_marginTop="50sp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="588dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </LinearLayout>
-
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-            android:id="@+id/albumsList"
-            android:layout_width="412dp"
-            android:layout_height="595dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TextContrastCheck" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/activity_album" />
 
 
 </FrameLayout>

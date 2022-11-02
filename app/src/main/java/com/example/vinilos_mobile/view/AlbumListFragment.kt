@@ -14,6 +14,7 @@ import com.example.vinilos_mobile.databinding.FragmentAlbumListBinding
 import com.example.vinilos_mobile.viewmodel.AlbumViewModel
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos_mobile.model.models.Album
 
@@ -39,7 +40,7 @@ class AlbumListFragment :Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView = binding.recyclerView
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext,3)
         recyclerView.adapter = viewModelAdapter
     }
 
