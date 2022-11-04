@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.NavBarFragment">
+
+    <ImageButton
+        android:id="@+id/buttonIconCollectors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:contentDescription="@string/collectors_button_description"
+        android:scaleType="centerInside"
+        android:src="@drawable/person" />
+
+    <ImageButton
+        android:id="@+id/buttonIconAlbums"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:contentDescription="@string/albums_button_description"
+        android:scaleType="centerInside"
+        android:src="@drawable/album" />
+
+    <ImageButton
+        android:id="@+id/buttonIconArtists"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:contentDescription="@string/artists_button_description"
+        android:scaleType="centerInside"
+        android:src="@drawable/artist" />
+
+</LinearLayout>

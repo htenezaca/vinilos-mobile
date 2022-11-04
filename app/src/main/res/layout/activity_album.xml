@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="visible"
+    android:weightSum="10"
     tools:context=".view.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView5"
+        android:id="@+id/fragmentContainerView"
         android:name="com.example.vinilos_mobile.view.AlbumListFragment"
-        android:layout_width="409dp"
-        android:layout_height="659dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/album_item" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_album_list" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerNavBar"
+        android:name="com.example.vinilos_mobile.view.NavBarFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="9"
+        tools:layout="@layout/fragment_nav_bar" />
+
+</LinearLayout>
