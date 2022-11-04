@@ -15,12 +15,20 @@ class VinilosApiService constructor(context: Context) {
     companion object {
         private const val BASE_URL = "https://vinilos-backend.herokuapp.com/"
         private const val COLLECTORS_PATH = "collectors"
+        private const val ALBUMS_PATH = "albums"
 
         fun getCollectors(
             responseListener: Response.Listener<JSONArray>,
             errorListener: Response.ErrorListener
         ): JsonArrayRequest {
             return JsonArrayRequest(BASE_URL + COLLECTORS_PATH, responseListener, errorListener)
+        }
+
+        fun getAlbums(
+            responseListener: Response.Listener<JSONArray>,
+            errorListener: Response.ErrorListener
+        ): JsonArrayRequest {
+            return JsonArrayRequest(BASE_URL + ALBUMS_PATH, responseListener, errorListener)
         }
 
     }
