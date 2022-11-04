@@ -40,7 +40,14 @@ class AlbumListFragment :Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView = binding.recyclerView
-        recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 2)
+        val rotation = this.getResources().getConfiguration().orientation;
+        if (rotation == 1) {
+            recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 2)
+        } else {
+            //Increase the area of the recycler view
+            recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 4)
+        }
+
         recyclerView.adapter = viewModelAdapter
     }
 

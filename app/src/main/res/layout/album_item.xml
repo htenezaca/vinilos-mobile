@@ -6,7 +6,8 @@
     android:layout_centerHorizontal="false"
     android:layout_centerVertical="false"
     android:layout_marginStart="20dp"
-    android:layout_marginEnd="20dp">
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="20dp">
 
     <data>
 
@@ -16,32 +17,34 @@
     </data>
 
     <LinearLayout
-        layout_height="155dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal|left"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageView"
-            android:background="@color/white"
-            android:layout_width="142dp"
+            android:layout_width="152dp"
             android:layout_height="152dp"
-            android:src="@{album.cover}"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
+            android:background="@color/teal_700"
+            android:scaleType="centerInside"
+            android:textAlignment="center"
             app:srcCompat="@drawable/ic_album_dark"
             tools:srcCompat="@drawable/ic_album_dark" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/album_name"
             android:layout_width="wrap_content"
             android:layout_height="21dp"
             android:layout_marginTop="8dp"
             android:enabled="true"
+            android:fontFamily="@font/roboto_medium"
             android:text="@{album.name}"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="16sp"
+            tools:text="Album name" />
 
 
     </LinearLayout>

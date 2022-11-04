@@ -1,11 +1,13 @@
 package com.example.vinilos_mobile.view
 
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.AlbumItemBinding
 import com.example.vinilos_mobile.model.models.Album
@@ -33,6 +35,7 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
             parent,
             false
         )
+
         return AlbumViewHolder(withDataBinding)
     }
 
@@ -40,6 +43,21 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
         holder.viewDataBinding.also {
             it.album = albums[position]
         }
+        Log.d("AlbumsAdapter", "onBindViewHolder: ${albums[position].name}")
+        Glide.with(holder.viewDataBinding.root)
+            .load(albums[position].cover)
+            .into(holder.viewDataBinding.imageView)
+
+        //seetup view when sreen is rotated
+        val rotation = holder.viewDataBinding.root.getResources().getConfiguration().orientation
+        if (rotation == 1) {
+            holder.viewDataBinding.imageView.getLayoutParams().height = 500
+            holder.viewDataBinding.imageView.getLayoutParams().width = 500
+        } else {
+            holder.viewDataBinding.imageView.getLayoutParams().height = 300
+            holder.viewDataBinding.imageView.getLayoutParams().width = 300
+        }
+
         holder.viewDataBinding.root.setOnClickListener {
             // val action =
             // Navigate using that action
