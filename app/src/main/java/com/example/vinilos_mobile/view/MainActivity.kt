@@ -6,16 +6,17 @@ import android.util.Log
 import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.model.repository.VinilosRepository
 
-class WelcomeActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_welcome)
+        setContentView(R.layout.activity_album)
 
         var vinilosRepositoryinilosRepository = VinilosRepository()
-        vinilosRepositoryinilosRepository.getCollectors(this.applicationContext, {
+        vinilosRepositoryinilosRepository.getAlbums(this.applicationContext, {
             Log.d("SUCCESS", it.toString())
         }) {
             Log.d("FAIL", it.toString())
         }
     }
+
 }
