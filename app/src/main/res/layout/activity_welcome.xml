@@ -7,7 +7,7 @@
     tools:context=".view.WelcomeActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageWelcomeView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/app_logo"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView4"
+        android:id="@+id/fragmentContainerWelcomeView"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="365dp"
