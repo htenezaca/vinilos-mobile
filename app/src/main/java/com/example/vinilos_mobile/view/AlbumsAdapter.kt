@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.AlbumItemBinding
 import com.example.vinilos_mobile.model.models.Album
-import com.squareup.picasso.Picasso
 
 class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
 
@@ -42,7 +42,7 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
         holder.viewDataBinding.also {
             it.album = albums[position]
             Log.d("image", it.album!!.cover)
-            Picasso.get().load(it.album!!.cover).into(it.imageView)
+            Glide.with(holder.viewDataBinding.root.context).load(it.album!!.cover).into(it.imageView)
         }
         holder.viewDataBinding.root.setOnClickListener {
             // val action =

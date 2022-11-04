@@ -28,7 +28,6 @@
             android:background="@color/white"
             android:layout_width="142dp"
             android:layout_height="152dp"
-            android:src="@{album.cover}"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/ic_album_dark"
