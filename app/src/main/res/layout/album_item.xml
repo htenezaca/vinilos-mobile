@@ -28,7 +28,7 @@
             android:layout_width="152dp"
             android:layout_height="152dp"
             android:adjustViewBounds="true"
-            android:background="@color/teal_700"
+            android:background="@color/white"
             android:scaleType="centerInside"
             android:textAlignment="center"
             app:srcCompat="@drawable/ic_album_dark"
