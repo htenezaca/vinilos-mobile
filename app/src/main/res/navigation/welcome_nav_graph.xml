@@ -26,5 +26,5 @@
         android:id="@+id/albumActivity"
         android:name="com.example.vinilos_mobile.view.MainActivity"
         android:label="activity_album"
-        tools:layout="@layout/activity_album" />
+        tools:layout="@layout/activity_main" />
 </navigation>
