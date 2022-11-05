@@ -133,6 +133,5 @@ class VinilosRepository {
                 onError(it)
             }
         ))
-
     }
 }

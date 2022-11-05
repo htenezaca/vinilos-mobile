@@ -7,4 +7,7 @@
     <string name="soy_coleccionista">SOY COLECCIONISTA</string>
     <string name="ingresar">INGRESAR</string>
     <string name="placeholer_collector_dropdown">Seleccione su nombre</string>
+    <string name="albums_button_description">Watch albums list</string>
+    <string name="collectors_button_description">Watch collectors list</string>
+    <string name="artists_button_description">Watch artists list</string>
 </resources>
