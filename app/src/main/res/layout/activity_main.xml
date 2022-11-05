@@ -9,7 +9,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView5"
-        android:name="com.example.vinilos_mobile.view.PerformerListFragment"
+        android:name="com.example.vinilos_mobile.view.AlbumListFragment"
         android:layout_width="409dp"
         android:layout_height="659dp"
         app:layout_constraintEnd_toEndOf="parent"

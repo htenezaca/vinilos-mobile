@@ -1,5 +1,6 @@
 package com.example.vinilos_mobile.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,6 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -73,15 +73,12 @@ class AlbumListFragment :Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentContainerView5, PerformerListFragment())
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
 
-        when (v?.id) {
-            R.id.go_to_performers -> {
-                val action = com.example.vinilos_mobile.view.AlbumListFragmentDirections.actionAlbumListFragment2ToPerformerListFragment2()
-
-                Navigation.findNavController(v).navigate(action)
-            }
-
-        }
     }
 
 
