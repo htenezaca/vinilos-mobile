@@ -35,7 +35,7 @@
             tools:srcCompat="@drawable/ic_album_dark" />
 
         <TextView
-            android:id="@+id/album_name"
+            android:id="@+id/artist_name"
             android:layout_width="wrap_content"
             android:layout_height="21dp"
             android:layout_marginTop="8dp"

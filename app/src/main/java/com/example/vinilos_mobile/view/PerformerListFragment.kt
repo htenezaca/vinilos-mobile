@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos_mobile.databinding.FragmentPerformerListBinding
 import com.example.vinilos_mobile.model.models.Performer
@@ -37,14 +38,7 @@ class PerformerListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView: RecyclerView = binding.recyclerView
-        val rotation = this.getResources().getConfiguration().orientation;
-        if (rotation == 1) {
-            recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 2)
-        } else {
-            //Increase the area of the recycler view
-            recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 4)
-        }
-
+        recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
     }
 
