@@ -4,22 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
+import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.vinilos_mobile.R
-import com.example.vinilos_mobile.databinding.FragmentAlbumListBinding
-import com.example.vinilos_mobile.viewmodel.AlbumViewModel
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.vinilos_mobile.R
+import com.example.vinilos_mobile.databinding.FragmentAlbumListBinding
 import com.example.vinilos_mobile.model.models.Album
+import com.example.vinilos_mobile.viewmodel.AlbumViewModel
 
-class AlbumListFragment :Fragment() {
-
+class AlbumListFragment :Fragment(), View.OnClickListener {
 
     private var _binding: FragmentAlbumListBinding? = null
     private val binding get() = _binding!!
@@ -39,6 +37,7 @@ class AlbumListFragment :Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val recyclerView = binding.recyclerView
         val rotation = this.getResources().getConfiguration().orientation;
         if (rotation == 1) {
@@ -47,6 +46,9 @@ class AlbumListFragment :Fragment() {
             //Increase the area of the recycler view
             recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 4)
         }
+
+        val btn: Button = view.findViewById(R.id.go_to_performers)
+        btn.setOnClickListener(this)
 
         recyclerView.adapter = viewModelAdapter
     }
@@ -68,6 +70,18 @@ class AlbumListFragment :Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onClick(v: View?) {
+
+        when (v?.id) {
+            R.id.go_to_performers -> {
+                val action = com.example.vinilos_mobile.view.AlbumListFragmentDirections.actionAlbumListFragment2ToPerformerListFragment2()
+
+                Navigation.findNavController(v).navigate(action)
+            }
+
+        }
     }
 
 

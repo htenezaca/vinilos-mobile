@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_albumListFragment2_to_albumDetailFragment"
             app:destination="@id/albumDetailFragment" />
+        <action
+            android:id="@+id/action_albumListFragment2_to_performerListFragment"
+            app:destination="@id/performerListFragment" />
     </fragment>
     <fragment
         android:id="@+id/albumDetailFragment"
         android:name="com.example.vinilos_mobile.view.AlbumDetailFragment"
         android:label="fragment_album_detail"
         tools:layout="@layout/fragment_album_detail" />
+    <fragment
+        android:id="@+id/performerListFragment"
+        android:name="com.example.vinilos_mobile.view.PerformerListFragment"
+        android:label="fragment_performer_list"
+        tools:layout="@layout/fragment_performer_list" />
 </navigation>

@@ -16,7 +16,15 @@
         android:persistentDrawingCache="all"
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:listitem="@layout/activity_album" />
+        tools:listitem="@layout/activity_album" >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/go_to_performers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Performers" />
 
 
 </FrameLayout>
