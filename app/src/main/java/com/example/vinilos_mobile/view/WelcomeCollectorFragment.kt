@@ -45,7 +45,7 @@ class WelcomeCollectorFragment : Fragment() {
             it.apply {
                 val dropdown:AutoCompleteTextView = activity.findViewById(R.id.collectorsWelcomeDropdown)
 
-                val collectors = this
+                val collectors = this.map { collector -> collector.name }
                 val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, collectors)
                 dropdown.setAdapter(arrayAdapter)
 

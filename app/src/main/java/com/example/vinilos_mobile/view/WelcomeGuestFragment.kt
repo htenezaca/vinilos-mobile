@@ -36,8 +36,10 @@ class WelcomeGuestFragment : Fragment(), View.OnClickListener {
                 v.findNavController().navigate(action)
             }
 
+        }
+        when (v?.id) {
             R.id.userIsGuestButton -> {
-                val action = WelcomeGuestFragmentDirections.actionWelcomeGuestFragmentToAlbumActivity()
+                val action = com.example.vinilos_mobile.view.WelcomeGuestFragmentDirections.actionWelcomeGuestFragmentToAlbumActivity()
                 v.findNavController().navigate(action)
             }
 

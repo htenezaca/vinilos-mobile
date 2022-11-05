@@ -4,8 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.android.volley.VolleyError
 import com.example.vinilos_mobile.model.api.VinilosApiService
-import com.example.vinilos_mobile.model.models.Album
-import com.example.vinilos_mobile.model.models.Collector
+import com.example.vinilos_mobile.model.models.*
 
 class VinilosRepository {
 
@@ -78,6 +77,61 @@ class VinilosRepository {
                     onError(it)
                 }
             ))
+    }
 
+    fun getPerformers(
+        applicationContext: Context,
+        onComplete: (resp: List<Performer>) -> Unit,
+        onError: (error: VolleyError) -> Unit
+    ) {
+        var vinilosApiService = VinilosApiService(applicationContext)
+        val performersList = mutableListOf<Performer>()
+
+        vinilosApiService.instance.add(VinilosApiService.getMusicians(
+            { response ->
+                Log.d("GET MUSICIANS", "response: $response")
+
+                for (i in 0 until response.length()) {
+                    val item = response.getJSONObject(i)
+                    performersList.add(
+                        Musician(
+                            id = item.getInt("id"),
+                            name = item.getString("name"),
+                            image = item.getString("image"),
+                            description = item.getString("description"),
+                            birthDate = item.getString("birthDate")
+                        )
+                    )
+                }
+                vinilosApiService.instance.add(VinilosApiService.getBands(
+                    { response ->
+                        Log.d("GET BANDS", "response: $response")
+
+                        for (i in 0 until response.length()) {
+                            val item = response.getJSONObject(i)
+                            performersList.add(
+                                Band(
+                                    id = item.getInt("id"),
+                                    name = item.getString("name"),
+                                    image = item.getString("image"),
+                                    description = item.getString("description"),
+                                    creationDate = item.getString("creationDate")
+                                )
+                            )
+                        }
+
+                        onComplete(performersList)
+                    },
+                    {
+                        Log.d("GET BANDS", "error: $it")
+                        onError(it)
+                    }
+                ))
+            },
+            {
+                Log.d("GET MUSICIANS", "error: $it")
+                onError(it)
+            }
+        ))
     }
 }
