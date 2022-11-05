@@ -2,9 +2,11 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="10dp">
 
     <data>
+
         <variable
             name="performer"
             type="com.example.vinilos_mobile.model.models.Performer" />
