@@ -46,16 +46,16 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
         Log.d("AlbumsAdapter", "onBindViewHolder: ${albums[position].name}")
         Glide.with(holder.viewDataBinding.root)
             .load(albums[position].cover)
-            .into(holder.viewDataBinding.imageView)
+            .into(holder.viewDataBinding.albumImageView)
 
         //seetup view when sreen is rotated
         val rotation = holder.viewDataBinding.root.getResources().getConfiguration().orientation
         if (rotation == 1) {
-            holder.viewDataBinding.imageView.getLayoutParams().height = 500
-            holder.viewDataBinding.imageView.getLayoutParams().width = 500
+            holder.viewDataBinding.albumImageView.getLayoutParams().height = 500
+            holder.viewDataBinding.albumImageView.getLayoutParams().width = 500
         } else {
-            holder.viewDataBinding.imageView.getLayoutParams().height = 300
-            holder.viewDataBinding.imageView.getLayoutParams().width = 300
+            holder.viewDataBinding.albumImageView.getLayoutParams().height = 300
+            holder.viewDataBinding.albumImageView.getLayoutParams().width = 300
         }
 
         holder.viewDataBinding.root.setOnClickListener {

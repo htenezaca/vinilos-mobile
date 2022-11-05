@@ -24,7 +24,7 @@
 
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageView"
+            android:id="@+id/album_image_view"
             android:layout_width="152dp"
             android:layout_height="152dp"
             android:adjustViewBounds="true"

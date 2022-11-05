@@ -39,7 +39,7 @@ class AlbumListFragment :Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val recyclerView = binding.recyclerView
+        val recyclerView = binding.albumRecyclerView
         val rotation = this.getResources().getConfiguration().orientation;
         if (rotation == 1) {
             recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 2)
