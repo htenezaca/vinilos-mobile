@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
-import androidx.navigation.findNavController
 import com.example.vinilos_mobile.R
 
 class NavBarFragment : Fragment(), View.OnClickListener {
@@ -39,10 +37,26 @@ class NavBarFragment : Fragment(), View.OnClickListener {
 
         when (v?.id) {
             R.id.buttonIconCollectors -> {
-                val action = AlbumListFragmentDirections.actionAlbumListToAlbumDetail()
-
+                val fragmentManager = requireActivity().supportFragmentManager
+                val fragmentTransaction = fragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.fragmentContainerView5, PerformerListFragment())
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
             }
-
+            R.id.buttonIconAlbums -> {
+                val fragmentManager = requireActivity().supportFragmentManager
+                val fragmentTransaction = fragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.fragmentContainerView5, AlbumListFragment())
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
+            R.id.buttonIconArtists -> {
+                val fragmentManager = requireActivity().supportFragmentManager
+                val fragmentTransaction = fragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.fragmentContainerView5, PerformerListFragment())
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
         }
     }
 }
