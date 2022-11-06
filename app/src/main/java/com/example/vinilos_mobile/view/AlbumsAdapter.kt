@@ -65,7 +65,7 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
             val fm = (holder.itemView.context as FragmentActivity).supportFragmentManager
             val fragment = AlbumDetailFragment.newInstance(albumId = albums[position].albumId)
             // Add the current fragment to the back stack
-            fm.beginTransaction().replace(R.id.fragmentContainerView5, fragment)
+            fm.beginTransaction().replace(R.id.fragment_main_view, fragment)
                 .addToBackStack("Album List").commit()
         }
     }

@@ -53,7 +53,7 @@ class AlbumDetailFragment : Fragment(R.layout.fragment_album_detail) {
         viewModel.album.observe(viewLifecycleOwner, Observer<AlbumDetail> {
             it.apply {
                 _binding!!.albumName.text = name
-                _binding!!.artistName.text = performers.firstOrNull()!!.name ?: "Unknown"
+                _binding!!.artistName.text = performers.firstOrNull()?.name ?: "Unknown"
                 _binding!!.albumDescriptionContent.text = description
                 _binding!!.albumGenre.text = genre
                _binding!!.albumYear.text = releaseDate.substring(0, 4)

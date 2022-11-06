@@ -3,28 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav_graph"
-    app:startDestination="@id/album_list_fragment">
+    app:startDestination="@id/app_fragment_album_list">
 
     <fragment
-        android:id="@+id/album_list_fragment"
+        android:id="@+id/app_fragment_album_list"
         android:name="com.example.vinilos_mobile.view.AlbumListFragment"
         android:label="fragment_album_list"
         tools:layout="@layout/fragment_album_list" >
         <action
-            android:id="@+id/action_album_list_to_album_detail"
-            app:destination="@id/albumDetailFragment" />
+            android:id="@+id/app_action_album_list_to_album_detail"
+            app:destination="@id/app_fragment_album_detail" />
         <action
-            android:id="@+id/action_album_list_to_performer_list"
-            app:destination="@id/performerListFragment" />
+            android:id="@+id/app_action_album_list_to_performer_list"
+            app:destination="@id/app_fragment_performer_list" />
 
     </fragment>
     <fragment
-        android:id="@+id/albumDetailFragment"
+        android:id="@+id/app_fragment_album_detail"
         android:name="com.example.vinilos_mobile.view.AlbumDetailFragment"
         android:label="fragment_album_detail"
         tools:layout="@layout/fragment_album_detail" />
     <fragment
-        android:id="@+id/performerListFragment"
+        android:id="@+id/app_fragment_performer_list"
         android:name="com.example.vinilos_mobile.view.PerformerListFragment"
         android:label="fragment_performer_list"
         tools:layout="@layout/fragment_performer_list" />
