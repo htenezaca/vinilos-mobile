@@ -7,4 +7,8 @@
     <string name="soy_coleccionista">SOY COLECCIONISTA</string>
     <string name="ingresar">INGRESAR</string>
     <string name="placeholer_collector_dropdown">Seleccione su nombre</string>
+    <string name="album_detail_lista_canciones">Lista de Canciones</string>
+    <string name="album_detail_description_title">Descripción</string>
+    <string name="album_detail_listado_title">Lista de Canciones</string>
+    <string name="album_cover">Album cover image</string>
 </resources>

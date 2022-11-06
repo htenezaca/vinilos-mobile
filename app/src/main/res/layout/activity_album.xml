@@ -8,13 +8,14 @@
     tools:context=".view.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView5"
+        android:id="@+id/fragment_container_view"
         android:name="com.example.vinilos_mobile.view.AlbumListFragment"
-        android:layout_width="409dp"
-        android:layout_height="659dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/album_item" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

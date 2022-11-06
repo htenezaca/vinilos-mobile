@@ -11,7 +11,7 @@
         android:label="fragment_album_list"
         tools:layout="@layout/fragment_album_list" >
         <action
-            android:id="@+id/action_albumListFragment2_to_albumDetailFragment"
+            android:id="@+id/superexplosion"
             app:destination="@id/albumDetailFragment" />
     </fragment>
     <fragment
