@@ -39,7 +39,7 @@ class NavBarFragment : Fragment(), View.OnClickListener {
 
         when (v?.id) {
             R.id.buttonIconCollectors -> {
-                val action = AlbumListFragmentDirections.actionAlbumListFragment2ToAlbumDetailFragment()
+                val action = AlbumListFragmentDirections.actionAlbumListToAlbumDetail()
 
             }
 

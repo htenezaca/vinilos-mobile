@@ -3,14 +3,10 @@ package com.example.vinilos_mobile.view
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vinilos_mobile.R
@@ -64,12 +60,12 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
         }
 
         holder.viewDataBinding.root.setOnClickListener {
-            val action = AlbumListFragmentDirections.superexplosion()
             // Use the fragment manager to replace the main fragment view
+            // Get the child fragmentManager
             val fm = (holder.itemView.context as FragmentActivity).supportFragmentManager
             val fragment = AlbumDetailFragment.newInstance(albumId = albums[position].albumId)
             // Add the current fragment to the back stack
-            fm.beginTransaction().replace(R.id.fragment_container_view, fragment)
+            fm.beginTransaction().replace(R.id.fragmentContainerView5, fragment)
                 .addToBackStack("Album List").commit()
         }
     }

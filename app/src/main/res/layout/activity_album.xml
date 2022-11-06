@@ -12,7 +12,7 @@
 
     <!-- android:id="@+id/fragment_container_view" -->
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
+        android:id="@+id/album_activity_main_fragment"
         android:name="com.example.vinilos_mobile.view.AlbumListFragment"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

@@ -44,27 +44,54 @@ class VinilosRepository {
         onError: (error: VolleyError) -> Unit
     ) {
 
-            var vinilosApiService = VinilosApiService(applicationContext)
+        var vinilosApiService = VinilosApiService(applicationContext)
 
-            vinilosApiService.instance.add(VinilosApiService.getAlbums(
-                { response ->
-                    Log.d("GET ALBUMS", "response: $response")
-                    val albumsList = mutableListOf<Album>()
+        vinilosApiService.instance.add(VinilosApiService.getAlbums(
+            { response ->
+                Log.d("GET ALBUMS", "response: $response")
+                val albumsList = mutableListOf<Album>()
 
-                    for (i in 0 until response.length()) {
-                        val item = response.getJSONObject(i)
-                        albumsList.add(
-                            deserializeAlbum(item)
-                        )
-                    }
-
-                    onComplete(albumsList)
-                },
-                {
-                    Log.d("GET ALBUMS", "error: $it")
-                    onError(it)
+                for (i in 0 until response.length()) {
+                    val item = response.getJSONObject(i)
+                    albumsList.add(
+                        deserializeAlbum(item)
+                    )
                 }
-            ))
+
+                onComplete(albumsList)
+            },
+            {
+                Log.d("GET ALBUMS", "error: $it")
+                onError(it)
+            }
+        ))
+    }
+
+    fun getAlbum(
+        albumId: Int,
+        applicationContext: Context,
+        onComplete: (resp: AlbumDetail) -> Unit,
+        onError: (error: VolleyError) -> Unit
+    ) {
+        var vinilosApiService = VinilosApiService(applicationContext)
+        vinilosApiService.instance.add(VinilosApiService.getAlbumDetail(
+            albumId,
+            { response ->
+                Log.d("GET ALBUM DETAIL", "response: $response")
+                if (response != null) {
+                    onComplete(
+                        deserializeAlbumDetail(response)
+                    )
+                } else {
+                    onError(VolleyError("No se encontró el álbum"))
+                }
+            },
+            {
+                Log.d("GET ALBUM", "error: $it")
+                onError(it)
+            }
+        ))
+
     }
 
     fun getPerformers(
@@ -78,77 +105,28 @@ class VinilosRepository {
         vinilosApiService.instance.add(VinilosApiService.getMusicians(
             { response ->
                 Log.d("GET MUSICIANS", "response: $response")
+                performersList.addAll(
+                    deserializePerformers(response)
+                )
 
-                for (i in 0 until response.length()) {
-                    val item = response.getJSONObject(i)
-                    performersList.add(
-                        Musician(
-                            id = item.getInt("id"),
-                            name = item.getString("name"),
-                            image = item.getString("image"),
-                            description = item.getString("description"),
-                            birthDate = item.getString("birthDate")
-                        )
-                    )
-                }
-                vinilosApiService.instance.add(VinilosApiService.getBands(
-                    { response ->
-                        Log.d("GET BANDS", "response: $response")
-
-                        for (i in 0 until response.length()) {
-                            val item = response.getJSONObject(i)
-                            performersList.add(
-                                Band(
-                                    id = item.getInt("id"),
-                                    name = item.getString("name"),
-                                    image = item.getString("image"),
-                                    description = item.getString("description"),
-                                    creationDate = item.getString("creationDate")
-                                )
-                            )
-                        }
-
-                        onComplete(performersList)
-                    },
-                    {
-                        Log.d("GET BANDS", "error: $it")
-                        onError(it)
-                    }
-                ))
             },
             {
                 Log.d("GET MUSICIANS", "error: $it")
                 onError(it)
             }
         ))
-    }
-
-    fun getAlbum(
-        albumId: Int,
-        applicationContext: Context,
-        onComplete: (resp: AlbumDetail) -> Unit,
-        onError: (error: VolleyError) -> Unit
-    ) {
-
-            var vinilosApiService = VinilosApiService(applicationContext)
-
-            vinilosApiService.instance.add(VinilosApiService.getAlbumDetail(
-                albumId,
-                { response ->
-                    Log.d("GET ALBUM DETAIL", "response: $response")
-                    if (response != null) {
-                        onComplete(
-                            deserializeAlbumDetail(response)
-                        )
-                    } else {
-                        onError(VolleyError("No se encontró el álbum"))
-                    }
-                },
-                {
-                    Log.d("GET ALBUM", "error: $it")
-                    onError(it)
-                }
-            ))
-
+        vinilosApiService.instance.add(VinilosApiService.getBands(
+            { response ->
+                Log.d("GET BANDS", "response: $response")
+                performersList.addAll(
+                    deserializePerformers(response)
+                )
+                onComplete(performersList)
+            },
+            {
+                Log.d("GET BANDS", "error: $it")
+                onError(it)
+            }
+        ))
     }
 }
