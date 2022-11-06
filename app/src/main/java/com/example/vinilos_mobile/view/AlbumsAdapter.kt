@@ -47,16 +47,16 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
         Glide.with(holder.viewDataBinding.root)
             .load(albums[position].cover)
             .diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.AUTOMATIC)
-            .into(holder.viewDataBinding.imageView)
+            .into(holder.viewDataBinding.albumListImageView)
 
         //seetup view when sreen is rotated
         val rotation = holder.viewDataBinding.root.getResources().getConfiguration().orientation
         if (rotation == 1) {
-            holder.viewDataBinding.imageView.getLayoutParams().height = 500
-            holder.viewDataBinding.imageView.getLayoutParams().width = 500
+            holder.viewDataBinding.albumListImageView.getLayoutParams().height = 500
+            holder.viewDataBinding.albumListImageView.getLayoutParams().width = 500
         } else {
-            holder.viewDataBinding.imageView.getLayoutParams().height = 300
-            holder.viewDataBinding.imageView.getLayoutParams().width = 300
+            holder.viewDataBinding.albumListImageView.getLayoutParams().height = 300
+            holder.viewDataBinding.albumListImageView.getLayoutParams().width = 300
         }
 
         holder.viewDataBinding.root.setOnClickListener {
