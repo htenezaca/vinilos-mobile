@@ -26,7 +26,7 @@
 
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageView"
+            android:id="@+id/performer_image_view"
             android:layout_width="152dp"
             android:layout_height="152dp"
             android:adjustViewBounds="true"
@@ -37,7 +37,7 @@
             tools:srcCompat="@drawable/ic_album_dark" />
 
         <TextView
-            android:id="@+id/album_name"
+            android:id="@+id/performer_name"
             android:layout_width="wrap_content"
             android:layout_height="21dp"
             android:layout_gravity="center"
@@ -52,7 +52,7 @@
             />
 
         <TextView
-            android:id="@+id/Go"
+            android:id="@+id/performer_go"
             android:layout_width="81dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center|right|center_horizontal|end"
