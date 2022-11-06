@@ -4,22 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.vinilos_mobile.R
-import com.example.vinilos_mobile.databinding.FragmentAlbumListBinding
-import com.example.vinilos_mobile.viewmodel.AlbumViewModel
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.vinilos_mobile.databinding.FragmentAlbumListBinding
+import com.example.vinilos_mobile.viewmodel.AlbumViewModel
 import com.example.vinilos_mobile.model.models.Album
 
-class AlbumListFragment :Fragment() {
 
+class AlbumListFragment :Fragment() {
 
     private var _binding: FragmentAlbumListBinding? = null
     private val binding get() = _binding!!
@@ -39,7 +34,8 @@ class AlbumListFragment :Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val recyclerView = binding.albumRecyclerView
+        super.onViewCreated(view, savedInstanceState)
+        val recyclerView = binding.recyclerView
         val rotation = this.getResources().getConfiguration().orientation;
         if (rotation == 1) {
             recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 2)
@@ -47,7 +43,6 @@ class AlbumListFragment :Fragment() {
             //Increase the area of the recycler view
             recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 4)
         }
-
         recyclerView.adapter = viewModelAdapter
     }
 
@@ -69,6 +64,4 @@ class AlbumListFragment :Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }
