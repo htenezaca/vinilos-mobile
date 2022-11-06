@@ -40,6 +40,7 @@ A continuación se presenta el listado inicial con las funcionalidades presentad
 git clone https://github.com/htenezaca/vinilos-mobile.git
 ```
 3. Abrir proyecto en Android Studio
+``` es recomendable realizar un sync Graddle ```
 4. Ejecutar aplicación en el emulador configurado
 5. Experimentar las funcionalidades de la aplicación
 
