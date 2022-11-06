@@ -31,6 +31,14 @@ class VinilosApiService constructor(context: Context) {
             return JsonArrayRequest(BASE_URL + ALBUMS_PATH, responseListener, errorListener)
         }
 
+        fun getAlbumDetail(
+            albumId: Int,
+            responseListener: Response.Listener<JSONObject>,
+            errorListener: Response.ErrorListener
+        ): JsonObjectRequest {
+            return JsonObjectRequest("$BASE_URL$ALBUMS_PATH/$albumId", responseListener, errorListener)
+        }
+
     }
 
 }
