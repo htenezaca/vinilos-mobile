@@ -13,7 +13,9 @@ import com.example.vinilos_mobile.databinding.FragmentAlbumListBinding
 import com.example.vinilos_mobile.viewmodel.AlbumViewModel
 import com.example.vinilos_mobile.model.models.Album
 
+
 class AlbumListFragment :Fragment() {
+
     private var _binding: FragmentAlbumListBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
@@ -62,6 +64,4 @@ class AlbumListFragment :Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }
