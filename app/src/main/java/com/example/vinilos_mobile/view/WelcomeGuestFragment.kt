@@ -31,7 +31,7 @@ class WelcomeGuestFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.userIsCollectorButton -> {
-                val action = com.example.vinilos_mobile.view.WelcomeGuestFragmentDirections.actionWelcomeGuestFragmentToWelcomeCollectorFragment()
+                val action = WelcomeGuestFragmentDirections.actionWelcomeGuestFragmentToWelcomeCollectorFragment()
 
                 v.findNavController().navigate(action)
             }

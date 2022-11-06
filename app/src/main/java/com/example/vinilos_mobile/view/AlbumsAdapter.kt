@@ -40,7 +40,6 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
             parent,
             false
         )
-
         return AlbumViewHolder(withDataBinding)
     }
 
