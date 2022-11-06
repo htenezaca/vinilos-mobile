@@ -31,7 +31,7 @@ class WelcomeGuestFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.userIsCollectorButton -> {
-                val action = WelcomeGuestFragmentDirections.actionWelcomeGuestFragmentToWelcomeCollectorFragment()
+                val action = WelcomeGuestFragmentDirections.welcomeActionGuestFragmentToCollectorFragment()
 
                 v.findNavController().navigate(action)
             }
@@ -39,7 +39,7 @@ class WelcomeGuestFragment : Fragment(), View.OnClickListener {
         }
         when (v?.id) {
             R.id.userIsGuestButton -> {
-                val action = com.example.vinilos_mobile.view.WelcomeGuestFragmentDirections.actionWelcomeGuestFragmentToAlbumActivity()
+                val action = com.example.vinilos_mobile.view.WelcomeGuestFragmentDirections.welcomeActionGuestFragmentToAlbumActivity()
                 v.findNavController().navigate(action)
             }
 

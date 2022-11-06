@@ -39,21 +39,21 @@ class NavBarFragment : Fragment(), View.OnClickListener {
             R.id.buttonIconCollectors -> {
                 val fragmentManager = requireActivity().supportFragmentManager
                 val fragmentTransaction = fragmentManager.beginTransaction()
-                fragmentTransaction.replace(R.id.fragmentContainerView5, PerformerListFragment())
+                fragmentTransaction.replace(R.id.fragment_main_view, PerformerListFragment())
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
             }
             R.id.buttonIconAlbums -> {
                 val fragmentManager = requireActivity().supportFragmentManager
                 val fragmentTransaction = fragmentManager.beginTransaction()
-                fragmentTransaction.replace(R.id.fragmentContainerView5, AlbumListFragment())
+                fragmentTransaction.replace(R.id.fragment_main_view, AlbumListFragment())
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
             }
             R.id.buttonIconArtists -> {
                 val fragmentManager = requireActivity().supportFragmentManager
                 val fragmentTransaction = fragmentManager.beginTransaction()
-                fragmentTransaction.replace(R.id.fragmentContainerView5, PerformerListFragment())
+                fragmentTransaction.replace(R.id.fragment_main_view, PerformerListFragment())
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
             }
