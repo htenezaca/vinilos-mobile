@@ -4,6 +4,7 @@ Repositorio de carácter formativo, donde se presenta la interfaz de usuario de 
 ## Aplicación 
 - Nombre de la aplicación: **_Vinilos_**
 - Versión: **v.1.0.0**
+- Versión Android mínima soportada: Lollipop
 
 ### Descripción
 
