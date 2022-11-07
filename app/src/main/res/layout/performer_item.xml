@@ -3,6 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginLeft="11dp"
     android:layout_marginTop="10dp">
 
     <data>
@@ -15,24 +16,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="false"
-        android:layout_centerHorizontal="false"
-        android:layout_centerVertical="false"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="5dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:gravity="center_horizontal"
+        android:gravity="center_horizontal|left"
         android:orientation="horizontal">
 
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/performer_image_view"
-            android:layout_width="152dp"
-            android:layout_height="152dp"
+            android:id="@+id/imageView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:adjustViewBounds="true"
             android:background="@color/white"
-            android:scaleType="centerInside"
+            android:scaleType="centerCrop"
             android:textAlignment="center"
+            app:shapeAppearance="@style/ShapeAppearance.ImageView"
             app:srcCompat="@drawable/ic_album_dark"
             tools:srcCompat="@drawable/ic_album_dark" />
 
@@ -41,24 +40,13 @@
             android:layout_width="wrap_content"
             android:layout_height="21dp"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
+            android:layout_marginLeft="11dp"
             android:enabled="true"
-            android:fontFamily="@font/roboto_medium"
+            android:fontFamily="sans-serif-black"
             android:text="@{performer.name}"
             android:textAlignment="center"
             android:textSize="16sp"
-            tools:text="Album name"
-
-            />
-
-        <TextView
-            android:id="@+id/performer_go"
-            android:layout_width="81dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|right|center_horizontal|end"
-            android:text=">"
-            android:textAlignment="viewEnd"
-            android:textSize="24sp" />
+            tools:text="Album name" />
 
 
     </LinearLayout>
