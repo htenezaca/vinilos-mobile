@@ -22,7 +22,7 @@ class ArtistTest {
     val activityRule = ActivityScenarioRule(WelcomeActivity::class.java)
 
     @Test
-    fun listAlbums() {
+    fun listArtists() {
 
         val guestButton = onView(withId(R.id.userIsGuestButton))
         guestButton.perform(click())
