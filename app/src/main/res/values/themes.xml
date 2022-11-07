@@ -19,4 +19,8 @@
         <item name="colorPrimary">@android:color/white</item>
         <item name="colorOnPrimary">@color/main_orange</item>
     </style>
+    <style name="ShapeAppearance.ImageView" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
