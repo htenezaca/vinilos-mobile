@@ -43,10 +43,18 @@ git clone https://github.com/htenezaca/vinilos-mobile.git
 3. Abrir proyecto en Android Studio
 ``` es recomendable realizar un sync Graddle ```
 4. Construir el proyecto desde la barra de tareas, la opción *Build* y luego el apartado *Make project*
+
+
 ![image](https://user-images.githubusercontent.com/98656582/200205966-017bf0bf-4c76-47ce-b24f-387f0b695556.png)
 
+
+
 5. Ejecutar aplicación en el emulador configurado
+
+
 ![image](https://user-images.githubusercontent.com/98656582/200205082-2ca68c92-4744-4c08-8d4f-1b7765f87edc.png)
+
+
 
 5. Experimentar las funcionalidades de la aplicación
 
@@ -54,8 +62,14 @@ git clone https://github.com/htenezaca/vinilos-mobile.git
 
 1. Ejecutar los pasos 1 al 3 de los pasos previos de ejecución
 2. Clic derecho en jerarquía de objetos Android en el ítem _tests_
+
+
 ![image](https://user-images.githubusercontent.com/98656582/200206274-10114c80-15de-4e30-be4a-e92487a5c5c8.png)
+
+
 3. Run tests
 (Ejemplo)
+
+
 ![image](https://user-images.githubusercontent.com/98656582/200206307-2afe0377-079d-4249-9d77-fe5cbc5cb791.png)
 
