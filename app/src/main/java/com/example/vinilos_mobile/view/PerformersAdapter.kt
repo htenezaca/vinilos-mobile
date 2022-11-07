@@ -36,7 +36,7 @@ class PerformersAdapter : RecyclerView.Adapter<PerformersAdapter.PerformersViewH
         Log.d("AlbumsAdapter", "onBindViewHolder: ${performers[position].name}")
         Glide.with(holder.viewDataBinding.root)
             .load(performers[position].image)
-            .into(holder.viewDataBinding.performerImageView)
+            .into(holder.viewDataBinding.performerImage)
     }
 
     override fun onCreateViewHolder(
