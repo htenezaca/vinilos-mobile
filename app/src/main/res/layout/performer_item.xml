@@ -36,7 +36,7 @@
             tools:srcCompat="@drawable/ic_album_dark" />
 
         <TextView
-            android:id="@+id/album_name"
+            android:id="@+id/performer_name"
             android:layout_width="wrap_content"
             android:layout_height="21dp"
             android:layout_gravity="center"
@@ -45,7 +45,6 @@
             android:fontFamily="sans-serif-black"
             android:text="@{performer.name}"
             android:textAlignment="center"
-
             android:textSize="16sp"
             tools:text="Album name" />
 

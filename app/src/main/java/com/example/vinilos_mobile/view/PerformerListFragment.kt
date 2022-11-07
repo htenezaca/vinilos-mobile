@@ -36,7 +36,7 @@ class PerformerListFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val recyclerView: RecyclerView = binding.recyclerView
+        val recyclerView: RecyclerView = binding.performerRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
     }
