@@ -22,6 +22,7 @@ class VinilosApiService constructor(context: Context) {
         private const val BANDS_PATH = "bands"
         private const val MUSICIANS_PATH = "musicians"
 
+<<<<<<< HEAD
         private var instance: VinilosApiService? = null
 
         fun getInstance(context: Context) = instance ?: synchronized(this) {
@@ -182,3 +183,43 @@ class VinilosApiService constructor(context: Context) {
 }
 
 
+=======
+        fun getCollectors(
+            responseListener: Response.Listener<JSONArray>,
+            errorListener: Response.ErrorListener
+        ): JsonArrayRequest {
+            return JsonArrayRequest(BASE_URL + COLLECTORS_PATH, responseListener, errorListener)
+        }
+
+        fun getAlbums(
+            responseListener: Response.Listener<JSONArray>,
+            errorListener: Response.ErrorListener
+        ): JsonArrayRequest {
+            return JsonArrayRequest(BASE_URL + ALBUMS_PATH, responseListener, errorListener)
+        }
+
+        fun getAlbumDetail(
+            albumId: Int,
+            responseListener: Response.Listener<JSONObject>,
+            errorListener: Response.ErrorListener
+        ): JsonObjectRequest {
+            return JsonObjectRequest("$BASE_URL$ALBUMS_PATH/$albumId", responseListener, errorListener)
+        }
+
+        fun getBands(
+            responseListener: Response.Listener<JSONArray>,
+            errorListener: Response.ErrorListener
+        ): JsonArrayRequest {
+            return JsonArrayRequest(BASE_URL + BANDS_PATH, responseListener, errorListener)
+        }
+
+        fun getMusicians(
+            responseListener: Response.Listener<JSONArray>,
+            errorListener: Response.ErrorListener
+        ): JsonArrayRequest {
+            return JsonArrayRequest(BASE_URL + MUSICIANS_PATH, responseListener, errorListener)
+        }
+    }
+
+}
+>>>>>>> 95f5312 (Release/sprint1 (#63))

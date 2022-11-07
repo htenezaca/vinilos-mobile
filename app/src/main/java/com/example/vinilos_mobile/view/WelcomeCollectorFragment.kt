@@ -7,9 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+<<<<<<< HEAD
 import androidx.lifecycle.ViewModelProvider
 import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.FragmentWelcomeCollectorBinding
+=======
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.vinilos_mobile.R
+import com.example.vinilos_mobile.databinding.FragmentWelcomeCollectorBinding
+import com.example.vinilos_mobile.model.models.Collector
+>>>>>>> 95f5312 (Release/sprint1 (#63))
 import com.example.vinilos_mobile.viewmodel.CollectorViewModel
 
 class WelcomeCollectorFragment : Fragment() {

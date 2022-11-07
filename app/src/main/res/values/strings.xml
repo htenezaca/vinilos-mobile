@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">vinilos-mobile</string>
     <string name="app_logo">App logo</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ingresar_como_visitante">INGRESAR COMO VISITANTE</string>
     <string name="soy_coleccionista">SOY COLECCIONISTA</string>
     <string name="ingresar">INGRESAR</string>
@@ -8,25 +9,11 @@
     <string name="album_detail_lista_canciones">Lista de Canciones</string>
     <string name="album_detail_description_title">Descripción</string>
     <string name="album_detail_listado_title">Lista de Canciones</string>
-    <string name="album_cover">Imagen de portada de un álbum</string>
-    <string name="albums_button_description">Mirar la lista de albumes</string>
-    <string name="collectors_button_description">Mirar la lista de coleccionistas</string>
-    <string name="collector_detail_image">Imagen del coleccionista</string>
-    <string name="performers_favorite_collector">Artistas favoritos</string>
-    <string name="artists_button_description">Mirar la lista de artistas</string>
-    <string name="performer_detail_list_album_title">Albumes</string>
-    <string name="collector_img_description">Imagen por defecto del coleccionista</string>
-    <string name="album_img_description">Imagen por defecto del álbum</string>
-    <string name="performer_img_description">IMagen por defecto del artista o banda</string>
-    <string name="album_name_label">Nombre del álbum</string>
-    <string name="collector_name_label">Nombre del coleccionista</string>
-    <string name="collector_phone_label">Teléfono del coleccionista</string>
-    <string name="collector_email_label">Correo del coleccionista</string>
-    <string name="performer_name_label">Nombre del artista o banda</string>
-    <string name="track_name_label">Nombre de la canción</string>
-    <string name="track_duration_label">Duración de la canción</string>
-    <string name="text_input_user">Texto de entrada para el usuario</string>
-    <string name="performers_favorite">Artistas y bandas favoritas</string>
-
+    <string name="album_cover">Album cover image</string>
+    <string name="albums_button_description">Watch albums list</string>
+    <string name="collectors_button_description">Watch collectors list</string>
+    <string name="artists_button_description">Watch artists list</string>
+    <string name="performer_detail_list_album_title">Albums</string>
+    <string name="collector_img_description">Collector default image</string>
     <string name="chevron">chevron</string>
 </resources>
