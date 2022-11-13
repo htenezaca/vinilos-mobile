@@ -26,6 +26,14 @@ class VinilosApiService constructor(context: Context) {
             return JsonArrayRequest(BASE_URL + COLLECTORS_PATH, responseListener, errorListener)
         }
 
+        fun getCollector(
+            collectorId: Int,
+            responseListener: Response.Listener<JSONObject>,
+            errorListener: Response.ErrorListener
+        ): JsonObjectRequest {
+            return JsonObjectRequest("$BASE_URL$COLLECTORS_PATH/$collectorId", responseListener, errorListener)
+        }
+
         fun getAlbums(
             responseListener: Response.Listener<JSONArray>,
             errorListener: Response.ErrorListener

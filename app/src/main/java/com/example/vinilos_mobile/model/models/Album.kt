@@ -1,5 +1,6 @@
 package com.example.vinilos_mobile.model.models
 
+import org.json.JSONArray
 import org.json.JSONObject
 
 data class Album(
@@ -11,6 +12,14 @@ data class Album(
     val genre: String,
     val recordLabel: String
 )
+
+fun deserializeAlbums(json: JSONArray): List<Album> {
+    val albums = mutableListOf<Album>()
+    for (i in 0 until json.length()) {
+        albums.add(deserializeAlbum(json.getJSONObject(i)))
+    }
+    return albums
+}
 
 fun deserializeAlbum(json: JSONObject): Album {
     return Album(

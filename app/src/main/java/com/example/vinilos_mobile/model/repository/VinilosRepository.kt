@@ -38,6 +38,27 @@ class VinilosRepository {
         ))
     }
 
+    fun getCollector(
+        collectorId: Int,
+        applicationContext: Context,
+        onComplete: (resp: CollectorDetail) -> Unit,
+        onError: (error: VolleyError) -> Unit
+    ) {
+        var vinilosApiService = VinilosApiService(applicationContext)
+        vinilosApiService.instance.add(VinilosApiService.getCollector(
+            collectorId,
+            { response ->
+                Log.d("GET COLLECTOR", "response: $response")
+                val collector = deserializeCollectorDetail(response)
+                onComplete(collector)
+            },
+            {
+                Log.d("GET COLLECTOR", "error: $it")
+                onError(it)
+            }
+        ))
+    }
+
     fun getAlbums(
         applicationContext: Context,
         onComplete: (resp: List<Album>) -> Unit,
