@@ -46,7 +46,7 @@
             android:text="@{performer.name}"
             android:textAlignment="center"
             android:textSize="16sp"
-            tools:text="Album name" />
+            tools:text="Performer name" />
 
 
     </LinearLayout>
