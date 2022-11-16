@@ -1,14 +1,27 @@
 package com.example.vinilos_mobile.view
 
+import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
+import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
+import androidx.core.content.res.ResourcesCompat
 import com.example.vinilos_mobile.R
 
 class NavBarFragment : Fragment(), View.OnClickListener {
+
+    var orange: Int = 0
+    var gray: Int = Color.argb(255, 146, 146, 146)
+    var white: Int = Color.argb(255, 255, 255, 255)
+    lateinit var btnAlbums: ImageButton;
+    lateinit var btnArtists: ImageButton;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -26,11 +39,15 @@ class NavBarFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btn: ImageButton = view.findViewById(R.id.buttonIconCollectors)
-        btn.setOnClickListener(this)
+        orange = ResourcesCompat.getColor(resources, R.color.main_orange, null)
 
-        val btn2: ImageButton = view.findViewById(R.id.buttonIconAlbums)
-        btn2.setOnClickListener(this)
+        btnArtists = view.findViewById(R.id.buttonIconArtists)
+        btnArtists.setOnClickListener(this)
+
+        btnAlbums = view.findViewById(R.id.buttonIconAlbums)
+        btnAlbums.setOnClickListener(this)
+
+        btnAlbums.performClick()
     }
 
     override fun onClick(v: View?) {
@@ -42,6 +59,12 @@ class NavBarFragment : Fragment(), View.OnClickListener {
                 fragmentTransaction.replace(R.id.fragment_main_view, PerformerListFragment())
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
+
+                v.setBackgroundColor(orange)
+                btnAlbums.setBackgroundColor(Color.argb(0, 255, 255, 255))
+                btnAlbums.setColorFilter(gray)
+                btnArtists.setBackgroundColor(Color.argb(0, 255, 255, 255))
+                btnArtists.setColorFilter(gray)
             }
             R.id.buttonIconAlbums -> {
                 val fragmentManager = requireActivity().supportFragmentManager
@@ -49,6 +72,11 @@ class NavBarFragment : Fragment(), View.OnClickListener {
                 fragmentTransaction.replace(R.id.fragment_main_view, AlbumListFragment())
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
+
+                v.setBackgroundColor(orange)
+                btnAlbums.setColorFilter(Color.argb(255, 255, 255, 255))
+                btnArtists.setBackgroundColor(Color.argb(0, 255, 255, 255))
+                btnArtists.setColorFilter(gray)
             }
             R.id.buttonIconArtists -> {
                 val fragmentManager = requireActivity().supportFragmentManager
@@ -56,7 +84,13 @@ class NavBarFragment : Fragment(), View.OnClickListener {
                 fragmentTransaction.replace(R.id.fragment_main_view, PerformerListFragment())
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
+
+                v.setBackgroundColor(orange)
+                btnArtists.setColorFilter(Color.argb(255, 255, 255, 255))
+                btnAlbums.setBackgroundColor(Color.argb(0, 255, 255, 255))
+                btnAlbums.setColorFilter(gray)
             }
         }
     }
+
 }
