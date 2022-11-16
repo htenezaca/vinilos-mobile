@@ -7,8 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -17,6 +16,7 @@ import com.example.vinilos_mobile.databinding.FragmentCollectorDetailBinding
 import com.example.vinilos_mobile.model.models.CollectorDetail
 import com.example.vinilos_mobile.viewmodel.CollectorDetailViewModel
 import com.google.gson.Gson
+import kotlinx.coroutines.launch
 
 class CollectorDetailFragment: Fragment(R.layout.fragment_collector_detail) {
 
@@ -51,28 +51,39 @@ class CollectorDetailFragment: Fragment(R.layout.fragment_collector_detail) {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        viewModel = ViewModelProvider(
-            this,
-            CollectorDetailViewModel.Factory(activity.application, arguments?.getInt("collectorId")!!)
-        )[CollectorDetailViewModel::class.java]
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel = ViewModelProvider(
+                    this@CollectorDetailFragment,
+                    CollectorDetailViewModel.Factory(
+                        activity.application,
+                        arguments?.getInt("collectorId")!!
+                    )
+                )[CollectorDetailViewModel::class.java]
 
-        viewModel.collector.observe(viewLifecycleOwner, Observer<CollectorDetail> {
-            it.apply {
-                binding.collectorName.text = this.name
-                binding.collectorEmail.text = this.email
-                binding.collectorPhone.text = this.telephone
-                Glide.with(this@CollectorDetailFragment)
-                    .load(iconCollector)
-                    .into(binding.collectorImageView)
-                Log.d("CollectorDetailFragment", Gson().toJson(this.collectorAlbums))
-                Log.d("PerformersCollectorDetailFragment", Gson().toJson(this.favoritePerformers))
+                viewModel.collector.observe(viewLifecycleOwner, Observer<CollectorDetail> {
+                    it.apply {
+                        binding.collectorName.text = this.name
+                        binding.collectorEmail.text = this.email
+                        binding.collectorPhone.text = this.telephone
+                        Glide.with(this@CollectorDetailFragment)
+                            .load(iconCollector)
+                            .into(binding.collectorImageView)
+                        Log.d("CollectorDetailFragment", Gson().toJson(this.collectorAlbums))
+                        Log.d(
+                            "PerformersCollectorDetailFragment",
+                            Gson().toJson(this.favoritePerformers)
+                        )
 
-                var performersList = this.favoritePerformers.toList()
-                binding.favoritePerformersCollectorList.adapter = PerformersAdapter(performersList)
+                        var performersList = this.favoritePerformers.toList()
+                        binding.favoritePerformersCollectorList.adapter =
+                            PerformersAdapter(performersList)
 
 
+                    }
+                })
             }
-        })
+        }
 
     }
 

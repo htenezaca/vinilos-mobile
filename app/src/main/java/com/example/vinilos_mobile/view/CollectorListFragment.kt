@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos_mobile.databinding.FragmentCollectorListBinding
 import com.example.vinilos_mobile.model.models.Collector
 import com.example.vinilos_mobile.viewmodel.CollectorViewModel
+import kotlinx.coroutines.launch
 
 class CollectorListFragment : Fragment() {
 
@@ -47,13 +47,19 @@ class CollectorListFragment : Fragment() {
             "You can only access the viewModel after onActivityCreated()"
         }
 
-        viewModel = ViewModelProvider(this, CollectorViewModel.Factory(activity.application)).get(
-            CollectorViewModel::class.java)
-        viewModel.collectors.observe(viewLifecycleOwner, Observer<List<Collector>> {
-            it.apply {
-                viewModelAdapter!!.collectors=this
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel = ViewModelProvider(
+                    this@CollectorListFragment,
+                    CollectorViewModel.Factory(activity.application)
+                ).get(CollectorViewModel::class.java)
+                viewModel.collectors.observe(viewLifecycleOwner, Observer<List<Collector>> {
+                    it.apply {
+                        viewModelAdapter!!.collectors = this
+                    }
+                })
             }
-        })
+        }
     }
 
     override fun onDestroyView() {
