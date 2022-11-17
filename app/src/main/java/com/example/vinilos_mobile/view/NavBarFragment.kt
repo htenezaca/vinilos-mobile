@@ -21,6 +21,7 @@ class NavBarFragment : Fragment(), View.OnClickListener {
     var white: Int = Color.argb(255, 255, 255, 255)
     lateinit var btnAlbums: ImageButton;
     lateinit var btnArtists: ImageButton;
+    lateinit var btnCollectors: ImageButton;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +48,9 @@ class NavBarFragment : Fragment(), View.OnClickListener {
         btnAlbums = view.findViewById(R.id.buttonIconAlbums)
         btnAlbums.setOnClickListener(this)
 
+        btnCollectors = view.findViewById(R.id.buttonIconCollectors)
+        btnCollectors.setOnClickListener(this)
+
         btnAlbums.performClick()
     }
 
@@ -61,6 +65,7 @@ class NavBarFragment : Fragment(), View.OnClickListener {
                 fragmentTransaction.commit()
 
                 v.setBackgroundColor(orange)
+                btnCollectors.setColorFilter(white)
                 btnAlbums.setBackgroundColor(Color.argb(0, 255, 255, 255))
                 btnAlbums.setColorFilter(gray)
                 btnArtists.setBackgroundColor(Color.argb(0, 255, 255, 255))
@@ -74,9 +79,11 @@ class NavBarFragment : Fragment(), View.OnClickListener {
                 fragmentTransaction.commit()
 
                 v.setBackgroundColor(orange)
-                btnAlbums.setColorFilter(Color.argb(255, 255, 255, 255))
+                btnAlbums.setColorFilter(white)
                 btnArtists.setBackgroundColor(Color.argb(0, 255, 255, 255))
                 btnArtists.setColorFilter(gray)
+                btnCollectors.setBackgroundColor(Color.argb(0, 255, 255, 255))
+                btnCollectors.setColorFilter(gray)
             }
             R.id.buttonIconArtists -> {
                 val fragmentManager = requireActivity().supportFragmentManager
@@ -86,9 +93,11 @@ class NavBarFragment : Fragment(), View.OnClickListener {
                 fragmentTransaction.commit()
 
                 v.setBackgroundColor(orange)
-                btnArtists.setColorFilter(Color.argb(255, 255, 255, 255))
+                btnArtists.setColorFilter(white)
                 btnAlbums.setBackgroundColor(Color.argb(0, 255, 255, 255))
                 btnAlbums.setColorFilter(gray)
+                btnCollectors.setBackgroundColor(Color.argb(0, 255, 255, 255))
+                btnCollectors.setColorFilter(gray)
             }
         }
     }
