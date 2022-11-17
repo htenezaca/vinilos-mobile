@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:visibility="visible"
     android:weightSum="10"
+    android:baselineAligned="false"
     tools:context=".view.MainActivity">
 
     <!-- android:id="@+id/fragment_container_view" -->

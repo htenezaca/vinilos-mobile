@@ -2,13 +2,10 @@ package com.example.vinilos_mobile.viewmodel
 
 import android.util.Log
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.example.vinilos_mobile.model.models.Album
 import com.example.vinilos_mobile.model.repository.VinilosRepository
+import kotlinx.coroutines.launch
 
 
 class AlbumViewModel(application: Application) : AndroidViewModel(application) {
@@ -21,7 +18,9 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
         get() = _albums
 
     init {
-        refreshDataFromNetwork()
+        viewModelScope.launch {
+            refreshDataFromNetwork()
+        }
     }
 
     private fun refreshDataFromNetwork() {

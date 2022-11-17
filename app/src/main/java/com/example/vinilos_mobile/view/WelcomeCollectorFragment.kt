@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.FragmentWelcomeCollectorBinding
 import com.example.vinilos_mobile.model.models.Collector
+import com.example.vinilos_mobile.model.models.CollectorDetail
 import com.example.vinilos_mobile.viewmodel.CollectorViewModel
 
 class WelcomeCollectorFragment : Fragment() {

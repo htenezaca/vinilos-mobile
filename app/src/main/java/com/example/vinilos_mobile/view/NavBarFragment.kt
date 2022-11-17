@@ -60,7 +60,7 @@ class NavBarFragment : Fragment(), View.OnClickListener {
             R.id.buttonIconCollectors -> {
                 val fragmentManager = requireActivity().supportFragmentManager
                 val fragmentTransaction = fragmentManager.beginTransaction()
-                fragmentTransaction.replace(R.id.fragment_main_view, PerformerListFragment())
+                fragmentTransaction.replace(R.id.fragment_main_view, CollectorListFragment())
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
 

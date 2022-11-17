@@ -20,6 +20,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:gravity="center_horizontal|left"
+        android:baselineAligned="false"
         android:orientation="horizontal">
 
 
@@ -46,7 +47,7 @@
             android:text="@{performer.name}"
             android:textAlignment="center"
             android:textSize="16sp"
-            tools:text="Album name" />
+            tools:text="Performer name" />
 
 
     </LinearLayout>
