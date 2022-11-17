@@ -18,4 +18,5 @@ class WelcomeActivity : AppCompatActivity() {
             Log.d("FAIL", it.toString())
         }
     }
+
 }

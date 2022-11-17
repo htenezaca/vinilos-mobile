@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:baselineAligned="false"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputLayout

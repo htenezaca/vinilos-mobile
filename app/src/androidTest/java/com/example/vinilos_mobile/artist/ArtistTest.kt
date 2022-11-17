@@ -29,8 +29,8 @@ class ArtistTest {
 
         Thread.sleep(1000)
         // Go to the collectors
-        onView(withId(R.id.buttonIconCollectors)).check(matches(isDisplayed()))
-        onView(withId(R.id.buttonIconCollectors)).perform(click())
+        onView(withId(R.id.buttonIconArtists)).check(matches(isDisplayed()))
+        onView(withId(R.id.buttonIconArtists)).perform(click())
         Thread.sleep(1000)
 
         val performerRecycler = onView(withId(R.id.performer_recycler_view))

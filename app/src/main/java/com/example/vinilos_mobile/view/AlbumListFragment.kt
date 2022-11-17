@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.Observer
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos_mobile.databinding.FragmentAlbumListBinding
 import com.example.vinilos_mobile.viewmodel.AlbumViewModel
 import com.example.vinilos_mobile.model.models.Album
+import kotlinx.coroutines.launch
 
 
 class AlbumListFragment :Fragment() {
@@ -52,12 +52,18 @@ class AlbumListFragment :Fragment() {
             "You can only access the viewModel after onActivityCreated()"
         }
 
-        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(activity.application)).get(AlbumViewModel::class.java)
-        viewModel.albums.observe(viewLifecycleOwner, Observer<List<Album>> {
-            it.apply {
-                viewModelAdapter!!.albums=this
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel = ViewModelProvider(
+                    this@AlbumListFragment, AlbumViewModel.Factory(activity.application)
+                ).get(AlbumViewModel::class.java)
+                viewModel.albums.observe(viewLifecycleOwner, Observer<List<Album>> {
+                    it.apply {
+                        viewModelAdapter!!.albums = this
+                    }
+                })
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

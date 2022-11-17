@@ -18,7 +18,9 @@ class CollectorDetailViewModel(application: Application, collectorId: Int) : And
         get() = _collector
 
     init {
-        refreshDataFromNetwork(collectorId)
+        viewModelScope.launch {
+            refreshDataFromNetwork(collectorId)
+        }
     }
 
     private fun refreshDataFromNetwork(collectorId: Int) {

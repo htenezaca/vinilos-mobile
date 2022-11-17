@@ -6,6 +6,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="20dp"
+    android:baselineAligned="false"
     tools:context=".view.AlbumDetailFragment">
 
     <ImageView
