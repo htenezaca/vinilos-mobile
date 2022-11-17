@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class CollectorDetailViewModel(application: Application, collectorId: Int) : AndroidViewModel(application) {
 
-    private val vinilosRepository: VinilosRepository = VinilosRepository()
+    private val vinilosRepository: VinilosRepository = VinilosRepository(application)
 
     private val _collector = MutableLiveData<CollectorDetail>()
 

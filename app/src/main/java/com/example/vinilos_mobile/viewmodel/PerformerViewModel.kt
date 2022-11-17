@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 class PerformerViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val vinilosRepository: VinilosRepository = VinilosRepository()
+    private val vinilosRepository: VinilosRepository = VinilosRepository(application)
 
     private val _performers = MutableLiveData<List<Performer>>()
 

@@ -1,13 +1,15 @@
 package com.example.vinilos_mobile.model.repository
 
+import android.app.Application
 import android.content.Context
 import android.util.Log
+import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.example.vinilos_mobile.model.api.VinilosApiService
 import com.example.vinilos_mobile.model.models.*
 import org.json.JSONObject
 
-class VinilosRepository {
+class VinilosRepository (val applicationContext: Application) {
 
     fun getCollectors(
         applicationContext: Context,
@@ -15,9 +17,8 @@ class VinilosRepository {
         onError: (error: VolleyError) -> Unit
     ) {
 
-        var vinilosApiService = VinilosApiService(applicationContext)
-
-        vinilosApiService.instance.add(VinilosApiService.getCollectors(
+        var vinilosApiService = VinilosApiService.getInstance(applicationContext)
+        vinilosApiService.requestQueue.add(VinilosApiService.getCollectors(
             { response ->
                 Log.d("GET COLLECTORS", "response: $response")
                 val collectorsList = mutableListOf<Collector>()
@@ -44,8 +45,8 @@ class VinilosRepository {
         onComplete: (resp: CollectorDetail) -> Unit,
         onError: (error: VolleyError) -> Unit
     ) {
-        var vinilosApiService = VinilosApiService(applicationContext)
-        vinilosApiService.instance.add(VinilosApiService.getCollector(
+        var vinilosApiService = VinilosApiService.getInstance(applicationContext)
+        vinilosApiService.requestQueue.add(VinilosApiService.getCollector(
             collectorId,
             { response ->
                 Log.d("GET COLLECTOR", "response: $response")
@@ -59,33 +60,8 @@ class VinilosRepository {
         ))
     }
 
-    fun getAlbums(
-        applicationContext: Context,
-        onComplete: (resp: List<Album>) -> Unit,
-        onError: (error: VolleyError) -> Unit
-    ) {
-
-        var vinilosApiService = VinilosApiService(applicationContext)
-
-        vinilosApiService.instance.add(VinilosApiService.getAlbums(
-            { response ->
-                Log.d("GET ALBUMS", "response: $response")
-                val albumsList = mutableListOf<Album>()
-
-                for (i in 0 until response.length()) {
-                    val item = response.getJSONObject(i)
-                    albumsList.add(
-                        deserializeAlbum(item)
-                    )
-                }
-
-                onComplete(albumsList)
-            },
-            {
-                Log.d("GET ALBUMS", "error: $it")
-                onError(it)
-            }
-        ))
+    suspend fun getAlbums(): List<Album> {
+        return VinilosApiService.getInstance(applicationContext).getAlbums()
     }
 
     fun getAlbum(
@@ -94,8 +70,8 @@ class VinilosRepository {
         onComplete: (resp: AlbumDetail) -> Unit,
         onError: (error: VolleyError) -> Unit
     ) {
-        var vinilosApiService = VinilosApiService(applicationContext)
-        vinilosApiService.instance.add(VinilosApiService.getAlbumDetail(
+        var vinilosApiService = VinilosApiService.getInstance(applicationContext)
+        vinilosApiService.requestQueue.add(VinilosApiService.getAlbumDetail(
             albumId,
             { response ->
                 Log.d("GET ALBUM DETAIL", "response: $response")
@@ -120,10 +96,10 @@ class VinilosRepository {
         onComplete: (resp: List<Performer>) -> Unit,
         onError: (error: VolleyError) -> Unit
     ) {
-        var vinilosApiService = VinilosApiService(applicationContext)
+        var vinilosApiService = VinilosApiService.getInstance(applicationContext)
         val performersList = mutableListOf<Performer>()
 
-        vinilosApiService.instance.add(VinilosApiService.getMusicians(
+        vinilosApiService.requestQueue.add(VinilosApiService.getMusicians(
             { response ->
                 Log.d("GET MUSICIANS", "response: $response")
                 performersList.addAll(
@@ -136,7 +112,7 @@ class VinilosRepository {
                 onError(it)
             }
         ))
-        vinilosApiService.instance.add(VinilosApiService.getBands(
+        vinilosApiService.requestQueue.add(VinilosApiService.getBands(
             { response ->
                 Log.d("GET BANDS", "response: $response")
                 performersList.addAll(
