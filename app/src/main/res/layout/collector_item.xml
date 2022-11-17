@@ -3,8 +3,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginLeft="11dp"
-    android:layout_marginTop="10dp">
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="5dp">
 
     <data>
 
@@ -14,13 +14,13 @@
     </data>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="404dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:gravity="center_horizontal|left"
         android:baselineAligned="false"
+        android:gravity="center_horizontal|left"
         android:orientation="horizontal">
 
 
@@ -35,7 +35,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="402dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageView
