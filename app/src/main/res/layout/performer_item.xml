@@ -17,8 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="20dp"
+        android:baselineAligned="false"
         android:gravity="center_horizontal|left"
         android:baselineAligned="false"
         android:orientation="horizontal">
@@ -38,14 +39,14 @@
 
         <TextView
             android:id="@+id/performer_name"
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
+            android:layout_width="303dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="11dp"
             android:enabled="true"
-            android:fontFamily="sans-serif-black"
+            android:fontFamily="@font/roboto_medium"
             android:text="@{performer.name}"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textSize="16sp"
             tools:text="Performer name" />
 
