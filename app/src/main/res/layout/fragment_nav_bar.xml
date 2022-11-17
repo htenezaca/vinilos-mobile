@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#121212"
     android:weightSum="3"
+    android:baselineAligned="false"
     tools:context=".view.NavBarFragment">
 
     <ImageButton

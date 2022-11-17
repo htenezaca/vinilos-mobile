@@ -11,9 +11,9 @@ import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.PerformerItemBinding
 import com.example.vinilos_mobile.model.models.Performer
 
-class PerformersAdapter : RecyclerView.Adapter<PerformersAdapter.PerformersViewHolder>() {
+class PerformersAdapter(performers: List<Performer> = emptyList() ) : RecyclerView.Adapter<PerformersAdapter.PerformersViewHolder>() {
 
-    var performers: List<Performer> = emptyList()
+    var performers: List<Performer> = performers
         set(value) {
             field = value
             notifyDataSetChanged()
