@@ -31,6 +31,9 @@ class NavBarFragment : Fragment(), View.OnClickListener {
 
         val btn2: ImageButton = view.findViewById(R.id.buttonIconAlbums)
         btn2.setOnClickListener(this)
+
+        val btn3: ImageButton = view.findViewById(R.id.buttonIconArtists)
+        btn3.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -39,7 +42,7 @@ class NavBarFragment : Fragment(), View.OnClickListener {
             R.id.buttonIconCollectors -> {
                 val fragmentManager = requireActivity().supportFragmentManager
                 val fragmentTransaction = fragmentManager.beginTransaction()
-                fragmentTransaction.replace(R.id.fragment_main_view, PerformerListFragment())
+                fragmentTransaction.replace(R.id.fragment_main_view, CollectorListFragment())
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
             }

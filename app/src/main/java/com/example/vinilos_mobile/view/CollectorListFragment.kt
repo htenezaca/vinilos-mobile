@@ -8,19 +8,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.vinilos_mobile.databinding.FragmentPerformerListBinding
-import com.example.vinilos_mobile.model.models.Performer
-import com.example.vinilos_mobile.viewmodel.PerformerViewModel
+import com.example.vinilos_mobile.databinding.FragmentCollectorListBinding
+import com.example.vinilos_mobile.model.models.Collector
+import com.example.vinilos_mobile.viewmodel.CollectorViewModel
 import kotlinx.coroutines.launch
 
-class PerformerListFragment : Fragment() {
+class CollectorListFragment : Fragment() {
 
 
-    private var _binding: FragmentPerformerListBinding? = null
+    private var _binding: FragmentCollectorListBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewModel: PerformerViewModel
-    private var viewModelAdapter: PerformersAdapter? = null
+    private lateinit var viewModel: CollectorViewModel
+    private var viewModelAdapter: CollectorsAdapter? = null
 
 
     override fun onCreateView(
@@ -28,15 +28,15 @@ class PerformerListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this
-        _binding = FragmentPerformerListBinding.inflate(inflater, container, false)
+        _binding = FragmentCollectorListBinding.inflate(inflater, container, false)
         val view = binding.root
-        viewModelAdapter = PerformersAdapter()
+        viewModelAdapter = CollectorsAdapter()
         return view
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val recyclerView: RecyclerView = binding.performerRecyclerView
+        val recyclerView: RecyclerView = binding.collectorRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
     }
@@ -50,12 +50,12 @@ class PerformerListFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel = ViewModelProvider(
-                    this@PerformerListFragment,
-                    PerformerViewModel.Factory(activity.application)
-                ).get(PerformerViewModel::class.java)
-                viewModel.performers.observe(viewLifecycleOwner, Observer<List<Performer>> {
+                    this@CollectorListFragment,
+                    CollectorViewModel.Factory(activity.application)
+                ).get(CollectorViewModel::class.java)
+                viewModel.collectors.observe(viewLifecycleOwner, Observer<List<Collector>> {
                     it.apply {
-                        viewModelAdapter!!.performers = this
+                        viewModelAdapter!!.collectors = this
                     }
                 })
             }
