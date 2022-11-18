@@ -5,12 +5,14 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.example.vinilos_mobile.model.models.MusicianDetail
 import com.example.vinilos_mobile.model.repository.VinilosRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
-class MusicianDetailViewModel(application: Application, musicianId: Int = 100) : AndroidViewModel(application) {
+class MusicianDetailViewModel(application: Application, musicianId: Int) : AndroidViewModel(application) {
 
-    private val vinilosRepository: VinilosRepository = VinilosRepository()
+    private val vinilosRepository: VinilosRepository = VinilosRepository(application)
 
     private val _musician = MutableLiveData<MusicianDetail>()
 
@@ -24,13 +26,16 @@ class MusicianDetailViewModel(application: Application, musicianId: Int = 100) :
     }
 
     private fun refreshDataFromNetwork(musicianId: Int) {
-        vinilosRepository.getMusician(musicianId, getApplication(), { musiciansResponse ->
-            // TODO: Actually use the API method
-            _musician.postValue(musiciansResponse)
-        },
-            {
-                Log.d("NETWORK_ERROR", it.toString())
-            })
+        try {
+            viewModelScope.launch(Dispatchers.Default) {
+                withContext(Dispatchers.IO) {
+                    var data = vinilosRepository.getMusician(musicianId)
+                    _musician.postValue(data)
+                }
+            }
+        } catch (e: Exception) {
+            Log.d("NETWORK_ERROR", e.toString())
+        }
     }
 
     class Factory(val app: Application, private val musicianId: Int) : ViewModelProvider.Factory {
