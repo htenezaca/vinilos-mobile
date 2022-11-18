@@ -12,11 +12,7 @@ class WelcomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_welcome)
 
         var vinilosRepositoryinilosRepository = VinilosRepository(this.application)
-        vinilosRepositoryinilosRepository.getCollectors(this.applicationContext, {
-            Log.d("SUCCESS", it.toString())
-        }) {
-            Log.d("FAIL", it.toString())
-        }
+
     }
 
 }

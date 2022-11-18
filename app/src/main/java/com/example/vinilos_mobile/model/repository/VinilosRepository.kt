@@ -11,32 +11,9 @@ import org.json.JSONObject
 
 class VinilosRepository (val applicationContext: Application) {
 
-    fun getCollectors(
-        applicationContext: Context,
-        onComplete: (resp: List<Collector>) -> Unit,
-        onError: (error: VolleyError) -> Unit
-    ) {
 
-        var vinilosApiService = VinilosApiService.getInstance(applicationContext)
-        vinilosApiService.requestQueue.add(VinilosApiService.getCollectors(
-            { response ->
-                Log.d("GET COLLECTORS", "response: $response")
-                val collectorsList = mutableListOf<Collector>()
-
-                for (i in 0 until response.length()) {
-                    val item = response.getJSONObject(i)
-                    collectorsList.add(
-                        deserializeCollector(item)
-                    )
-                }
-
-                onComplete(collectorsList)
-            },
-            {
-                Log.d("GET COLLECTORS", "error: $it")
-                onError(it)
-            }
-        ))
+    suspend fun getCollectors(): List<Collector> {
+        return VinilosApiService.getInstance(applicationContext).getCollectors()
     }
 
     fun getCollector(
@@ -64,31 +41,10 @@ class VinilosRepository (val applicationContext: Application) {
         return VinilosApiService.getInstance(applicationContext).getAlbums()
     }
 
-    fun getAlbum(
+    suspend fun getAlbum(
         albumId: Int,
-        applicationContext: Context,
-        onComplete: (resp: AlbumDetail) -> Unit,
-        onError: (error: VolleyError) -> Unit
-    ) {
-        var vinilosApiService = VinilosApiService.getInstance(applicationContext)
-        vinilosApiService.requestQueue.add(VinilosApiService.getAlbumDetail(
-            albumId,
-            { response ->
-                Log.d("GET ALBUM DETAIL", "response: $response")
-                if (response != null) {
-                    onComplete(
-                        deserializeAlbumDetail(response)
-                    )
-                } else {
-                    onError(VolleyError("No se encontró el álbum"))
-                }
-            },
-            {
-                Log.d("GET ALBUM", "error: $it")
-                onError(it)
-            }
-        ))
-
+    ): AlbumDetail {
+        return VinilosApiService.getInstance(applicationContext).getAlbumDetail(albumId)
     }
 
     fun getPerformers(

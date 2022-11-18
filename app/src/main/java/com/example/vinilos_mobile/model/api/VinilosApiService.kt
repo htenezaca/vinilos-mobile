@@ -8,8 +8,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.vinilos_mobile.model.models.Album
-import com.example.vinilos_mobile.model.models.deserializeAlbum
+import com.example.vinilos_mobile.model.models.*
 import org.json.JSONArray
 import org.json.JSONObject
 import kotlin.coroutines.resume
@@ -27,40 +26,22 @@ class VinilosApiService constructor(context: Context) {
 
         var instance: VinilosApiService? = null
 
-        fun getInstance(context: Context) =
-            instance ?: synchronized(this) {
-                instance ?: VinilosApiService(context).also {
-                    instance = it
-                }
+        fun getInstance(context: Context) = instance ?: synchronized(this) {
+            instance ?: VinilosApiService(context).also {
+                instance = it
             }
-
-        fun getAlbumDetail(
-            albumId: Int,
-            responseListener: Response.Listener<JSONObject>,
-            errorListener: Response.ErrorListener
-        ): JsonObjectRequest {
-            return JsonObjectRequest("$BASE_URL$ALBUMS_PATH/$albumId", responseListener, errorListener)
         }
 
         fun getBands(
-            responseListener: Response.Listener<JSONArray>,
-            errorListener: Response.ErrorListener
+            responseListener: Response.Listener<JSONArray>, errorListener: Response.ErrorListener
         ): JsonArrayRequest {
             return JsonArrayRequest(BASE_URL + BANDS_PATH, responseListener, errorListener)
         }
 
         fun getMusicians(
-            responseListener: Response.Listener<JSONArray>,
-            errorListener: Response.ErrorListener
+            responseListener: Response.Listener<JSONArray>, errorListener: Response.ErrorListener
         ): JsonArrayRequest {
             return JsonArrayRequest(BASE_URL + MUSICIANS_PATH, responseListener, errorListener)
-        }
-
-        fun getCollectors(
-            responseListener: Response.Listener<JSONArray>,
-            errorListener: Response.ErrorListener
-        ): JsonArrayRequest {
-            return JsonArrayRequest(BASE_URL + COLLECTORS_PATH, responseListener, errorListener)
         }
 
         fun getCollector(
@@ -69,9 +50,7 @@ class VinilosApiService constructor(context: Context) {
             errorListener: Response.ErrorListener
         ): JsonObjectRequest {
             return JsonObjectRequest(
-                "$BASE_URL$COLLECTORS_PATH/$collectorId",
-                responseListener,
-                errorListener
+                "$BASE_URL$COLLECTORS_PATH/$collectorId", responseListener, errorListener
             )
         }
     }
@@ -83,27 +62,66 @@ class VinilosApiService constructor(context: Context) {
     }
 
     suspend fun getAlbums() = suspendCoroutine<List<Album>> { cont ->
-        requestQueue.add(getRequest(ALBUMS_PATH,
-        Response.Listener<String> { response ->
-            val resp = JSONArray(response)
+        requestQueue.add(
+            getRequest(ALBUMS_PATH, Response.Listener<String> { response ->
+                val resp = JSONArray(response)
 
-            val albumsList = mutableListOf<Album>()
-            for (i in 0 until resp.length()) {
-                val item = resp.getJSONObject(i)
-                albumsList.add(
-                    deserializeAlbum(item)
-                )
-            }
-            cont.resume(albumsList)
+                val albumsList = mutableListOf<Album>()
+                for (i in 0 until resp.length()) {
+                    val item = resp.getJSONObject(i)
+                    albumsList.add(
+                        deserializeAlbum(item)
+                    )
+                }
+                cont.resume(albumsList)
 
-        },
-        Response.ErrorListener {
-            cont.resumeWithException(it)
-        }))
+            }, Response.ErrorListener {
+                cont.resumeWithException(it)
+            })
+        )
     }
 
-    private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
-        return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
+    suspend fun getCollectors() = suspendCoroutine<List<Collector>> { cont ->
+        requestQueue.add(
+            getRequest(COLLECTORS_PATH, Response.Listener<String> { response ->
+                val resp = JSONArray(response)
+
+                val collectorsList = mutableListOf<Collector>()
+                for (i in 0 until resp.length()) {
+                    val item = resp.getJSONObject(i)
+                    collectorsList.add(
+                        deserializeCollector(item)
+                    )
+                }
+                cont.resume(collectorsList)
+
+            }, Response.ErrorListener {
+                cont.resumeWithException(it)
+            })
+        )
+    }
+
+    suspend fun getAlbumDetail(albumId: Int)= suspendCoroutine<AlbumDetail>{ cont ->
+        requestQueue.add(
+            getRequest("$ALBUMS_PATH/$albumId", Response.Listener<String> { response ->
+                val resp = JSONObject(response)
+
+                val album = deserializeAlbumDetail(resp)
+
+                cont.resume(album)
+            }, Response.ErrorListener {
+                cont.resumeWithException(it)
+            })
+        )
+
+    }
+
+    private fun getRequest(
+        path: String,
+        responseListener: Response.Listener<String>,
+        errorListener: Response.ErrorListener
+    ): StringRequest {
+        return StringRequest(Request.Method.GET, BASE_URL + path, responseListener, errorListener)
     }
 }
 
