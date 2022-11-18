@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.FragmentAlbumDetailBinding
@@ -40,6 +42,8 @@ class AlbumDetailFragment : Fragment(R.layout.fragment_album_detail) {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        val recyclerView: RecyclerView = binding.trackRecyclerView
+        recyclerView.layoutManager = LinearLayoutManager(context)
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
@@ -65,6 +69,10 @@ class AlbumDetailFragment : Fragment(R.layout.fragment_album_detail) {
                             .load(cover)
                             .diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.AUTOMATIC)
                             .into(_binding!!.albumCover)
+
+                        var trackList = this.tracks.toList()
+                        binding.trackRecyclerView.adapter = TracksAdapter(trackList)
+
                     }
                 })
             }
