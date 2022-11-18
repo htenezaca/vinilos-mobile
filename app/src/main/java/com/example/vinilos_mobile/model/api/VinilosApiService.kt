@@ -5,7 +5,6 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.vinilos_mobile.model.models.*
@@ -31,32 +30,9 @@ class VinilosApiService constructor(context: Context) {
                 instance = it
             }
         }
-
-        fun getBands(
-            responseListener: Response.Listener<JSONArray>, errorListener: Response.ErrorListener
-        ): JsonArrayRequest {
-            return JsonArrayRequest(BASE_URL + BANDS_PATH, responseListener, errorListener)
-        }
-
-        fun getMusicians(
-            responseListener: Response.Listener<JSONArray>, errorListener: Response.ErrorListener
-        ): JsonArrayRequest {
-            return JsonArrayRequest(BASE_URL + MUSICIANS_PATH, responseListener, errorListener)
-        }
-
-        fun getCollector(
-            collectorId: Int,
-            responseListener: Response.Listener<JSONObject>,
-            errorListener: Response.ErrorListener
-        ): JsonObjectRequest {
-            return JsonObjectRequest(
-                "$BASE_URL$COLLECTORS_PATH/$collectorId", responseListener, errorListener
-            )
-        }
     }
 
-    //ToDo privatize
-    public val requestQueue: RequestQueue by lazy {
+    private val requestQueue: RequestQueue by lazy {
         // applicationContext keeps you from leaking the Activity or BroadcastReceiver if someone passes one in.
         Volley.newRequestQueue(context.applicationContext)
     }
@@ -101,7 +77,47 @@ class VinilosApiService constructor(context: Context) {
         )
     }
 
-    suspend fun getAlbumDetail(albumId: Int)= suspendCoroutine<AlbumDetail>{ cont ->
+    suspend fun getBands() = suspendCoroutine<List<Band>> { cont ->
+        requestQueue.add(
+            getRequest(BANDS_PATH, Response.Listener<String> { response ->
+                val resp = JSONArray(response)
+
+                val bandsList = mutableListOf<Band>()
+                for (i in 0 until resp.length()) {
+                    val item = resp.getJSONObject(i)
+                    bandsList.add(
+                        deserializeBand(item)
+                    )
+                }
+                cont.resume(bandsList)
+
+            }, Response.ErrorListener {
+                cont.resumeWithException(it)
+            })
+        )
+    }
+
+    suspend fun getMusicians() = suspendCoroutine<List<Musician>> { cont ->
+        requestQueue.add(
+            getRequest(MUSICIANS_PATH, Response.Listener<String> { response ->
+                val resp = JSONArray(response)
+
+                val musiciansList = mutableListOf<Musician>()
+                for (i in 0 until resp.length()) {
+                    val item = resp.getJSONObject(i)
+                    musiciansList.add(
+                        deserializeMusician(item)
+                    )
+                }
+                cont.resume(musiciansList)
+
+            }, Response.ErrorListener {
+                cont.resumeWithException(it)
+            })
+        )
+    }
+
+    suspend fun getAlbumDetail(albumId: Int) = suspendCoroutine<AlbumDetail> { cont ->
         requestQueue.add(
             getRequest("$ALBUMS_PATH/$albumId", Response.Listener<String> { response ->
                 val resp = JSONObject(response)
@@ -113,7 +129,20 @@ class VinilosApiService constructor(context: Context) {
                 cont.resumeWithException(it)
             })
         )
+    }
 
+    suspend fun getCollector(collectorId: Int) = suspendCoroutine<CollectorDetail> { cont ->
+        requestQueue.add(
+            getRequest("$COLLECTORS_PATH/$collectorId", Response.Listener<String> { response ->
+                val resp = JSONObject(response)
+
+                val collector = deserializeCollectorDetail(resp)
+
+                cont.resume(collector)
+            }, Response.ErrorListener {
+                cont.resumeWithException(it)
+            })
+        )
     }
 
     private fun getRequest(
