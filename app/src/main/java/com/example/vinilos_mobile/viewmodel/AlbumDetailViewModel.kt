@@ -5,12 +5,14 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.example.vinilos_mobile.model.models.AlbumDetail
 import com.example.vinilos_mobile.model.repository.VinilosRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class AlbumDetailViewModel(application: Application, albumId: Int) : AndroidViewModel(application) {
 
-    private val vinilosRepository: VinilosRepository = VinilosRepository()
+    private val vinilosRepository: VinilosRepository = VinilosRepository(application)
 
     private val _album = MutableLiveData<AlbumDetail>()
 
@@ -24,13 +26,16 @@ class AlbumDetailViewModel(application: Application, albumId: Int) : AndroidView
     }
 
     private fun refreshDataFromNetwork(albumId: Int) {
-        vinilosRepository.getAlbum(albumId, getApplication(), { albumsResponse ->
-            // TODO: Actually use the API method
-            _album.postValue(albumsResponse)
-        },
-            {
-                Log.d("NETWORK_ERROR", it.toString())
-            })
+        try {
+            viewModelScope.launch(Dispatchers.Default) {
+                withContext(Dispatchers.IO) {
+                    var data = vinilosRepository.getAlbum(albumId)
+                    _album.postValue(data)
+                }
+            }
+        } catch (e: Exception) {
+            Log.d("NETWORK_ERROR", e.toString())
+        }
     }
 
     class Factory(val app: Application, private val albumId: Int) : ViewModelProvider.Factory {
