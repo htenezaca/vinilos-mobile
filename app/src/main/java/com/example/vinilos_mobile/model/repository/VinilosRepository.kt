@@ -150,4 +150,31 @@ class VinilosRepository {
             }
         ))
     }
+
+    fun getMusician(
+        musicianId: Int,
+        applicationContext: Context,
+        onComplete: (resp: MusicianDetail) -> Unit,
+        onError: (error: VolleyError) -> Unit
+    ) {
+        var vinilosApiService = VinilosApiService(applicationContext)
+        vinilosApiService.instance.add(VinilosApiService.getMusicianDetail(
+            musicianId,
+            { response ->
+                Log.d("GET MUSICIAN DETAIL", "response: $response")
+                if (response != null) {
+                    onComplete(
+                        deserializeMusicianDetail(response)
+                    )
+                } else {
+                    onError(VolleyError("No se encontró el músico"))
+                }
+            },
+            {
+                Log.d("GET MUSICIAN", "error: $it")
+                onError(it)
+            }
+        ))
+
+    }
 }

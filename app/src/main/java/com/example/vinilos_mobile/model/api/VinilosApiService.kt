@@ -62,6 +62,14 @@ class VinilosApiService constructor(context: Context) {
         ): JsonArrayRequest {
             return JsonArrayRequest(BASE_URL + MUSICIANS_PATH, responseListener, errorListener)
         }
+
+        fun getMusicianDetail(
+            musicianId: Int,
+            responseListener: Response.Listener<JSONObject>,
+            errorListener: Response.ErrorListener
+        ): JsonObjectRequest {
+            return JsonObjectRequest("$BASE_URL$MUSICIANS_PATH/$musicianId", responseListener, errorListener)
+        }
     }
 
 }
