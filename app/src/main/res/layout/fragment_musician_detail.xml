@@ -44,7 +44,7 @@
                     android:enabled="true"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="32sp"
                     android:textStyle="bold"
                     tools:text="Musician name" />
 
@@ -54,9 +54,10 @@
                     android:layout_height="wrap_content"
                     android:enabled="true"
                     android:textAlignment="center"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    tools:text="06-07-1957" />
+                    android:textColor="@color/gray_subtitle"
+                    tools:text="1957-01-01" />
             </LinearLayout>
         </LinearLayout>
 
@@ -65,9 +66,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="50dp"
-            android:maxHeight="200dp"
+            android:maxLines="6"
             android:enabled="true"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="normal"
             tools:text="musician description" />
         <TextView

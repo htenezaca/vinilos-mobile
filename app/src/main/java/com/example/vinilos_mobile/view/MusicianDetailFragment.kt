@@ -56,6 +56,7 @@ class MusicianDetailFragment : Fragment(R.layout.fragment_musician_detail) {
         }
         // Make description scrollable
         binding.musicianDescription.movementMethod = ScrollingMovementMethod()
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel = ViewModelProvider(
