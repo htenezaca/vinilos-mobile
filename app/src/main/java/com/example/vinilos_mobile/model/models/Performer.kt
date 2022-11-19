@@ -7,6 +7,10 @@ abstract class Performer {
     abstract val description: String
 }
 
+enum class PerformerType {
+    BAND, MUSICIAN
+}
+
 fun deserializePerformer(json: org.json.JSONObject): Performer {
     return when (json.optString("birthDate")) {
         "" -> deserializeBand(json)

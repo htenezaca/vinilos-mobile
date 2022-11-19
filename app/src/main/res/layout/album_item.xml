@@ -19,18 +19,18 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="top"
         android:baselineAligned="false"
         android:orientation="vertical">
 
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/album_list_image_view"
-            android:layout_width="152dp"
-            android:layout_height="152dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
-            android:textAlignment="center"
             android:background="@null"
             app:srcCompat="@drawable/ic_album_dark"
             tools:srcCompat="@drawable/ic_album_dark" />

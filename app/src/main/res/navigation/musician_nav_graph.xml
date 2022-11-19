@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/musicianDetailFragment"
-        android:name="com.example.vinilos_mobile.view.MusicianDetailFragment"
+        android:name="com.example.vinilos_mobile.view.PerformerDetailFragment"
         android:label="fragment_musician_detail"
-        tools:layout="@layout/fragment_musician_detail" />
+        tools:layout="@layout/fragment_performer_detail" />
 </navigation>
