@@ -14,9 +14,9 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
 
     private val vinilosRepository: VinilosRepository = VinilosRepository(application)
 
-    private val _albums = MutableLiveData<List<Album>>()
+    private val _albums = MutableLiveData<Array<Album>>()
 
-    val albums: LiveData<List<Album>>
+    val albums: LiveData<Array<Album>>
         get() = _albums
 
     init {

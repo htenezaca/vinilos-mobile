@@ -81,7 +81,7 @@ class PerformerDetailFragment : Fragment(R.layout.fragment_performer_detail) {
                             .diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.AUTOMATIC)
                             .into(_binding!!.performerDetailImage)
 
-                        val albumList = this.albums.toList()
+                        val albumList = this.albums
                         binding.performerDetailRecyclerView.adapter = AlbumsAdapter(albumList)
                     }
                 })

@@ -7,6 +7,6 @@ abstract class PerformerDetail {
     abstract val name: String
     abstract val image: String
     abstract val description: String
-    abstract val albums: List<Album>
+    abstract val albums: Array<Album>
 }
 

@@ -9,14 +9,14 @@ data class CollectorAlbum(
     val status: String,
 )
 
-fun deserializeCollectorAlbums(json: JSONArray): List<CollectorAlbum> {
+fun deserializeCollectorAlbums(json: JSONArray): Array<CollectorAlbum> {
     val collectorAlbums = mutableListOf<CollectorAlbum>()
     for (i in 0 until json.length()) {
         val jsonCollectorAlbum = json.getJSONObject(i)
         val collectorAlbum = deserializeCollectorAlbum(jsonCollectorAlbum)
         collectorAlbums.add(collectorAlbum)
     }
-    return collectorAlbums
+    return collectorAlbums.toTypedArray()
 }
 
 fun deserializeCollectorAlbum(json: JSONObject): CollectorAlbum {

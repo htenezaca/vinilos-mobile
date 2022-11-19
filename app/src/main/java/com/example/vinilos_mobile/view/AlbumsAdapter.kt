@@ -13,9 +13,9 @@ import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.AlbumItemBinding
 import com.example.vinilos_mobile.model.models.Album
 
-class AlbumsAdapter(albums: List<Album> = emptyList()) : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
+class AlbumsAdapter(albums: Array<Album> = emptyArray()) : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
 
-    var albums: List<Album> = albums
+    var albums: Array<Album> = albums
         set(value) {
             field = value
             notifyDataSetChanged()

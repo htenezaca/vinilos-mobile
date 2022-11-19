@@ -7,7 +7,7 @@ data class BandDetail(
     override val name: String,
     override val image: String,
     override val description: String,
-    override val albums: List<Album>,
+    override val albums: Array<Album>,
     val creationDate: String
 ): PerformerDetail()
 

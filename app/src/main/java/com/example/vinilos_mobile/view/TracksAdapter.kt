@@ -10,9 +10,9 @@ import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.TrackItemBinding
 import com.example.vinilos_mobile.model.models.Track
 
-class TracksAdapter(tracks: List<Track> = emptyList() ) : RecyclerView.Adapter<TracksAdapter.TracksViewHolder>() {
+class TracksAdapter(tracks: Array<Track> = emptyArray() ) : RecyclerView.Adapter<TracksAdapter.TracksViewHolder>() {
 
-    private var tracks: List<Track> = tracks
+    private var tracks: Array<Track> = tracks
         set(value) {
             field = value
             notifyDataSetChanged()

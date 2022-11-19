@@ -69,7 +69,7 @@ class AlbumDetailFragment : Fragment(R.layout.fragment_album_detail) {
                             .diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.AUTOMATIC)
                             .into(_binding!!.albumCover)
 
-                        val trackList = this.tracks.toList()
+                        val trackList = this.tracks
                         binding.trackRecyclerView.adapter = TracksAdapter(trackList)
 
                     }

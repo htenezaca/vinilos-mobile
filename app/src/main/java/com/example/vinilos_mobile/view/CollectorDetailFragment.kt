@@ -74,9 +74,7 @@ class CollectorDetailFragment: Fragment(R.layout.fragment_collector_detail) {
                             Gson().toJson(this.favoritePerformers)
                         )
 
-                        val performersList = this.favoritePerformers.toList()
-                        binding.favoritePerformersCollectorList.adapter =
-                            PerformersAdapter(performersList)
+                        binding.favoritePerformersCollectorList.adapter = PerformersAdapter(this.favoritePerformers)
 
 
                     }

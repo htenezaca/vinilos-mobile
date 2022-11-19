@@ -36,7 +36,7 @@ class VinilosApiService constructor(context: Context) {
         Volley.newRequestQueue(context.applicationContext)
     }
 
-    suspend fun getAlbums() = suspendCoroutine<List<Album>> { cont ->
+    suspend fun getAlbums() = suspendCoroutine<Array<Album>> { cont ->
         requestQueue.add(
             getRequest(ALBUMS_PATH, { response ->
                 val resp = JSONArray(response)
@@ -48,7 +48,7 @@ class VinilosApiService constructor(context: Context) {
                         deserializeAlbum(item)
                     )
                 }
-                cont.resume(albumsList)
+                cont.resume(albumsList.toTypedArray())
 
             }, {
                 cont.resumeWithException(it)
@@ -56,7 +56,7 @@ class VinilosApiService constructor(context: Context) {
         )
     }
 
-    suspend fun getCollectors() = suspendCoroutine<List<Collector>> { cont ->
+    suspend fun getCollectors() = suspendCoroutine<Array<Collector>> { cont ->
         requestQueue.add(
             getRequest(COLLECTORS_PATH, { response ->
                 val resp = JSONArray(response)
@@ -68,7 +68,7 @@ class VinilosApiService constructor(context: Context) {
                         deserializeCollector(item)
                     )
                 }
-                cont.resume(collectorsList)
+                cont.resume(collectorsList.toTypedArray())
 
             }, {
                 cont.resumeWithException(it)
@@ -76,7 +76,7 @@ class VinilosApiService constructor(context: Context) {
         )
     }
 
-    suspend fun getBands() = suspendCoroutine<List<Band>> { cont ->
+    suspend fun getBands() = suspendCoroutine<Array<Band>> { cont ->
         requestQueue.add(
             getRequest(BANDS_PATH, { response ->
                 val resp = JSONArray(response)
@@ -88,7 +88,7 @@ class VinilosApiService constructor(context: Context) {
                         deserializeBand(item)
                     )
                 }
-                cont.resume(bandsList)
+                cont.resume(bandsList.toTypedArray())
 
             }, {
                 cont.resumeWithException(it)
@@ -96,7 +96,7 @@ class VinilosApiService constructor(context: Context) {
         )
     }
 
-    suspend fun getMusicians() = suspendCoroutine<List<Musician>> { cont ->
+    suspend fun getMusicians() = suspendCoroutine<Array<Musician>> { cont ->
         requestQueue.add(
             getRequest(MUSICIANS_PATH, { response ->
                 val resp = JSONArray(response)
@@ -108,7 +108,7 @@ class VinilosApiService constructor(context: Context) {
                         deserializeMusician(item)
                     )
                 }
-                cont.resume(musiciansList)
+                cont.resume(musiciansList.toTypedArray())
 
             }, {
                 cont.resumeWithException(it)

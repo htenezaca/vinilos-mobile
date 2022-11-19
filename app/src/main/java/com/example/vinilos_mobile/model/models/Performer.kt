@@ -18,10 +18,10 @@ fun deserializePerformer(json: org.json.JSONObject): Performer {
     }
 }
 
-fun deserializePerformers(json: org.json.JSONArray): List<Performer> {
+fun deserializePerformers(json: org.json.JSONArray): Array<Performer> {
     val list = mutableListOf<Performer>()
     for (i in 0 until json.length()) {
         list.add(deserializePerformer(json.getJSONObject(i)))
     }
-    return list
+    return list.toTypedArray()
 }
