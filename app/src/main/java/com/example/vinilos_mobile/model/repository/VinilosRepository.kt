@@ -14,7 +14,17 @@ class VinilosRepository(val applicationContext: Application) {
     }
 
     suspend fun getCollector(collectorId: Int): CollectorDetail {
-        return VinilosApiService.getInstance(applicationContext).getCollector(collectorId)
+        var cacheResp = CacheManager.getInstance(applicationContext).getCollector(collectorId)
+        return if (cacheResp == null) {
+            Log.d("getCollector decision", "from API")
+            val collectorDetail =
+                VinilosApiService.getInstance(applicationContext).getCollector(collectorId)
+            CacheManager.getInstance(applicationContext).addCollector(collectorId, collectorDetail)
+            collectorDetail
+        } else {
+            Log.d("getCollector decision", "from cache")
+            cacheResp
+        }
     }
 
     suspend fun getAlbums(): List<Album> {
@@ -48,11 +58,23 @@ class VinilosRepository(val applicationContext: Application) {
     }
 
     suspend fun getPerformer(performerId: Int, performerType: PerformerType): PerformerDetail {
-        return when (performerType) {
-            PerformerType.BAND -> VinilosApiService.getInstance(applicationContext)
-                .getBandDetail(performerId)
-            PerformerType.MUSICIAN -> VinilosApiService.getInstance(applicationContext)
-                .getMusicianDetail(performerId)
+        var cacheResp = CacheManager.getInstance(applicationContext).getPerformer(performerId)
+        if (cacheResp == null) {
+            Log.d("getPerformer decision", "from API")
+            var apiResp: PerformerDetail
+            if (performerType == PerformerType.BAND) {
+                apiResp = VinilosApiService.getInstance(applicationContext)
+                    .getBandDetail(performerId)
+            } else {
+                apiResp = VinilosApiService.getInstance(applicationContext)
+                    .getMusicianDetail(performerId)
+            }
+            CacheManager.getInstance(applicationContext).addPerformer(performerId, apiResp)
+            return apiResp
+        }
+        else {
+            Log.d("getAlbum decision", "from cache")
+            return cacheResp
         }
     }
 
