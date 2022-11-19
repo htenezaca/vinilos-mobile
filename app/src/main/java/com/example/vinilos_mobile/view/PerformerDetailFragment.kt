@@ -46,9 +46,9 @@ class PerformerDetailFragment : Fragment(R.layout.fragment_performer_detail) {
         val recyclerView: RecyclerView = binding.performerDetailRecyclerView
         val rotation = this.getResources().getConfiguration().orientation;
         if (rotation == 1) {
-            recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 2)
+            recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 3)
         } else {
-            recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 4)
+            recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 6)
         }
         //recyclerView.adapter = viewModelAdapter
         val activity = requireNotNull(this.activity) {
