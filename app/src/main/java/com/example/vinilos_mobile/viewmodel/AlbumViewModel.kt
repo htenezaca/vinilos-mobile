@@ -29,7 +29,7 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
         try {
             viewModelScope.launch(Dispatchers.Default) {
                 withContext(Dispatchers.IO) {
-                    var data = vinilosRepository.getAlbums()
+                    val data = vinilosRepository.getAlbums()
                     _albums.postValue(data)
                 }
             }

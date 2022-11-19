@@ -1,27 +1,23 @@
 package com.example.vinilos_mobile.view
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.util.TypedValue
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import androidx.annotation.AttrRes
-import androidx.annotation.ColorInt
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
 import com.example.vinilos_mobile.R
 
 class NavBarFragment : Fragment(), View.OnClickListener {
 
-    var orange: Int = 0
-    var gray: Int = Color.argb(255, 146, 146, 146)
-    var white: Int = Color.argb(255, 255, 255, 255)
-    lateinit var btnAlbums: ImageButton;
-    lateinit var btnArtists: ImageButton;
-    lateinit var btnCollectors: ImageButton;
+    private var orange: Int = 0
+    private var gray: Int = Color.argb(255, 146, 146, 146)
+    private var white: Int = Color.argb(255, 255, 255, 255)
+    private lateinit var btnAlbums: ImageButton
+    private lateinit var btnArtists: ImageButton
+    private lateinit var btnCollectors: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -2,17 +2,16 @@ package com.example.vinilos_mobile.view
 
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.FragmentAlbumDetailBinding
-import com.example.vinilos_mobile.model.models.AlbumDetail
 import com.example.vinilos_mobile.viewmodel.AlbumDetailViewModel
 import kotlinx.coroutines.launch
 
@@ -35,7 +34,7 @@ class AlbumDetailFragment : Fragment(R.layout.fragment_album_detail) {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAlbumDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -58,7 +57,7 @@ class AlbumDetailFragment : Fragment(R.layout.fragment_album_detail) {
                         arguments?.getInt("albumId")!!
                     )
                 )[AlbumDetailViewModel::class.java]
-                viewModel.album.observe(viewLifecycleOwner, Observer<AlbumDetail> {
+                viewModel.album.observe(viewLifecycleOwner, Observer {
                     it.apply {
                         _binding!!.albumName.text = name
                         _binding!!.artistName.text = performers.firstOrNull()?.name ?: "Unknown"
@@ -70,7 +69,7 @@ class AlbumDetailFragment : Fragment(R.layout.fragment_album_detail) {
                             .diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.AUTOMATIC)
                             .into(_binding!!.albumCover)
 
-                        var trackList = this.tracks.toList()
+                        val trackList = this.tracks.toList()
                         binding.trackRecyclerView.adapter = TracksAdapter(trackList)
 
                     }
@@ -84,7 +83,4 @@ class AlbumDetailFragment : Fragment(R.layout.fragment_album_detail) {
         _binding = null
     }
 
-    private fun onNetworkError() {
-
-    }
 }

@@ -12,7 +12,7 @@ import com.example.vinilos_mobile.model.models.Track
 
 class TracksAdapter(tracks: List<Track> = emptyList() ) : RecyclerView.Adapter<TracksAdapter.TracksViewHolder>() {
 
-    var tracks: List<Track> = tracks
+    private var tracks: List<Track> = tracks
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -39,15 +39,15 @@ class TracksAdapter(tracks: List<Track> = emptyList() ) : RecyclerView.Adapter<T
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): TracksAdapter.TracksViewHolder {
+    ): TracksViewHolder {
         val withDataBinding: TrackItemBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            TracksAdapter.TracksViewHolder.LAYOUT,
+            TracksViewHolder.LAYOUT,
             parent,
             false
         )
 
-        return TracksAdapter.TracksViewHolder(withDataBinding)
+        return TracksViewHolder(withDataBinding)
     }
 
     override fun getItemCount(): Int {

@@ -28,7 +28,7 @@ class CollectorViewModel(application: Application) : AndroidViewModel(applicatio
         try {
             viewModelScope.launch(Dispatchers.Default) {
                 withContext(Dispatchers.IO) {
-                    var data = vinilosRepository.getCollectors()
+                    val data = vinilosRepository.getCollectors()
                     _collectors.postValue(data)
                 }
             }

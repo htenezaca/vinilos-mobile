@@ -2,14 +2,13 @@ package com.example.vinilos_mobile.model.api
 
 import android.content.Context
 import android.util.LruCache
-import com.example.vinilos_mobile.model.models.Album
 import com.example.vinilos_mobile.model.models.AlbumDetail
 import com.example.vinilos_mobile.model.models.CollectorDetail
 import com.example.vinilos_mobile.model.models.PerformerDetail
 
 class CacheManager(context: Context) {
     companion object{
-        var instance: CacheManager? = null
+        private var instance: CacheManager? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
                 instance ?: CacheManager(context).also {

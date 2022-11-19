@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos_mobile.databinding.FragmentAlbumListBinding
 import com.example.vinilos_mobile.viewmodel.AlbumViewModel
-import com.example.vinilos_mobile.model.models.Album
 import kotlinx.coroutines.launch
 
 
@@ -18,7 +16,6 @@ class AlbumListFragment :Fragment() {
 
     private var _binding: FragmentAlbumListBinding? = null
     private val binding get() = _binding!!
-    private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel : AlbumViewModel
     private var viewModelAdapter: AlbumsAdapter? = null
 
@@ -36,7 +33,7 @@ class AlbumListFragment :Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = binding.albumRecyclerView
-        val rotation = this.getResources().getConfiguration().orientation;
+        val rotation = this.resources.configuration.orientation
         if (rotation == 1) {
             recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 2)
         } else {
@@ -56,8 +53,8 @@ class AlbumListFragment :Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel = ViewModelProvider(
                     this@AlbumListFragment, AlbumViewModel.Factory(activity.application)
-                ).get(AlbumViewModel::class.java)
-                viewModel.albums.observe(viewLifecycleOwner, Observer<List<Album>> {
+                )[AlbumViewModel::class.java]
+                viewModel.albums.observe(viewLifecycleOwner, Observer {
                     it.apply {
                         viewModelAdapter!!.albums = this
                     }
