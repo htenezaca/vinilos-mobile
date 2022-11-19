@@ -8,26 +8,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vinilos_mobile.R
-import com.example.vinilos_mobile.databinding.FragmentMusicianDetailBinding
-import com.example.vinilos_mobile.model.models.MusicianDetail
-import com.example.vinilos_mobile.viewmodel.MusicianDetailViewModel
+import com.example.vinilos_mobile.databinding.FragmentPerformerDetailBinding
+import com.example.vinilos_mobile.model.models.*
+import com.example.vinilos_mobile.viewmodel.PerformerDetailViewModel
 import kotlinx.coroutines.launch
 
-class MusicianDetailFragment : Fragment(R.layout.fragment_musician_detail) {
+class PerformerDetailFragment : Fragment(R.layout.fragment_performer_detail) {
 
-    private var _binding: FragmentMusicianDetailBinding? = null
+    private var _binding: FragmentPerformerDetailBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: MusicianDetailViewModel
+    private lateinit var viewModel: PerformerDetailViewModel
 
     companion object {
-        fun newInstance(musicianId: Int): MusicianDetailFragment {
-            val fragment = MusicianDetailFragment()
+        fun newInstance(performerId: Int, isBand: Boolean? = false): PerformerDetailFragment {
+            val fragment = PerformerDetailFragment()
             val args = Bundle()
-            args.putInt("musicianId", musicianId)
+            args.putInt("performerId", performerId)
+            args.putBoolean("isBand", isBand!!)
             fragment.arguments = args
             return fragment
         }
@@ -37,13 +37,13 @@ class MusicianDetailFragment : Fragment(R.layout.fragment_musician_detail) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMusicianDetailBinding.inflate(inflater, container, false)
+        _binding = FragmentPerformerDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val recyclerView: RecyclerView = binding.musicianRecyclerView
+        val recyclerView: RecyclerView = binding.performerDetailRecyclerView
         val rotation = this.getResources().getConfiguration().orientation;
         if (rotation == 1) {
             recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 2)
@@ -55,29 +55,34 @@ class MusicianDetailFragment : Fragment(R.layout.fragment_musician_detail) {
             "You can only access the viewModel after onActivityCreated()"
         }
         // Make description scrollable
-        binding.musicianDescription.movementMethod = ScrollingMovementMethod()
+        binding.performerDetailDescription.movementMethod = ScrollingMovementMethod()
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel = ViewModelProvider(
-                    this@MusicianDetailFragment,
-                    MusicianDetailViewModel.Factory(
+                    this@PerformerDetailFragment,
+                    PerformerDetailViewModel.Factory(
                         activity.application,
-                        arguments?.getInt("musicianId")!!
+                        arguments?.getInt("performerId")!!,
+                        arguments?.getBoolean("isBand")!!
                     )
-                )[MusicianDetailViewModel::class.java]
-                viewModel.musician.observe(viewLifecycleOwner, Observer<MusicianDetail> {
+                )[PerformerDetailViewModel::class.java]
+                viewModel.performer.observe(viewLifecycleOwner, Observer<PerformerDetail> {
                     it.apply {
-                        _binding!!.musicianName.text = name
-                        _binding!!.musicianBirthDate.text = birthDate.substring(0, 10)
-                        _binding!!.musicianDescription.text = description
-                        Glide.with(this@MusicianDetailFragment)
+                        _binding!!.performerDetailName.text = name
+                        _binding!!.performerDetailDate.text = when(it) {
+                            is BandDetail -> it.creationDate.substring(0, 10)
+                            is MusicianDetail -> it.birthDate.substring(0, 10)
+                            else -> ""
+                        }
+                        _binding!!.performerDetailDescription.text = description
+                        Glide.with(this@PerformerDetailFragment)
                             .load(image)
                             .diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.AUTOMATIC)
-                            .into(_binding!!.musicianImage)
+                            .into(_binding!!.performerDetailImage)
 
                         var albumList = this.albums.toList()
-                        binding.musicianRecyclerView.adapter = AlbumsAdapter(albumList)
+                        binding.performerDetailRecyclerView.adapter = AlbumsAdapter(albumList)
                     }
                 })
             }

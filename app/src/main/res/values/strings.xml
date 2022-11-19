@@ -14,5 +14,5 @@
     <string name="albums_button_description">Watch albums list</string>
     <string name="collectors_button_description">Watch collectors list</string>
     <string name="artists_button_description">Watch artists list</string>
-    <string name="musician_detail_list_album_title">Albums</string>
+    <string name="performer_detail_list_album_title">Albums</string>
 </resources>

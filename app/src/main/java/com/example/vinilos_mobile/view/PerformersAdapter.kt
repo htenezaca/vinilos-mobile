@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.PerformerItemBinding
+import com.example.vinilos_mobile.model.models.Band
+import com.example.vinilos_mobile.model.models.Musician
 import com.example.vinilos_mobile.model.models.Performer
 
 class PerformersAdapter(performers: List<Performer> = emptyList() ) : RecyclerView.Adapter<PerformersAdapter.PerformersViewHolder>() {
@@ -50,7 +52,10 @@ class PerformersAdapter(performers: List<Performer> = emptyList() ) : RecyclerVi
 
         holder.viewDataBinding.root.setOnClickListener {
             val fm = (holder.itemView.context as FragmentActivity).supportFragmentManager
-            val fragment = MusicianDetailFragment.newInstance(musicianId = performers[position].id)
+            val fragment = PerformerDetailFragment.newInstance(
+                performerId = performers[position].id,
+                when(performers[position]) { is Band -> true; is Musician -> false; else -> null }
+            )
             fm.beginTransaction().replace(R.id.fragment_main_view, fragment)
                 .addToBackStack("Performer List").commit()
         }
