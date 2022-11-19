@@ -1,16 +1,12 @@
 package com.example.vinilos_mobile.model.repository
 
 import android.app.Application
-import android.content.Context
 import android.util.Log
-import com.android.volley.Response
-import com.android.volley.VolleyError
 import com.example.vinilos_mobile.model.api.CacheManager
 import com.example.vinilos_mobile.model.api.VinilosApiService
 import com.example.vinilos_mobile.model.models.*
-import org.json.JSONObject
 
-class VinilosRepository (val applicationContext: Application) {
+class VinilosRepository(val applicationContext: Application) {
 
 
     suspend fun getCollectors(): List<Collector> {
@@ -27,7 +23,7 @@ class VinilosRepository (val applicationContext: Application) {
 
     suspend fun getAlbum(albumId: Int): AlbumDetail {
         var cacheResp = CacheManager.getInstance(applicationContext).getAlbum(albumId)
-        return if(cacheResp == null) {
+        return if (cacheResp == null) {
             Log.d("getAlbum decision", "from API")
             val albumDetail =
                 VinilosApiService.getInstance(applicationContext).getAlbumDetail(albumId)
@@ -51,8 +47,13 @@ class VinilosRepository (val applicationContext: Application) {
         return performersList
     }
 
-    suspend fun getMusician(musicianId: Int): MusicianDetail {
-        return VinilosApiService.getInstance(applicationContext).getMusicianDetail(musicianId)
+    suspend fun getPerformer(performerId: Int, performerType: PerformerType): PerformerDetail {
+        return when (performerType) {
+            PerformerType.BAND -> VinilosApiService.getInstance(applicationContext)
+                .getBandDetail(performerId)
+            PerformerType.MUSICIAN -> VinilosApiService.getInstance(applicationContext)
+                .getMusicianDetail(performerId)
+        }
     }
 
 }

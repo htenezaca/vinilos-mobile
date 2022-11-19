@@ -4,7 +4,6 @@ import android.content.Context
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.vinilos_mobile.model.models.*
@@ -145,12 +144,26 @@ class VinilosApiService constructor(context: Context) {
         )
     }
 
-    suspend fun getMusicianDetail(musicianId: Int) = suspendCoroutine<MusicianDetail> { cont ->
+    suspend fun getMusicianDetail(musicianId: Int) = suspendCoroutine<PerformerDetail> { cont ->
         requestQueue.add(
             getRequest("$MUSICIANS_PATH/$musicianId", Response.Listener<String> { response ->
                 val resp = JSONObject(response)
 
                 val musician = deserializeMusicianDetail(resp)
+
+                cont.resume(musician)
+            }, Response.ErrorListener {
+                cont.resumeWithException(it)
+            })
+        )
+    }
+
+    suspend fun getBandDetail(bandId: Int) = suspendCoroutine<PerformerDetail> { cont ->
+        requestQueue.add(
+            getRequest("$BANDS_PATH/$bandId", Response.Listener<String> { response ->
+                val resp = JSONObject(response)
+
+                val musician = deserializeBandDetail(resp)
 
                 cont.resume(musician)
             }, Response.ErrorListener {

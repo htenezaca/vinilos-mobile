@@ -29,12 +29,4 @@ class CacheManager(context: Context) {
 
     private var performers: LruCache<Int, AlbumDetail> = LruCache(5)
 
-    fun getAlbum(albumId: Int): AlbumDetail?{
-        return if (albums[albumId] != null) albums[albumId]!! else null
-    }
-    fun addAlbum(albumId: Int, albumDetail: AlbumDetail){
-        if(albums[albumId] == null){
-            albums.put(albumId, albumDetail)
-        }
-    }
 }
