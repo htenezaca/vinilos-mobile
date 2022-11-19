@@ -39,4 +39,9 @@ class VinilosRepository (val applicationContext: Application) {
 
         return performersList
     }
+
+    suspend fun getMusician(musicianId: Int): MusicianDetail {
+        return VinilosApiService.getInstance(applicationContext).getMusicianDetail(musicianId)
+    }
+
 }

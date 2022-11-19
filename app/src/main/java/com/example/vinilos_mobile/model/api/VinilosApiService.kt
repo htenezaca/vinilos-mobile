@@ -145,6 +145,20 @@ class VinilosApiService constructor(context: Context) {
         )
     }
 
+    suspend fun getMusicianDetail(musicianId: Int) = suspendCoroutine<MusicianDetail> { cont ->
+        requestQueue.add(
+            getRequest("$MUSICIANS_PATH/$musicianId", Response.Listener<String> { response ->
+                val resp = JSONObject(response)
+
+                val musician = deserializeMusicianDetail(resp)
+
+                cont.resume(musician)
+            }, Response.ErrorListener {
+                cont.resumeWithException(it)
+            })
+        )
+    }
+
     private fun getRequest(
         path: String,
         responseListener: Response.Listener<String>,

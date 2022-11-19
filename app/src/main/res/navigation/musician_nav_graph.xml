@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/musician_nav_graph"
+    app:startDestination="@id/performerListFragment">
+
+    <fragment
+        android:id="@+id/performerListFragment"
+        android:name="com.example.vinilos_mobile.view.PerformerListFragment"
+        android:label="fragment_performer_list"
+        tools:layout="@layout/fragment_performer_list" >
+        <action
+            android:id="@+id/action_performerListFragment_to_musicianDetailFragment"
+            app:destination="@id/musicianDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/musicianDetailFragment"
+        android:name="com.example.vinilos_mobile.view.MusicianDetailFragment"
+        android:label="fragment_musician_detail"
+        tools:layout="@layout/fragment_musician_detail" />
+</navigation>

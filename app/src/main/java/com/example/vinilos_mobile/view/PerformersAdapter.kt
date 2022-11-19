@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vinilos_mobile.R
@@ -28,15 +29,31 @@ class PerformersAdapter(performers: List<Performer> = emptyList() ) : RecyclerVi
     }
 
     override fun onBindViewHolder(holder: PerformersViewHolder, position: Int) {
-
         holder.viewDataBinding.also {
             it.performer = performers[position]
         }
 
-        Log.d("AlbumsAdapter", "onBindViewHolder: ${performers[position].name}")
+        Log.d("PerformerAdapter", "onBindViewHolder: ${performers[position].name}")
         Glide.with(holder.viewDataBinding.root)
             .load(performers[position].image)
             .into(holder.viewDataBinding.performerImage)
+
+        //seetup view when sreen is rotated
+        val rotation = holder.viewDataBinding.root.getResources().getConfiguration().orientation
+        if (rotation == 1) {
+            holder.viewDataBinding.performerImage.getLayoutParams().height = 500
+            holder.viewDataBinding.performerImage.getLayoutParams().width = 500
+        } else {
+            holder.viewDataBinding.performerImage.getLayoutParams().height = 300
+            holder.viewDataBinding.performerImage.getLayoutParams().width = 300
+        }
+
+        holder.viewDataBinding.root.setOnClickListener {
+            val fm = (holder.itemView.context as FragmentActivity).supportFragmentManager
+            val fragment = MusicianDetailFragment.newInstance(musicianId = performers[position].id)
+            fm.beginTransaction().replace(R.id.fragment_main_view, fragment)
+                .addToBackStack("Performer List").commit()
+        }
     }
 
     override fun onCreateViewHolder(

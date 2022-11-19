@@ -12,10 +12,11 @@ import com.bumptech.glide.Glide
 import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.AlbumItemBinding
 import com.example.vinilos_mobile.model.models.Album
+import com.example.vinilos_mobile.model.models.Track
 
-class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
+class AlbumsAdapter(albums: List<Album> = emptyList()) : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
 
-    var albums: List<Album> = emptyList()
+    var albums: List<Album> = albums
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -49,15 +50,15 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
             .diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.AUTOMATIC)
             .into(holder.viewDataBinding.albumListImageView)
 
-        //seetup view when sreen is rotated
-        val rotation = holder.viewDataBinding.root.getResources().getConfiguration().orientation
+        //setup view when screen is rotated
+        /*val rotation = holder.viewDataBinding.root.getResources().getConfiguration().orientation
         if (rotation == 1) {
             holder.viewDataBinding.albumListImageView.getLayoutParams().height = 500
             holder.viewDataBinding.albumListImageView.getLayoutParams().width = 500
         } else {
             holder.viewDataBinding.albumListImageView.getLayoutParams().height = 300
             holder.viewDataBinding.albumListImageView.getLayoutParams().width = 300
-        }
+        }*/
 
         holder.viewDataBinding.root.setOnClickListener {
             // Use the fragment manager to replace the main fragment view
