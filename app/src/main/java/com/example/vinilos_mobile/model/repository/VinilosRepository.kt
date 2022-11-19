@@ -35,10 +35,10 @@ class VinilosRepository (val applicationContext: Application) {
         return performersList
     }
 
-    suspend fun getPerformer(performerId: Int, isBand: Boolean): PerformerDetail {
-        return when (isBand) {
-            true -> VinilosApiService.getInstance(applicationContext).getBandDetail(performerId)
-            false -> VinilosApiService.getInstance(applicationContext).getMusicianDetail(performerId)
+    suspend fun getPerformer(performerId: Int, performerType: PerformerType): PerformerDetail {
+        return when (performerType) {
+            PerformerType.BAND -> VinilosApiService.getInstance(applicationContext).getBandDetail(performerId)
+            PerformerType.MUSICIAN -> VinilosApiService.getInstance(applicationContext).getMusicianDetail(performerId)
         }
     }
 

@@ -13,6 +13,7 @@ import com.example.vinilos_mobile.databinding.PerformerItemBinding
 import com.example.vinilos_mobile.model.models.Band
 import com.example.vinilos_mobile.model.models.Musician
 import com.example.vinilos_mobile.model.models.Performer
+import com.example.vinilos_mobile.model.models.PerformerType
 
 class PerformersAdapter(performers: List<Performer> = emptyList() ) : RecyclerView.Adapter<PerformersAdapter.PerformersViewHolder>() {
 
@@ -54,7 +55,7 @@ class PerformersAdapter(performers: List<Performer> = emptyList() ) : RecyclerVi
             val fm = (holder.itemView.context as FragmentActivity).supportFragmentManager
             val fragment = PerformerDetailFragment.newInstance(
                 performerId = performers[position].id,
-                when(performers[position]) { is Band -> true; is Musician -> false; else -> null }
+                when(performers[position]) { is Band -> PerformerType.BAND; is Musician -> PerformerType.MUSICIAN; else -> null }
             )
             fm.beginTransaction().replace(R.id.fragment_main_view, fragment)
                 .addToBackStack("Performer List").commit()

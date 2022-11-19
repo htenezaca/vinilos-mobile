@@ -4,13 +4,14 @@ import android.util.Log
 import android.app.Application
 import androidx.lifecycle.*
 import com.example.vinilos_mobile.model.models.PerformerDetail
+import com.example.vinilos_mobile.model.models.PerformerType
 import com.example.vinilos_mobile.model.repository.VinilosRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class PerformerDetailViewModel(application: Application, performerId: Int, isBand: Boolean) : AndroidViewModel(application) {
+class PerformerDetailViewModel(application: Application, performerId: Int, performerType: PerformerType) : AndroidViewModel(application) {
 
     private val vinilosRepository: VinilosRepository = VinilosRepository(application)
 
@@ -21,15 +22,15 @@ class PerformerDetailViewModel(application: Application, performerId: Int, isBan
 
     init {
         viewModelScope.launch {
-            refreshDataFromNetwork(performerId, isBand)
+            refreshDataFromNetwork(performerId, performerType)
         }
     }
 
-    private fun refreshDataFromNetwork(performerId: Int, isBand: Boolean) {
+    private fun refreshDataFromNetwork(performerId: Int, performerType: PerformerType) {
         try {
             viewModelScope.launch(Dispatchers.Default) {
                 withContext(Dispatchers.IO) {
-                    var data = vinilosRepository.getPerformer(performerId, isBand)
+                    var data = vinilosRepository.getPerformer(performerId, performerType)
                     _performer.postValue(data)
                 }
             }
@@ -38,11 +39,11 @@ class PerformerDetailViewModel(application: Application, performerId: Int, isBan
         }
     }
 
-    class Factory(val app: Application, private val performerId: Int, private val isBand: Boolean) : ViewModelProvider.Factory {
+    class Factory(val app: Application, private val performerId: Int, private val performerType: PerformerType) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(PerformerDetailViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return PerformerDetailViewModel(app, performerId,isBand) as T
+                return PerformerDetailViewModel(app, performerId, performerType) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

@@ -23,11 +23,11 @@ class PerformerDetailFragment : Fragment(R.layout.fragment_performer_detail) {
     private lateinit var viewModel: PerformerDetailViewModel
 
     companion object {
-        fun newInstance(performerId: Int, isBand: Boolean? = false): PerformerDetailFragment {
+        fun newInstance(performerId: Int, performerType: PerformerType?): PerformerDetailFragment {
             val fragment = PerformerDetailFragment()
             val args = Bundle()
             args.putInt("performerId", performerId)
-            args.putBoolean("isBand", isBand!!)
+            args.putSerializable("performerType", performerType)
             fragment.arguments = args
             return fragment
         }
@@ -64,7 +64,7 @@ class PerformerDetailFragment : Fragment(R.layout.fragment_performer_detail) {
                     PerformerDetailViewModel.Factory(
                         activity.application,
                         arguments?.getInt("performerId")!!,
-                        arguments?.getBoolean("isBand")!!
+                        arguments?.getSerializable("performerType")!! as PerformerType
                     )
                 )[PerformerDetailViewModel::class.java]
                 viewModel.performer.observe(viewLifecycleOwner, Observer<PerformerDetail> {
