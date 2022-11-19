@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.AlbumItemBinding
 import com.example.vinilos_mobile.model.models.Album
-import com.example.vinilos_mobile.model.models.Track
 
 class AlbumsAdapter(albums: List<Album> = emptyList()) : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
 

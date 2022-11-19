@@ -30,7 +30,7 @@ class PerformerDetailViewModel(application: Application, performerId: Int, perfo
         try {
             viewModelScope.launch(Dispatchers.Default) {
                 withContext(Dispatchers.IO) {
-                    var data = vinilosRepository.getPerformer(performerId, performerType)
+                    val data = vinilosRepository.getPerformer(performerId, performerType)
                     _performer.postValue(data)
                 }
             }

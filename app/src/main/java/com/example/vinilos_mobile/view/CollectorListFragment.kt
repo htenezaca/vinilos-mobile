@@ -9,7 +9,6 @@ import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos_mobile.databinding.FragmentCollectorListBinding
-import com.example.vinilos_mobile.model.models.Collector
 import com.example.vinilos_mobile.viewmodel.CollectorViewModel
 import kotlinx.coroutines.launch
 
@@ -18,7 +17,6 @@ class CollectorListFragment : Fragment() {
 
     private var _binding: FragmentCollectorListBinding? = null
     private val binding get() = _binding!!
-    private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: CollectorViewModel
     private var viewModelAdapter: CollectorsAdapter? = null
 
@@ -26,7 +24,7 @@ class CollectorListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this
         _binding = FragmentCollectorListBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -52,8 +50,8 @@ class CollectorListFragment : Fragment() {
                 viewModel = ViewModelProvider(
                     this@CollectorListFragment,
                     CollectorViewModel.Factory(activity.application)
-                ).get(CollectorViewModel::class.java)
-                viewModel.collectors.observe(viewLifecycleOwner, Observer<List<Collector>> {
+                )[CollectorViewModel::class.java]
+                viewModel.collectors.observe(viewLifecycleOwner, Observer {
                     it.apply {
                         viewModelAdapter!!.collectors = this
                     }

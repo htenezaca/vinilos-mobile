@@ -11,10 +11,9 @@ import com.bumptech.glide.Glide
 import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.CollectorItemBinding
 import com.example.vinilos_mobile.model.models.Collector
-import com.example.vinilos_mobile.model.models.CollectorDetail
 
 class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHolder>() {
-    var iconCollector:String = "https://firebasestorage.googleapis.com/v0/b/storage-cdabb.appspot.com/o/%E2%86%B3%20Image.png?alt=media&token=b474bbd7-8a90-45e1-8cfa-fa35bb6cc600"
+    private var iconCollector:String = "https://firebasestorage.googleapis.com/v0/b/storage-cdabb.appspot.com/o/%E2%86%B3%20Image.png?alt=media&token=b474bbd7-8a90-45e1-8cfa-fa35bb6cc600"
     var collectors: List<Collector> = emptyList()
         set(value) {
             field = value

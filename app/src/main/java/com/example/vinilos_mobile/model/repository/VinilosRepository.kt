@@ -6,7 +6,7 @@ import com.example.vinilos_mobile.model.api.CacheManager
 import com.example.vinilos_mobile.model.api.VinilosApiService
 import com.example.vinilos_mobile.model.models.*
 
-class VinilosRepository(val applicationContext: Application) {
+class VinilosRepository(private val applicationContext: Application) {
 
 
     suspend fun getCollectors(): List<Collector> {
@@ -14,7 +14,7 @@ class VinilosRepository(val applicationContext: Application) {
     }
 
     suspend fun getCollector(collectorId: Int): CollectorDetail {
-        var cacheResp = CacheManager.getInstance(applicationContext).getCollector(collectorId)
+        val cacheResp = CacheManager.getInstance(applicationContext).getCollector(collectorId)
         return if (cacheResp == null) {
             Log.d("getCollector decision", "from API")
             val collectorDetail =
@@ -32,7 +32,7 @@ class VinilosRepository(val applicationContext: Application) {
     }
 
     suspend fun getAlbum(albumId: Int): AlbumDetail {
-        var cacheResp = CacheManager.getInstance(applicationContext).getAlbum(albumId)
+        val cacheResp = CacheManager.getInstance(applicationContext).getAlbum(albumId)
         return if (cacheResp == null) {
             Log.d("getAlbum decision", "from API")
             val albumDetail =
@@ -58,15 +58,14 @@ class VinilosRepository(val applicationContext: Application) {
     }
 
     suspend fun getPerformer(performerId: Int, performerType: PerformerType): PerformerDetail {
-        var cacheResp = CacheManager.getInstance(applicationContext).getPerformer(performerId)
+        val cacheResp = CacheManager.getInstance(applicationContext).getPerformer(performerId)
         if (cacheResp == null) {
             Log.d("getPerformer decision", "from API")
-            var apiResp: PerformerDetail
-            if (performerType == PerformerType.BAND) {
-                apiResp = VinilosApiService.getInstance(applicationContext)
+            val apiResp: PerformerDetail = if (performerType == PerformerType.BAND) {
+                VinilosApiService.getInstance(applicationContext)
                     .getBandDetail(performerId)
             } else {
-                apiResp = VinilosApiService.getInstance(applicationContext)
+                VinilosApiService.getInstance(applicationContext)
                     .getMusicianDetail(performerId)
             }
             CacheManager.getInstance(applicationContext).addPerformer(performerId, apiResp)

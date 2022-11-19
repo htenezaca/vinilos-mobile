@@ -56,8 +56,7 @@ class CollectorTest {
         collectorRecycler.check(matches(hasDescendant(withId(R.id.cardView))))
         onView(allOf(withId(R.id.collectorName), withText("Manolo Bellon"))).perform(
             click()
-        );
-
+        )
 
 
     }

@@ -1,8 +1,7 @@
 package com.example.vinilos_mobile.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.model.repository.VinilosRepository
 

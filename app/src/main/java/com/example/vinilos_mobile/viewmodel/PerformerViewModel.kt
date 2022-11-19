@@ -28,7 +28,7 @@ class PerformerViewModel(application: Application) : AndroidViewModel(applicatio
         try {
             viewModelScope.launch(Dispatchers.Default) {
                 withContext(Dispatchers.IO) {
-                    var data = vinilosRepository.getPerformers()
+                    val data = vinilosRepository.getPerformers()
                     _performers.postValue(data)
                 }
             }

@@ -53,7 +53,7 @@
                 app:cornerRadius="8dp"
                 tools:ignore="TextContrastCheck" />
 
-            <Space
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="150dp" />
         </LinearLayout>

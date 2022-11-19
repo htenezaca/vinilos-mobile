@@ -1,6 +1,6 @@
-package com.example.vinilos_mobile.model.models
+@file:Suppress("RemoveRedundantQualifierName")
 
-import org.json.JSONObject
+package com.example.vinilos_mobile.model.models
 
 abstract class PerformerDetail {
     abstract val id: Int
@@ -10,9 +10,3 @@ abstract class PerformerDetail {
     abstract val albums: List<Album>
 }
 
-fun deserializePerformerDetail(json: org.json.JSONObject): PerformerDetail {
-    return when (json.optString("birthDate")) {
-        "" -> deserializeBandDetail(json)
-        else -> deserializeMusicianDetail(json)
-    }
-}

@@ -36,7 +36,7 @@ class PerformerDetailFragment : Fragment(R.layout.fragment_performer_detail) {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentPerformerDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -44,7 +44,7 @@ class PerformerDetailFragment : Fragment(R.layout.fragment_performer_detail) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val recyclerView: RecyclerView = binding.performerDetailRecyclerView
-        val rotation = this.getResources().getConfiguration().orientation;
+        val rotation = this.resources.configuration.orientation
         if (rotation == 1) {
             recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 3)
         } else {
@@ -67,7 +67,7 @@ class PerformerDetailFragment : Fragment(R.layout.fragment_performer_detail) {
                         arguments?.getSerializable("performerType")!! as PerformerType
                     )
                 )[PerformerDetailViewModel::class.java]
-                viewModel.performer.observe(viewLifecycleOwner, Observer<PerformerDetail> {
+                viewModel.performer.observe(viewLifecycleOwner, Observer {
                     it.apply {
                         _binding!!.performerDetailName.text = name
                         _binding!!.performerDetailDate.text = when(it) {
@@ -81,7 +81,7 @@ class PerformerDetailFragment : Fragment(R.layout.fragment_performer_detail) {
                             .diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.AUTOMATIC)
                             .into(_binding!!.performerDetailImage)
 
-                        var albumList = this.albums.toList()
+                        val albumList = this.albums.toList()
                         binding.performerDetailRecyclerView.adapter = AlbumsAdapter(albumList)
                     }
                 })
@@ -94,7 +94,4 @@ class PerformerDetailFragment : Fragment(R.layout.fragment_performer_detail) {
         _binding = null
     }
 
-    private fun onNetworkError() {
-
-    }
 }

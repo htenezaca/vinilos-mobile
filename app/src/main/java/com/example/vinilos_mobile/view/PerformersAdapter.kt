@@ -42,13 +42,13 @@ class PerformersAdapter(performers: List<Performer> = emptyList() ) : RecyclerVi
             .into(holder.viewDataBinding.performerImage)
 
         //seetup view when sreen is rotated
-        val rotation = holder.viewDataBinding.root.getResources().getConfiguration().orientation
+        val rotation = holder.viewDataBinding.root.resources.configuration.orientation
         if (rotation == 1) {
-            holder.viewDataBinding.performerImage.getLayoutParams().height = 500
-            holder.viewDataBinding.performerImage.getLayoutParams().width = 500
+            holder.viewDataBinding.performerImage.layoutParams.height = 500
+            holder.viewDataBinding.performerImage.layoutParams.width = 500
         } else {
-            holder.viewDataBinding.performerImage.getLayoutParams().height = 300
-            holder.viewDataBinding.performerImage.getLayoutParams().width = 300
+            holder.viewDataBinding.performerImage.layoutParams.height = 300
+            holder.viewDataBinding.performerImage.layoutParams.width = 300
         }
 
         holder.viewDataBinding.root.setOnClickListener {
@@ -65,15 +65,15 @@ class PerformersAdapter(performers: List<Performer> = emptyList() ) : RecyclerVi
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PerformersAdapter.PerformersViewHolder {
+    ): PerformersViewHolder {
         val withDataBinding: PerformerItemBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            PerformersAdapter.PerformersViewHolder.LAYOUT,
+            PerformersViewHolder.LAYOUT,
             parent,
             false
         )
 
-        return PerformersAdapter.PerformersViewHolder(withDataBinding)
+        return PerformersViewHolder(withDataBinding)
     }
 
     override fun getItemCount(): Int {
