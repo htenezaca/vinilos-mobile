@@ -42,14 +42,14 @@ class PerformersAdapter(performers: Array<Performer> = emptyArray() ) : Recycler
             .into(holder.viewDataBinding.performerImage)
 
         //seetup view when sreen is rotated
-        val rotation = holder.viewDataBinding.root.resources.configuration.orientation
+        /*val rotation = holder.viewDataBinding.root.resources.configuration.orientation
         if (rotation == 1) {
             holder.viewDataBinding.performerImage.layoutParams.height = 500
             holder.viewDataBinding.performerImage.layoutParams.width = 500
         } else {
             holder.viewDataBinding.performerImage.layoutParams.height = 300
             holder.viewDataBinding.performerImage.layoutParams.width = 300
-        }
+        }*/
 
         holder.viewDataBinding.root.setOnClickListener {
             val fm = (holder.itemView.context as FragmentActivity).supportFragmentManager
