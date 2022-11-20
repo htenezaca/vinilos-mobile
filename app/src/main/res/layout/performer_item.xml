@@ -3,8 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginLeft="11dp"
-    android:layout_marginTop="10dp">
+    android:layout_marginTop="5dp">
 
     <data>
 
@@ -17,38 +16,91 @@
         android:id="@+id/performer_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="0dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="20dp"
         android:baselineAligned="false"
-        android:gravity="center_horizontal|left"
-        android:orientation="horizontal">
+        android:gravity="center_horizontal|start"
+        android:orientation="horizontal"
+        android:paddingTop="0dp">
 
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/performer_image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:adjustViewBounds="true"
-            android:background="@color/white"
-            android:scaleType="centerCrop"
-            android:textAlignment="center"
-            app:shapeAppearance="@style/ShapeAppearance.ImageView"
-            app:srcCompat="@drawable/ic_album_dark"
-            tools:srcCompat="@drawable/ic_album_dark" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/performer_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:enabled="true"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@{performer.name}"
-            android:textAlignment="viewStart"
-            android:textSize="16sp"
-            tools:text="Performer name" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/performer_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="22dp"
+                android:adjustViewBounds="false"
+                android:background="@color/white"
+                android:scaleType="centerCrop"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:shapeAppearance="@style/ShapeAppearance.ImageView"
+                app:srcCompat="@drawable/ic_album_dark"
+                tools:srcCompat="@drawable/ic_album_dark" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/performer_image"
+                app:layout_constraintEnd_toStartOf="@+id/chevron2"
+                app:layout_constraintStart_toEndOf="@+id/performer_image"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/performer_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:fontFamily="@font/roboto_black"
+                    android:text="@{performer.name}"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:text="Performer name" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/chevron2"
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/chevron"
+                android:src="@drawable/chevron"
+                app:layout_constraintBottom_toBottomOf="@+id/performer_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck"
+                tools:srcCompat="@drawable/chevron" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/performer_image"
+                app:layout_constraintTop_toBottomOf="@+id/performer_image" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </LinearLayout>

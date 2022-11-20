@@ -35,7 +35,7 @@ class AlbumListFragment :Fragment() {
         val recyclerView = binding.albumRecyclerView
         val rotation = this.resources.configuration.orientation
         if (rotation == 1) {
-            recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 2)
+            recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 3)
         } else {
             //Increase the area of the recycler view
             recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 4)

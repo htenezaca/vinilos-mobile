@@ -11,7 +11,7 @@
         android:id="@+id/album_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="30dp"
+        android:layout_marginTop="44dp"
         android:focusable="auto"
         android:persistentDrawingCache="all"
         android:scrollbars="vertical"
@@ -19,14 +19,23 @@
         tools:listitem="@layout/activity_main">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="39dp"
+        android:background="?android:attr/listDivider" />
+
     <TextView
         android:id="@+id/title"
         android:layout_width="120dp"
         android:layout_height="38dp"
+        android:layout_marginStart="27dp"
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
         android:text="Álbumes"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textColor="#000000"
         android:textSize="20sp" />
 
