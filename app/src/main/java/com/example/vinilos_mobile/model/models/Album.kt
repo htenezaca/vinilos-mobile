@@ -13,12 +13,12 @@ data class Album(
     val recordLabel: String
 )
 
-fun deserializeAlbums(json: JSONArray): List<Album> {
+fun deserializeAlbums(json: JSONArray): Array<Album> {
     val albums = mutableListOf<Album>()
     for (i in 0 until json.length()) {
         albums.add(deserializeAlbum(json.getJSONObject(i)))
     }
-    return albums
+    return albums.toTypedArray()
 }
 
 fun deserializeAlbum(json: JSONObject): Album {

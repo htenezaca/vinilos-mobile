@@ -14,7 +14,7 @@ import com.example.vinilos_mobile.model.models.Collector
 
 class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHolder>() {
     private var iconCollector:String = "https://firebasestorage.googleapis.com/v0/b/storage-cdabb.appspot.com/o/%E2%86%B3%20Image.png?alt=media&token=b474bbd7-8a90-45e1-8cfa-fa35bb6cc600"
-    var collectors: List<Collector> = emptyList()
+    var collectors: Array<Collector> = emptyArray()
         set(value) {
             field = value
             notifyDataSetChanged()

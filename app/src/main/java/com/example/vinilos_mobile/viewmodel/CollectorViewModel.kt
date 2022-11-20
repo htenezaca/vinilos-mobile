@@ -13,9 +13,9 @@ class CollectorViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val vinilosRepository: VinilosRepository = VinilosRepository(application)
 
-    private val _collectors = MutableLiveData<List<Collector>>()
+    private val _collectors = MutableLiveData<Array<Collector>>()
 
-    val collectors: LiveData<List<Collector>>
+    val collectors: LiveData<Array<Collector>>
         get() = _collectors
 
     init {

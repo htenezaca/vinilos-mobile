@@ -15,9 +15,9 @@ import com.example.vinilos_mobile.model.models.Musician
 import com.example.vinilos_mobile.model.models.Performer
 import com.example.vinilos_mobile.model.models.PerformerType
 
-class PerformersAdapter(performers: List<Performer> = emptyList() ) : RecyclerView.Adapter<PerformersAdapter.PerformersViewHolder>() {
+class PerformersAdapter(performers: Array<Performer> = emptyArray() ) : RecyclerView.Adapter<PerformersAdapter.PerformersViewHolder>() {
 
-    var performers: List<Performer> = performers
+    var performers: Array<Performer> = performers
         set(value) {
             field = value
             notifyDataSetChanged()

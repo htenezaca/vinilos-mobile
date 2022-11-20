@@ -9,14 +9,15 @@ data class Track (
     val duration: String,
 )
 
-fun deserializeTracks(json: JSONArray): List<Track> {
+fun deserializeTracks(json: JSONArray): Array<Track> {
     val tracks = mutableListOf<Track>()
     for (i in 0 until json.length()) {
         val jsonTrack = json.getJSONObject(i)
         val track = deserializeTrack(jsonTrack)
         tracks.add(track)
     }
-    return tracks
+    // Switch mutable List to more efficient data structure
+    return tracks.toTypedArray()
 }
 
 fun deserializeTrack(json: JSONObject): Track {

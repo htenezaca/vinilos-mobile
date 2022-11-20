@@ -10,9 +10,9 @@ data class AlbumDetail(
     val description: String,
     val genre: String,
     val recordLabel: String,
-    val tracks: List<Track>,
-    val performers: List<Performer>,
-    val comments: List<Comment>,
+    val tracks: Array<Track>,
+    val performers: Array<Performer>,
+    val comments: Array<Comment>,
 )
 
 fun deserializeAlbumDetail(json: JSONObject): AlbumDetail {

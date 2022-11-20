@@ -9,7 +9,7 @@ import com.example.vinilos_mobile.model.models.*
 class VinilosRepository(private val applicationContext: Application) {
 
 
-    suspend fun getCollectors(): List<Collector> {
+    suspend fun getCollectors(): Array<Collector> {
         return VinilosApiService.getInstance(applicationContext).getCollectors()
     }
 
@@ -27,7 +27,7 @@ class VinilosRepository(private val applicationContext: Application) {
         }
     }
 
-    suspend fun getAlbums(): List<Album> {
+    suspend fun getAlbums(): Array<Album> {
         return VinilosApiService.getInstance(applicationContext).getAlbums()
     }
 
@@ -45,7 +45,7 @@ class VinilosRepository(private val applicationContext: Application) {
         }
     }
 
-    suspend fun getPerformers(): List<Performer> {
+    suspend fun getPerformers(): Array<Performer> {
         val performersList = mutableListOf<Performer>()
 
         val bands = VinilosApiService.getInstance(applicationContext).getBands()
@@ -54,7 +54,7 @@ class VinilosRepository(private val applicationContext: Application) {
         performersList.addAll(bands)
         performersList.addAll(musicians)
 
-        return performersList
+        return performersList.toTypedArray()
     }
 
     suspend fun getPerformer(performerId: Int, performerType: PerformerType): PerformerDetail {

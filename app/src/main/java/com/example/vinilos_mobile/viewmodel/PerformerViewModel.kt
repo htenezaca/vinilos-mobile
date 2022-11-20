@@ -13,9 +13,9 @@ class PerformerViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val vinilosRepository: VinilosRepository = VinilosRepository(application)
 
-    private val _performers = MutableLiveData<List<Performer>>()
+    private val _performers = MutableLiveData<Array<Performer>>()
 
-    val performers: LiveData<List<Performer>>
+    val performers: LiveData<Array<Performer>>
         get() = _performers
 
     init {

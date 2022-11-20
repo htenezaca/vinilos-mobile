@@ -7,9 +7,9 @@ data class CollectorDetail(
     val name: String,
     val telephone: String,
     val email: String,
-    val comments: List<Comment>,
-    val favoritePerformers: List<Performer>,
-    val collectorAlbums: List<CollectorAlbum>
+    val comments: Array<Comment>,
+    val favoritePerformers: Array<Performer>,
+    val collectorAlbums: Array<CollectorAlbum>
 )
 
 fun deserializeCollectorDetail(json: JSONObject): CollectorDetail {
