@@ -29,7 +29,6 @@ class AlbumTest {
 
         Thread.sleep(1500)
         val albumRecyclerView = onView(withId(R.id.album_recycler_view))
-        albumRecyclerView.perform(click())
         albumRecyclerView.check(matches(hasDescendant(withId(R.id.album_list_album_name))))
     }
 
@@ -41,7 +40,6 @@ class AlbumTest {
 
         Thread.sleep(1500)
         val albumRecyclerView = onView(withId(R.id.album_recycler_view))
-        albumRecyclerView.perform(click())
         albumRecyclerView.check(matches(hasDescendant(withId(R.id.album_list_album_name))))
         // There are multiple items with the same, id pick them all, and click the first one
         onView(allOf(withId(R.id.album_list_album_name), withText("Buscando América"))).perform(

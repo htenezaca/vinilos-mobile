@@ -52,8 +52,7 @@ class CollectorTest {
         Thread.sleep(1000)
         // Go to the collectors
         val collectorRecycler = onView(withId(R.id.collector_recycler_view))
-        collectorRecycler.perform(click())
-        collectorRecycler.check(matches(hasDescendant(withId(R.id.cardView))))
+        collectorRecycler.check(matches(hasDescendant(withId(R.id.collectorName))))
         onView(allOf(withId(R.id.collectorName), withText("Manolo Bellon"))).perform(
             click()
         )

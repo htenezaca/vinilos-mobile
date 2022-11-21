@@ -31,7 +31,7 @@ class PerformerTest {
         onView(withId(R.id.performer_recycler_view))
         onView(withId(R.id.list_artist_name)).check(matches(isDisplayed()))
         onView(withId(R.id.list_artist_name)).perform(click())
-        Thread.sleep(100)
+        Thread.sleep(500)
     }
 
     @Test
@@ -58,6 +58,7 @@ class PerformerTest {
         this.gotoList()
         onView(allOf(withId(R.id.performer_name), withText("Rubén Blades Bellido de Luna"))).check(matches(isCompletelyDisplayed()))
         onView(allOf(withId(R.id.performer_name), withText("Rubén Blades Bellido de Luna"))).perform(click())
+        Thread.sleep(500)
         // Check the properties
         onView(withId(R.id.performer_detail_name)).check(matches(withText(containsString("Rubén Blades Bellido de Luna"))))
         onView(withId(R.id.performer_detail_description)).check(matches(withText(containsString("panameño"))))
@@ -69,6 +70,7 @@ class PerformerTest {
         this.gotoList()
         onView(allOf(withId(R.id.performer_name), withText("Queen"))).check(matches(isCompletelyDisplayed()))
         onView(allOf(withId(R.id.performer_name), withText("Queen"))).perform(click())
+        Thread.sleep(500)
         // Check we can navigate to the albums
         onView(withText("A Day at the Races")).perform(click())
         onView(allOf(withId(R.id.album_name), withText("A Day at the Races"))).check(matches(isDisplayed()))
