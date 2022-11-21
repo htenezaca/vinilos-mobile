@@ -34,28 +34,20 @@ class AlbumDetailFragment : Fragment(R.layout.fragment_album_detail) {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-<<<<<<< HEAD
     ): View {
-=======
-    ): View? {
->>>>>>> 95f5312 (Release/sprint1 (#63))
         _binding = FragmentAlbumDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-<<<<<<< HEAD
         val recyclerView: RecyclerView = binding.trackRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
-=======
->>>>>>> 95f5312 (Release/sprint1 (#63))
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
         // Make description scrollable
         binding.albumDescriptionContent.movementMethod = ScrollingMovementMethod()
-<<<<<<< HEAD
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel = ViewModelProvider(
@@ -84,26 +76,6 @@ class AlbumDetailFragment : Fragment(R.layout.fragment_album_detail) {
                 })
             }
         }
-=======
-
-        viewModel = ViewModelProvider(
-            this,
-            AlbumDetailViewModel.Factory(activity.application, arguments?.getInt("albumId")!!)
-        )[AlbumDetailViewModel::class.java]
-        viewModel.album.observe(viewLifecycleOwner, Observer<AlbumDetail> {
-            it.apply {
-                _binding!!.albumName.text = name
-                _binding!!.artistName.text = performers.firstOrNull()?.name ?: "Unknown"
-                _binding!!.albumDescriptionContent.text = description
-                _binding!!.albumGenre.text = genre
-               _binding!!.albumYear.text = releaseDate.substring(0, 4)
-                Glide.with(this@AlbumDetailFragment)
-                    .load(cover)
-                    .diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.AUTOMATIC)
-                    .into(_binding!!.albumCover)
-            }
-        })
->>>>>>> 95f5312 (Release/sprint1 (#63))
     }
 
     override fun onDestroyView() {
@@ -111,10 +83,4 @@ class AlbumDetailFragment : Fragment(R.layout.fragment_album_detail) {
         _binding = null
     }
 
-<<<<<<< HEAD
-=======
-    private fun onNetworkError() {
-
-    }
->>>>>>> 95f5312 (Release/sprint1 (#63))
 }
