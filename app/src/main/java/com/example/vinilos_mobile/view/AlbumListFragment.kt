@@ -5,20 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.Observer
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos_mobile.databinding.FragmentAlbumListBinding
 import com.example.vinilos_mobile.viewmodel.AlbumViewModel
-import com.example.vinilos_mobile.model.models.Album
+import kotlinx.coroutines.launch
 
 
 class AlbumListFragment :Fragment() {
 
     private var _binding: FragmentAlbumListBinding? = null
     private val binding get() = _binding!!
-    private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel : AlbumViewModel
     private var viewModelAdapter: AlbumsAdapter? = null
 
@@ -36,9 +33,9 @@ class AlbumListFragment :Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = binding.albumRecyclerView
-        val rotation = this.getResources().getConfiguration().orientation;
+        val rotation = this.resources.configuration.orientation
         if (rotation == 1) {
-            recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 2)
+            recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 3)
         } else {
             //Increase the area of the recycler view
             recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 4)
@@ -52,12 +49,18 @@ class AlbumListFragment :Fragment() {
             "You can only access the viewModel after onActivityCreated()"
         }
 
-        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(activity.application)).get(AlbumViewModel::class.java)
-        viewModel.albums.observe(viewLifecycleOwner, Observer<List<Album>> {
-            it.apply {
-                viewModelAdapter!!.albums=this
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel = ViewModelProvider(
+                    this@AlbumListFragment, AlbumViewModel.Factory(activity.application)
+                )[AlbumViewModel::class.java]
+                viewModel.albums.observe(viewLifecycleOwner, Observer {
+                    it.apply {
+                        viewModelAdapter!!.albums = this
+                    }
+                })
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

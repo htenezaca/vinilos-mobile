@@ -10,8 +10,9 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_main_view"
         android:name="com.example.vinilos_mobile.view.AlbumListFragment"
-        android:layout_width="395dp"
-        android:layout_height="711dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_main_navbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,11 +22,10 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_main_navbar"
         android:name="com.example.vinilos_mobile.view.NavBarFragment"
-        android:layout_width="405dp"
+        android:layout_width="0dp"
         android:layout_height="69dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main_view"
-        app:layout_constraintVertical_bias="1.0" />
+        tools:layout="@layout/fragment_nav_bar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

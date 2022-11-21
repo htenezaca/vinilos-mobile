@@ -1,10 +1,9 @@
-package com.example.vinilos_mobile.album
+package com.example.vinilos_mobile.artist
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
-import org.hamcrest.Matchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
@@ -29,8 +28,8 @@ class ArtistTest {
 
         Thread.sleep(1000)
         // Go to the collectors
-        onView(withId(R.id.buttonIconCollectors)).check(matches(isDisplayed()))
-        onView(withId(R.id.buttonIconCollectors)).perform(click())
+        onView(withId(R.id.buttonIconArtists)).check(matches(isDisplayed()))
+        onView(withId(R.id.buttonIconArtists)).perform(click())
         Thread.sleep(1000)
 
         val performerRecycler = onView(withId(R.id.performer_recycler_view))

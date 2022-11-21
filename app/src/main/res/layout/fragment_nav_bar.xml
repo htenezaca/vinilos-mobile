@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:background="#121212"
+    android:weightSum="3"
+    android:baselineAligned="false"
     tools:context=".view.NavBarFragment">
 
     <ImageButton
@@ -11,26 +13,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@null"
         android:contentDescription="@string/collectors_button_description"
+        android:padding="0pt"
         android:scaleType="centerInside"
-        android:src="@drawable/person" />
+        android:src="@drawable/person"
+        android:tint="#929292" />
 
     <ImageButton
         android:id="@+id/buttonIconAlbums"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@null"
         android:contentDescription="@string/albums_button_description"
+        android:padding="0pt"
         android:scaleType="centerInside"
-        android:src="@drawable/album" />
+        android:src="@drawable/album"
+        android:tint="#929292" />
 
     <ImageButton
         android:id="@+id/buttonIconArtists"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@null"
         android:contentDescription="@string/artists_button_description"
+        android:padding="0pt"
         android:scaleType="centerInside"
-        android:src="@drawable/artist" />
+        android:src="@drawable/artist"
+        android:tint="#929292" />
 
 </LinearLayout>

@@ -25,7 +25,7 @@
         tools:layout="@layout/fragment_album_detail" />
     <fragment
         android:id="@+id/app_fragment_performer_list"
-        android:name="com.example.vinilos_mobile.view.PerformerListFragment"
+        android:name="com.example.vinilos_mobile.view.CollectorListFragment"
         android:label="fragment_performer_list"
         tools:layout="@layout/fragment_performer_list" />
 </navigation>

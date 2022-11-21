@@ -1,132 +1,80 @@
 package com.example.vinilos_mobile.model.repository
 
-import android.content.Context
+import android.app.Application
 import android.util.Log
-import com.android.volley.VolleyError
+import com.example.vinilos_mobile.model.api.CacheManager
 import com.example.vinilos_mobile.model.api.VinilosApiService
 import com.example.vinilos_mobile.model.models.*
-import org.json.JSONObject
 
-class VinilosRepository {
+class VinilosRepository(private val applicationContext: Application) {
 
-    fun getCollectors(
-        applicationContext: Context,
-        onComplete: (resp: List<Collector>) -> Unit,
-        onError: (error: VolleyError) -> Unit
-    ) {
 
-        var vinilosApiService = VinilosApiService(applicationContext)
-
-        vinilosApiService.instance.add(VinilosApiService.getCollectors(
-            { response ->
-                Log.d("GET COLLECTORS", "response: $response")
-                val collectorsList = mutableListOf<Collector>()
-
-                for (i in 0 until response.length()) {
-                    val item = response.getJSONObject(i)
-                    collectorsList.add(
-                        deserializeCollector(item)
-                    )
-                }
-
-                onComplete(collectorsList)
-            },
-            {
-                Log.d("GET COLLECTORS", "error: $it")
-                onError(it)
-            }
-        ))
+    suspend fun getCollectors(): Array<Collector> {
+        return VinilosApiService.getInstance(applicationContext).getCollectors()
     }
 
-    fun getAlbums(
-        applicationContext: Context,
-        onComplete: (resp: List<Album>) -> Unit,
-        onError: (error: VolleyError) -> Unit
-    ) {
-
-        var vinilosApiService = VinilosApiService(applicationContext)
-
-        vinilosApiService.instance.add(VinilosApiService.getAlbums(
-            { response ->
-                Log.d("GET ALBUMS", "response: $response")
-                val albumsList = mutableListOf<Album>()
-
-                for (i in 0 until response.length()) {
-                    val item = response.getJSONObject(i)
-                    albumsList.add(
-                        deserializeAlbum(item)
-                    )
-                }
-
-                onComplete(albumsList)
-            },
-            {
-                Log.d("GET ALBUMS", "error: $it")
-                onError(it)
-            }
-        ))
+    suspend fun getCollector(collectorId: Int): CollectorDetail {
+        val cacheResp = CacheManager.getInstance(applicationContext).getCollector(collectorId)
+        return if (cacheResp == null) {
+            Log.d("getCollector decision", "from API")
+            val collectorDetail =
+                VinilosApiService.getInstance(applicationContext).getCollector(collectorId)
+            CacheManager.getInstance(applicationContext).addCollector(collectorId, collectorDetail)
+            collectorDetail
+        } else {
+            Log.d("getCollector decision", "from cache")
+            cacheResp
+        }
     }
 
-    fun getAlbum(
-        albumId: Int,
-        applicationContext: Context,
-        onComplete: (resp: AlbumDetail) -> Unit,
-        onError: (error: VolleyError) -> Unit
-    ) {
-        var vinilosApiService = VinilosApiService(applicationContext)
-        vinilosApiService.instance.add(VinilosApiService.getAlbumDetail(
-            albumId,
-            { response ->
-                Log.d("GET ALBUM DETAIL", "response: $response")
-                if (response != null) {
-                    onComplete(
-                        deserializeAlbumDetail(response)
-                    )
-                } else {
-                    onError(VolleyError("No se encontró el álbum"))
-                }
-            },
-            {
-                Log.d("GET ALBUM", "error: $it")
-                onError(it)
-            }
-        ))
-
+    suspend fun getAlbums(): Array<Album> {
+        return VinilosApiService.getInstance(applicationContext).getAlbums()
     }
 
-    fun getPerformers(
-        applicationContext: Context,
-        onComplete: (resp: List<Performer>) -> Unit,
-        onError: (error: VolleyError) -> Unit
-    ) {
-        var vinilosApiService = VinilosApiService(applicationContext)
+    suspend fun getAlbum(albumId: Int): AlbumDetail {
+        val cacheResp = CacheManager.getInstance(applicationContext).getAlbum(albumId)
+        return if (cacheResp == null) {
+            Log.d("getAlbum decision", "from API")
+            val albumDetail =
+                VinilosApiService.getInstance(applicationContext).getAlbumDetail(albumId)
+            CacheManager.getInstance(applicationContext).addAlbum(albumId, albumDetail)
+            albumDetail
+        } else {
+            Log.d("getAlbum decision", "from cache")
+            cacheResp
+        }
+    }
+
+    suspend fun getPerformers(): Array<Performer> {
         val performersList = mutableListOf<Performer>()
 
-        vinilosApiService.instance.add(VinilosApiService.getMusicians(
-            { response ->
-                Log.d("GET MUSICIANS", "response: $response")
-                performersList.addAll(
-                    deserializePerformers(response)
-                )
+        val bands = VinilosApiService.getInstance(applicationContext).getBands()
+        val musicians = VinilosApiService.getInstance(applicationContext).getMusicians()
 
-            },
-            {
-                Log.d("GET MUSICIANS", "error: $it")
-                onError(it)
-            }
-        ))
-        vinilosApiService.instance.add(VinilosApiService.getBands(
-            { response ->
-                Log.d("GET BANDS", "response: $response")
-                performersList.addAll(
-                    deserializePerformers(response)
-                )
-                onComplete(performersList)
-            },
-            {
-                Log.d("GET BANDS", "error: $it")
-                onError(it)
-            }
-        ))
+        performersList.addAll(bands)
+        performersList.addAll(musicians)
+
+        return performersList.toTypedArray()
     }
+
+    suspend fun getPerformer(performerId: Int, performerType: PerformerType): PerformerDetail {
+        val cacheResp = CacheManager.getInstance(applicationContext).getPerformer(performerId)
+        if (cacheResp == null) {
+            Log.d("getPerformer decision", "from API")
+            val apiResp: PerformerDetail = if (performerType == PerformerType.BAND) {
+                VinilosApiService.getInstance(applicationContext)
+                    .getBandDetail(performerId)
+            } else {
+                VinilosApiService.getInstance(applicationContext)
+                    .getMusicianDetail(performerId)
+            }
+            CacheManager.getInstance(applicationContext).addPerformer(performerId, apiResp)
+            return apiResp
+        }
+        else {
+            Log.d("getAlbum decision", "from cache")
+            return cacheResp
+        }
+    }
+
 }

@@ -5,20 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos_mobile.databinding.FragmentPerformerListBinding
-import com.example.vinilos_mobile.model.models.Performer
 import com.example.vinilos_mobile.viewmodel.PerformerViewModel
+import kotlinx.coroutines.launch
 
 class PerformerListFragment : Fragment() {
 
 
     private var _binding: FragmentPerformerListBinding? = null
     private val binding get() = _binding!!
-    private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: PerformerViewModel
     private var viewModelAdapter: PerformersAdapter? = null
 
@@ -26,7 +24,7 @@ class PerformerListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this
         _binding = FragmentPerformerListBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -47,12 +45,19 @@ class PerformerListFragment : Fragment() {
             "You can only access the viewModel after onActivityCreated()"
         }
 
-        viewModel = ViewModelProvider(this, PerformerViewModel.Factory(activity.application)).get(PerformerViewModel::class.java)
-        viewModel.performers.observe(viewLifecycleOwner, Observer<List<Performer>> {
-            it.apply {
-                viewModelAdapter!!.performers=this
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel = ViewModelProvider(
+                    this@PerformerListFragment,
+                    PerformerViewModel.Factory(activity.application)
+                )[PerformerViewModel::class.java]
+                viewModel.performers.observe(viewLifecycleOwner, Observer {
+                    it.apply {
+                        viewModelAdapter!!.performers = this
+                    }
+                })
             }
-        })
+        }
     }
 
     override fun onDestroyView() {
