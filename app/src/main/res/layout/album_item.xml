@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_centerInParent="false"
-    android:layout_centerHorizontal="false"
-    android:layout_centerVertical="false"
     android:layout_marginStart="20dp"
     android:layout_marginEnd="20dp"
-    android:layout_marginBottom="20dp">
+    android:layout_marginBottom="20dp"
+    android:layout_centerInParent="false"
+    android:layout_centerHorizontal="false"
+    android:layout_centerVertical="false">
 
     <data>
 
@@ -17,20 +17,21 @@
     </data>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:baselineAligned="false"
+        android:gravity="bottom|center"
         android:orientation="vertical">
 
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/album_list_image_view"
-            android:layout_width="152dp"
-            android:layout_height="152dp"
-            android:adjustViewBounds="true"
-            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="false"
+            android:background="@null"
+            android:gravity="center_vertical"
             android:scaleType="centerInside"
-            android:textAlignment="center"
             app:srcCompat="@drawable/ic_album_dark"
             tools:srcCompat="@drawable/ic_album_dark" />
 
@@ -40,10 +41,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:enabled="true"
+            android:fontFamily="@font/roboto_medium"
             android:text="@{album.name}"
             android:textAlignment="center"
             android:textSize="16sp"
             tools:text="Album name" />
-            
+
     </LinearLayout>
 </layout>

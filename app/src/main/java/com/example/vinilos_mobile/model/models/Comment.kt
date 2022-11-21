@@ -9,14 +9,14 @@ data class Comment(
     val rating: String,
 )
 
-fun deserializeComments(json: JSONArray): List<Comment> {
+fun deserializeComments(json: JSONArray): Array<Comment> {
     val comments = mutableListOf<Comment>()
     for (i in 0 until json.length()) {
         val jsonComment = json.getJSONObject(i)
         val comment = deserializeComment(jsonComment)
         comments.add(comment)
     }
-    return comments
+    return comments.toTypedArray()
 }
 
 fun deserializeComment(json: JSONObject): Comment {

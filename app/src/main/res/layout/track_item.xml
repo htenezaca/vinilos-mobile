@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_marginLeft="11dp"
+android:layout_marginTop="10dp">
+
+    <data>
+        <variable
+            name="track"
+            type="com.example.vinilos_mobile.model.models.Track" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="20dp"
+        android:baselineAligned="false"
+        android:foregroundTint="#979797"
+        android:gravity="center_horizontal|left"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tack_name"
+            android:layout_width="222dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="11dp"
+            android:background="@null"
+            android:enabled="true"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@{track.name}"
+            android:textSize="16sp"
+            tools:text="Track name" />
+
+        <TextView
+            android:id="@+id/tack_duration"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="11dp"
+            android:background="@null"
+            android:enabled="true"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@{track.duration}"
+            android:textAlignment="viewEnd"
+            android:textSize="16sp"
+            tools:text="Duration" />
+
+    </LinearLayout>
+</layout>
