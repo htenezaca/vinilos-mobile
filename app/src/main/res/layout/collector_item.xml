@@ -64,7 +64,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Collector Name"
-                    android:contentDescription="@null" />
+                    android:contentDescription="@null"
+                    android:labelFor="@string/collector_name_label"/>
 
                 <TextView
                     android:id="@+id/collectorPhone"
@@ -79,7 +80,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/collectorName"
                     tools:text="Collector phone"
-                    android:contentDescription="@null"/>
+                    android:contentDescription="@null"
+                    android:labelFor="@string/collector_phone_label" />
 
                 <TextView
                     android:id="@+id/collectorEmail"
@@ -93,7 +95,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/collectorPhone"
                     tools:text="Collector email"
-                    android:contentDescription="@null"/>
+                    android:contentDescription="@null"
+                    android:labelFor="@string/collector_email_label" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

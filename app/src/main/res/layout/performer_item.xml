@@ -74,7 +74,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
                     tools:text="Performer name"
-                    android:contentDescription="@null"/>
+                    android:contentDescription="@null"
+                    android:labelFor="@string/performer_name_label" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView

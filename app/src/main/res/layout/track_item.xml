@@ -31,7 +31,8 @@ android:layout_marginTop="10dp">
             android:fontFamily="@font/roboto_medium"
             android:text="@{track.name}"
             android:textSize="16sp"
-            tools:text="Track name" />
+            tools:text="Track name"
+            android:labelFor="@string/track_name_label"/>
 
         <TextView
             android:id="@+id/tack_duration"
@@ -44,7 +45,8 @@ android:layout_marginTop="10dp">
             android:text="@{track.duration}"
             android:textAlignment="viewEnd"
             android:textSize="16sp"
-            tools:text="Duration" />
+            tools:text="Duration"
+            android:labelFor="@string/track_duration_label"/>
 
     </LinearLayout>
 </layout>

@@ -18,5 +18,13 @@
     <string name="collector_img_description">Collector default image</string>
     <string name="album_img_description">Album default image</string>
     <string name="performer_img_description">Performer default image</string>
+    <string name="album_name_label">Album name</string>
+    <string name="collector_name_label">Collector name</string>
+    <string name="collector_phone_label">Collector phone</string>
+    <string name="collector_email_label">Collector email</string>
+    <string name="performer_name_label">Performer name</string>
+    <string name="track_name_label">Track name</string>
+    <string name="track_duration_label">Track duration</string>
+
     <string name="chevron">chevron</string>
 </resources>
