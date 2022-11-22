@@ -74,12 +74,17 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
 <<<<<<< HEAD
+<<<<<<< HEAD
                     tools:text="Performer name"
                     android:contentDescription="@null"
                     android:labelFor="@string/performer_name_label" />
 =======
                     tools:text="Performer name" />
 >>>>>>> 627a67c (Release/sprint2 (#82))
+=======
+                    tools:text="Performer name"
+                    android:contentDescription="@null"/>
+>>>>>>> ce3a558 (feat: content description)
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
@@ -87,9 +92,12 @@
                 android:layout_width="20dp"
                 android:layout_height="0dp"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 android:contentDescription="@string/chevron"
 >>>>>>> 627a67c (Release/sprint2 (#82))
+=======
+>>>>>>> ce3a558 (feat: content description)
                 android:src="@drawable/chevron"
                 app:layout_constraintBottom_toBottomOf="@+id/performer_image"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -97,11 +105,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ImageContrastCheck"
 <<<<<<< HEAD
+<<<<<<< HEAD
                 tools:srcCompat="@drawable/chevron"
                 android:contentDescription="@string/performer_img_description"/>
 =======
                 tools:srcCompat="@drawable/chevron" />
 >>>>>>> 627a67c (Release/sprint2 (#82))
+=======
+                tools:srcCompat="@drawable/chevron"
+                android:contentDescription="@string/performer_img_description"/>
+>>>>>>> ce3a558 (feat: content description)
 
             <View
                 android:id="@+id/divider2"
