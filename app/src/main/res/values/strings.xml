@@ -16,5 +16,7 @@
     <string name="artists_button_description">Watch artists list</string>
     <string name="performer_detail_list_album_title">Albums</string>
     <string name="collector_img_description">Collector default image</string>
+    <string name="album_img_description">Album default image</string>
+    <string name="performer_img_description">Performer default image</string>
     <string name="chevron">chevron</string>
 </resources>

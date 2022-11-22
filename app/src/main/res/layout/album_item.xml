@@ -40,7 +40,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_album_dark"
-                tools:srcCompat="@drawable/ic_album_dark" />
+                tools:srcCompat="@drawable/ic_album_dark"
+                android:contentDescription="@string/album_img_description" />
 
             <TextView
                 android:id="@+id/album_list_album_name"
@@ -55,7 +56,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/album_list_image_view"
-                tools:text="Album name" />
+                tools:text="Album name"
+                android:contentDescription="@null" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
