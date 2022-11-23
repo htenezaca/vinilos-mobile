@@ -24,9 +24,11 @@
 
     <TextView
         android:id="@+id/list_collector_name"
-        android:layout_width="161dp"
-        android:layout_height="38dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="27dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
         android:text="Coleccionistas"

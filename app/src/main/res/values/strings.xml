@@ -25,6 +25,8 @@
     <string name="performer_name_label">Performer name</string>
     <string name="track_name_label">Track name</string>
     <string name="track_duration_label">Track duration</string>
+    <string name="text_input_user">Text input user</string>
+    <string name="performers_favorite">Favorite performers</string>
 
     <string name="chevron">chevron</string>
 </resources>

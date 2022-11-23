@@ -18,7 +18,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:gravity="bottom|center"
         android:orientation="vertical">
@@ -30,10 +30,11 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/album_list_image_view"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:adjustViewBounds="false"
                 android:background="@null"
+                android:foreground="@null"
                 android:gravity="center_vertical"
                 android:scaleType="centerInside"
                 app:layout_constraintEnd_toEndOf="parent"
