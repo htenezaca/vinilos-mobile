@@ -93,6 +93,6 @@
             android:persistentDrawingCache="all"
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/album_item"></androidx.recyclerview.widget.RecyclerView>
+            tools:listitem="@layout/album_item" />
     </LinearLayout>
 </FrameLayout>
