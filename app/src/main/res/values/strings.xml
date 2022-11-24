@@ -12,6 +12,8 @@
     <string name="album_cover">Album cover image</string>
     <string name="albums_button_description">Watch albums list</string>
     <string name="collectors_button_description">Watch collectors list</string>
+    <string name="collector_detail_image">Collector image from detail</string>
+    <string name="performers_favorite_collector">Artistas favoritos</string>
     <string name="artists_button_description">Watch artists list</string>
     <string name="performer_detail_list_album_title">Albums</string>
     <string name="collector_img_description">Collector default image</string>

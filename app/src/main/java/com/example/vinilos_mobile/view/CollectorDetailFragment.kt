@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.FragmentCollectorDetailBinding
 import com.example.vinilos_mobile.viewmodel.CollectorDetailViewModel
@@ -41,9 +40,9 @@ class CollectorDetailFragment: Fragment(R.layout.fragment_collector_detail) {
         return binding.root
     }
 
-    @SuppressLint("LongLogTag")
+    @Deprecated("Deprecated in Java")
+    @SuppressLint("LongLogTag", "MissingSuperCall")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         val recyclerView: RecyclerView = binding.favoritePerformersCollectorList
         recyclerView.layoutManager = LinearLayoutManager(context)
         val activity = requireNotNull(this.activity) {
