@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.FragmentCollectorDetailBinding
 import com.example.vinilos_mobile.viewmodel.CollectorDetailViewModel
@@ -22,7 +21,6 @@ class CollectorDetailFragment: Fragment(R.layout.fragment_collector_detail) {
     private var _binding: FragmentCollectorDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: CollectorDetailViewModel
-    private var iconCollector:String = "https://firebasestorage.googleapis.com/v0/b/storage-cdabb.appspot.com/o/%E2%86%B3%20Image.png?alt=media&token=b474bbd7-8a90-45e1-8cfa-fa35bb6cc600"
 
     companion object {
         fun newInstance(collectorId: Int): CollectorDetailFragment {
@@ -42,9 +40,9 @@ class CollectorDetailFragment: Fragment(R.layout.fragment_collector_detail) {
         return binding.root
     }
 
-    @SuppressLint("LongLogTag")
+    @Deprecated("Deprecated in Java")
+    @SuppressLint("LongLogTag", "MissingSuperCall")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         val recyclerView: RecyclerView = binding.favoritePerformersCollectorList
         recyclerView.layoutManager = LinearLayoutManager(context)
         val activity = requireNotNull(this.activity) {
@@ -65,9 +63,6 @@ class CollectorDetailFragment: Fragment(R.layout.fragment_collector_detail) {
                         binding.collectorName.text = this.name
                         binding.collectorEmail.text = this.email
                         binding.collectorPhone.text = this.telephone
-                        Glide.with(this@CollectorDetailFragment)
-                            .load(iconCollector)
-                            .into(binding.collectorImageView)
                         Log.d("CollectorDetailFragment", Gson().toJson(this.collectorAlbums))
                         Log.d(
                             "PerformersCollectorDetailFragment",

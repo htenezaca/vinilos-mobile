@@ -27,8 +27,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/collector"
                 tools:ignore="ImageContrastCheck"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@drawable/collector"
+                android:contentDescription="@string/collector_detail_image" />
 
             <TextView
                 android:id="@+id/collectorName"
@@ -100,7 +102,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="@string/performers_favorite"
-            android:text="Artistas favoritos"
+            android:text="@string/performers_favorite_collector"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/favorite_performers_collector_list"

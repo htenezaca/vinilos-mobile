@@ -32,13 +32,14 @@
                 android:layout_height="100dp"
                 android:layout_marginStart="22dp"
                 android:contentDescription="@string/collector_img_description"
-                android:src="@drawable/person"
+                android:src="@drawable/collector"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/collector"
                 tools:ignore="ImageContrastCheck"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@drawable/collector" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
