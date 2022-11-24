@@ -40,9 +40,9 @@ class CollectorDetailFragment: Fragment(R.layout.fragment_collector_detail) {
         return binding.root
     }
 
-    @Deprecated("Deprecated in Java")
-    @SuppressLint("LongLogTag", "MissingSuperCall")
+    @SuppressLint("LongLogTag")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         val recyclerView: RecyclerView = binding.favoritePerformersCollectorList
         recyclerView.layoutManager = LinearLayoutManager(context)
         val activity = requireNotNull(this.activity) {
