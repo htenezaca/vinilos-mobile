@@ -76,12 +76,13 @@
 
             <TextView
                 android:id="@+id/album_description_title"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:enabled="true"
                 android:paddingTop="5dp"
                 android:text="@string/album_detail_description_title"
+                android:background="@color/white"
                 android:textColor="@color/main_orange"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -112,8 +113,8 @@
 
             <TextView
                 android:id="@+id/tracks_title"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:enabled="true"
                 android:paddingTop="5dp"
