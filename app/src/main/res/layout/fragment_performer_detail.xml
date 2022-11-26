@@ -84,7 +84,6 @@
             android:textColor="@color/main_orange"
             android:textSize="20sp"
             android:textStyle="bold" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/performer_detail_recycler_view"
             android:layout_width="match_parent"

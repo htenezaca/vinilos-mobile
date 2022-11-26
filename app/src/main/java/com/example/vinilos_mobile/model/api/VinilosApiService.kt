@@ -36,7 +36,7 @@ class VinilosApiService constructor(context: Context) {
         Volley.newRequestQueue(context.applicationContext)
     }
 
-    suspend fun getAlbums() = suspendCoroutine { cont ->
+    suspend fun getAlbums() = suspendCoroutine<Array<Album>> { cont ->
         requestQueue.add(
             getRequest(ALBUMS_PATH, { response ->
                 val resp = JSONArray(response)
@@ -56,7 +56,7 @@ class VinilosApiService constructor(context: Context) {
         )
     }
 
-    suspend fun getCollectors() = suspendCoroutine { cont ->
+    suspend fun getCollectors() = suspendCoroutine<Array<Collector>> { cont ->
         requestQueue.add(
             getRequest(COLLECTORS_PATH, { response ->
                 val resp = JSONArray(response)
@@ -76,7 +76,7 @@ class VinilosApiService constructor(context: Context) {
         )
     }
 
-    suspend fun getBands() = suspendCoroutine { cont ->
+    suspend fun getBands() = suspendCoroutine<Array<Band>> { cont ->
         requestQueue.add(
             getRequest(BANDS_PATH, { response ->
                 val resp = JSONArray(response)
@@ -96,7 +96,7 @@ class VinilosApiService constructor(context: Context) {
         )
     }
 
-    suspend fun getMusicians() = suspendCoroutine { cont ->
+    suspend fun getMusicians() = suspendCoroutine<Array<Musician>> { cont ->
         requestQueue.add(
             getRequest(MUSICIANS_PATH, { response ->
                 val resp = JSONArray(response)
