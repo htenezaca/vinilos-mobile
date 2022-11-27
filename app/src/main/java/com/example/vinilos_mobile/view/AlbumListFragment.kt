@@ -60,7 +60,7 @@ class AlbumListFragment :Fragment() {
                     }
                 })
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

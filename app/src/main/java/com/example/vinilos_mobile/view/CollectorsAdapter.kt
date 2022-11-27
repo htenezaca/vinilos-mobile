@@ -1,6 +1,5 @@
 package com.example.vinilos_mobile.view
 import android.annotation.SuppressLint
-import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
