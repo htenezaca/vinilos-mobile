@@ -27,3 +27,10 @@ fun deserializeTrack(json: JSONObject): Track {
         duration = json.getString("duration"),
     )
 }
+
+fun serializeTrack(track: Track): JSONObject {
+    val json = JSONObject()
+    json.put("name", track.name)
+    json.put("duration", track.duration)
+    return json
+}
