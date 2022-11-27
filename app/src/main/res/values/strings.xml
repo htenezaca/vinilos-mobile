@@ -18,7 +18,7 @@
     <string name="performer_detail_list_album_title">Albumes</string>
     <string name="collector_img_description">Imagen por defecto del coleccionista</string>
     <string name="album_img_description">Imagen por defecto del álbum</string>
-    <string name="performer_img_description">IMagen por defecto del artista o banda</string>
+    <string name="performer_img_description">Imagen por defecto del artista o banda</string>
     <string name="album_name_label">Nombre del álbum</string>
     <string name="collector_name_label">Nombre del coleccionista</string>
     <string name="collector_phone_label">Teléfono del coleccionista</string>
