@@ -24,11 +24,10 @@
         app:srcCompat="@drawable/ic_plus_24"
         />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:orientation="vertical"
         android:padding="20dp"
@@ -39,8 +38,8 @@
 
         <ImageView
             android:id="@+id/album_cover"
-            android:layout_width="342dp"
-            android:layout_height="247dp"
+            android:layout_width="283dp"
+            android:layout_height="169dp"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:maxHeight="300dp"
@@ -61,6 +60,7 @@
             tools:text="The Beatles" />
 
         <!-- Album name and to the right the year -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,44 +88,45 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="1969" />
+
         </LinearLayout>
 
-        <ScrollView
-            android:id="@+id/album_detail_scroll_view"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/album_description_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                android:enabled="true"
+                android:paddingTop="5dp"
+                android:text="@string/album_detail_description_title"
+                android:textColor="@color/main_orange"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/album_description_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginTop="8dp"
+                android:enabled="true"
+                android:maxLines="5"
+                android:paddingTop="10dp"
+                android:scrollbars="vertical"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:text="Este fue un gran album con muchas ediciones, que funcionó muy muy bien" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/album_description_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/white"
-                    android:enabled="true"
-                    android:paddingTop="5dp"
-                    android:text="@string/album_detail_description_title"
-                    android:textColor="@color/main_orange"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/album_description_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_marginTop="8dp"
-                    android:enabled="true"
-                    android:maxLines="5"
-                    android:paddingTop="10dp"
-                    android:scrollbars="vertical"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    tools:text="Este fue un gran album con muchas ediciones, que funcionó muy muy bien" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/album_genre"
@@ -156,7 +157,9 @@
                     tools:listitem="@layout/track_item" />
 
             </LinearLayout>
-        </ScrollView>
+
+        </LinearLayout>
 
     </LinearLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
