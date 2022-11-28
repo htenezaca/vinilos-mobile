@@ -2,10 +2,12 @@ package com.example.vinilos_mobile.view
 
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +22,7 @@ class AlbumDetailFragment : Fragment(R.layout.fragment_album_detail) {
     private var _binding: FragmentAlbumDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: AlbumDetailViewModel
+    private val albumId: Int by lazy { arguments?.getInt("albumId")!! }
 
     companion object {
         fun newInstance(albumId: Int): AlbumDetailFragment {
@@ -36,6 +39,15 @@ class AlbumDetailFragment : Fragment(R.layout.fragment_album_detail) {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAlbumDetailBinding.inflate(inflater, container, false)
+        _binding!!.fabAddTrack.setOnClickListener {
+            val fragment = AddTrackAlbumFragment.newInstance(this.albumId)
+            // When the dialog closes (after adding a track), refresh the list of tracks
+            fragment.show(parentFragmentManager, "AddTrackAlbumFragment")
+            fragment.setFragmentResultListener("requestAddTrack") { key, bundle ->
+                Log.d("AlbumDetailFragment", "Add track request received")
+                viewModel.revalidate(albumId)
+            }
+        }
         return binding.root
     }
 
@@ -54,7 +66,7 @@ class AlbumDetailFragment : Fragment(R.layout.fragment_album_detail) {
                     this@AlbumDetailFragment,
                     AlbumDetailViewModel.Factory(
                         activity.application,
-                        arguments?.getInt("albumId")!!
+                        albumId
                     )
                 )[AlbumDetailViewModel::class.java]
                 viewModel.album.observe(viewLifecycleOwner, Observer {
