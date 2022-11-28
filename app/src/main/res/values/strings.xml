@@ -29,6 +29,7 @@
     <string name="track_duration_label">Duración de la canción</string>
     <string name="text_input_user">Texto de entrada para el usuario</string>
     <string name="performers_favorite">Artistas y bandas favoritas</string>
+    <string name="albums_title">Álbumes</string>
 
     <string name="chevron">chevron</string>
     <string name="track_add_second_label" />
