@@ -59,6 +59,7 @@
             android:textStyle="bold"
             tools:text="The Beatles" />
 
+        <!-- Album name and to the right the year -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

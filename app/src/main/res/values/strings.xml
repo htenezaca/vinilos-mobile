@@ -31,6 +31,7 @@
     <string name="performers_favorite">Artistas y bandas favoritas</string>
 
     <string name="chevron">chevron</string>
+<<<<<<< HEAD
     <string name="track_add_second_label" />
     <string name="track_add_duration_minute_label" />
     <string name="track_add_second_title">seg</string>
@@ -39,4 +40,11 @@
     <string name="track_add_accept">Aceptar</string>
     <string name="track_add_name_hint">Nombre de la canción</string>
     <string name="button_add_tracks">Agregar canciones</string>
+=======
+    <string name="track_add_second_label">Segundos</string>
+    <string name="track_add_duration_minute_label">Minutos</string>
+    <string name="track_add_cancel">Cancelar</string>
+    <string name="track_add_accept">Aceptar</string>
+    <string name="track_add_name_hint">Nombre de la canción</string>
+>>>>>>> d705623 (feat(HU08): Asociar tracks a un album (#86))
 </resources>
