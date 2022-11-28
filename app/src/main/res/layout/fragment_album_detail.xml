@@ -22,7 +22,8 @@
         app:fabSize="normal"
         app:rippleColor="@color/black"
         app:srcCompat="@drawable/ic_plus_24"
-        />
+        android:contentDescription="@string/button_add_tracks" />
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
