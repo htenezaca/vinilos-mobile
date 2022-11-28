@@ -44,7 +44,8 @@
             android:adjustViewBounds="true"
             android:maxHeight="300dp"
             tools:ignore="ImageContrastCheck"
-            tools:src="@drawable/app_logo" />
+            tools:src="@drawable/app_logo"
+            android:contentDescription="@string/album_cover" />
 
         <!-- Artist name full width, turns into two lines if too long -->
         <TextView
@@ -95,7 +96,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/album_name"
+                android:id="@+id/album_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -131,7 +132,8 @@
                     android:paddingTop="10dp"
                     app:chipEndPadding="10dp"
                     app:chipStartPadding="10dp"
-                    tools:text="rock" />
+                    tools:text="rock"
+                    tools:ignore="RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/tracks_title"
