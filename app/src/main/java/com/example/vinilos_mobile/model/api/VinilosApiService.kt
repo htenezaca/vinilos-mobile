@@ -1,6 +1,8 @@
 package com.example.vinilos_mobile.model.api
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -158,6 +160,20 @@ class VinilosApiService constructor(context: Context) {
         )
     }
 
+    @SuppressLint("LongLogTag")
+    suspend fun addTrackToAlbum(albumId: Int, track: Track) = suspendCoroutine<Track> { cont ->
+        requestQueue.add(
+            postRequest("$ALBUMS_PATH/$albumId/tracks", serializeTrack(track), { response ->
+                val resp = JSONObject(response)
+                val resTrack = deserializeTrack(resp)
+                cont.resume(resTrack)
+            }, {
+                Log.e("Error adding track to album", it.toString())
+                cont.resumeWithException(it)
+            })
+        )
+    }
+
     suspend fun getBandDetail(bandId: Int) = suspendCoroutine<PerformerDetail> { cont ->
         requestQueue.add(
             getRequest("$BANDS_PATH/$bandId", { response ->
@@ -178,6 +194,26 @@ class VinilosApiService constructor(context: Context) {
         errorListener: Response.ErrorListener
     ): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL + path, responseListener, errorListener)
+    }
+
+    private fun postRequest(
+        path: String,
+        body: JSONObject,
+        responseListener: Response.Listener<String>,
+        errorListener: Response.ErrorListener,
+    ): StringRequest {
+        return object : StringRequest(
+            Method.POST, BASE_URL + path, responseListener, errorListener
+        ) {
+            override fun getBodyContentType(): String {
+                return "application/json; charset=utf-8"
+            }
+
+            override fun getBody(): ByteArray {
+                Log.d("Sending body", body.toString())
+                return body.toString().toByteArray()
+            }
+        }
     }
 }
 
