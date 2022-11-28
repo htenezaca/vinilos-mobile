@@ -170,6 +170,7 @@
                 android:textSize="18sp"
                 app:cornerRadius="8dp"
                 tools:ignore="TextContrastCheck" />
+
         </LinearLayout>
 
     </LinearLayout>

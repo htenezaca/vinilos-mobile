@@ -24,7 +24,6 @@
         app:srcCompat="@drawable/ic_plus_24"
         android:contentDescription="@string/button_add_tracks" />
 
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -59,8 +58,6 @@
             android:textSize="24sp"
             android:textStyle="bold"
             tools:text="The Beatles" />
-
-        <!-- Album name and to the right the year -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -98,7 +95,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/album_description_title"
+                android:id="@+id/album_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -117,9 +114,6 @@
                 android:layout_gravity="top"
                 android:layout_marginTop="8dp"
                 android:enabled="true"
-                android:maxLines="5"
-                android:paddingTop="10dp"
-                android:scrollbars="vertical"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:text="Este fue un gran album con muchas ediciones, que funcionó muy muy bien" />
@@ -162,5 +156,6 @@
         </LinearLayout>
 
     </LinearLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
