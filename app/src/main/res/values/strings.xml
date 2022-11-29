@@ -40,8 +40,4 @@
     <string name="track_add_accept">Aceptar</string>
     <string name="track_add_name_hint">Nombre de la canción</string>
     <string name="button_add_tracks">Agregar canciones</string>
-    <string name="track_add_cancel">Cancelar</string>
-    <string name="track_add_accept">Aceptar</string>
-    <string name="track_add_name_hint">Nombre de la canción</string>
-    <string name="button_add_tracks">Agregar canciones</string>
 </resources>
