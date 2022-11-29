@@ -5,6 +5,8 @@
     <string name="soy_coleccionista">SOY COLECCIONISTA</string>
     <string name="ingresar">INGRESAR</string>
     <string name="placeholer_collector_dropdown">Seleccione su nombre</string>
+    <string name="placeholer_gender_dropdown">Seleccione el género</string>
+    <string name="placeholer_label_dropdown">Seleccione la disquera</string>
     <string name="album_detail_lista_canciones">Lista de Canciones</string>
     <string name="album_detail_description_title">Descripción</string>
     <string name="album_detail_listado_title">Lista de Canciones</string>
@@ -17,7 +19,7 @@
     <string name="performer_detail_list_album_title">Albumes</string>
     <string name="collector_img_description">Imagen por defecto del coleccionista</string>
     <string name="album_img_description">Imagen por defecto del álbum</string>
-    <string name="performer_img_description">IMagen por defecto del artista o banda</string>
+    <string name="performer_img_description">Imagen por defecto del artista o banda</string>
     <string name="album_name_label">Nombre del álbum</string>
     <string name="collector_name_label">Nombre del coleccionista</string>
     <string name="collector_phone_label">Teléfono del coleccionista</string>
@@ -29,4 +31,9 @@
     <string name="performers_favorite">Artistas y bandas favoritas</string>
 
     <string name="chevron">chevron</string>
+    <string name="add_a_new_album_button_text">Crear un nuevo album</string>
+    <string name="nuevo_album">Crear álbum</string>
+    <string name="albumes">Álbumes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

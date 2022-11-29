@@ -4,15 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.FragmentAlbumListBinding
+import com.example.vinilos_mobile.model.models.Album
 import com.example.vinilos_mobile.viewmodel.AlbumViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.launch
 
 
-class AlbumListFragment :Fragment() {
+class AlbumListFragment :Fragment(), View.OnClickListener {
 
     private var _binding: FragmentAlbumListBinding? = null
     private val binding get() = _binding!!
@@ -41,6 +47,9 @@ class AlbumListFragment :Fragment() {
             recyclerView.layoutManager = GridLayoutManager(requireActivity().applicationContext, 4)
         }
         recyclerView.adapter = viewModelAdapter
+
+        val btn: FloatingActionButton = view.findViewById(R.id.buttonnew)
+        btn.setOnClickListener(this)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -66,5 +75,28 @@ class AlbumListFragment :Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+
+    fun postAlbum(newAlbum: Album) {
+
+        viewModel.postAlbum(newAlbum)
+    }
+
+    override fun onClick(v: View?) {
+
+        when (v?.id) {
+            R.id.buttonnew -> {
+
+                val fragmentManager = requireActivity().supportFragmentManager
+                val fragmentTransaction = fragmentManager.beginTransaction()
+                val fragment = CreateAlbumFragment.newInstance()
+                // Add the current fragment to the back stack
+                fragmentTransaction.replace(R.id.fragment_main_view, fragment)
+                    .addToBackStack("Collector List").commit()
+            }
+
+        }
+
     }
 }

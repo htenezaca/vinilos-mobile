@@ -32,3 +32,16 @@ fun deserializeAlbum(json: JSONObject): Album {
         recordLabel = json.getString("recordLabel")
     )
 }
+
+fun serializeAlbum(album: Album): JSONObject {
+    var json: JSONObject = JSONObject()
+
+    json.put("name", album.name)
+    json.put("cover", album.cover)
+    json.put("releaseDate", album.releaseDate)
+    json.put("description", album.description)
+    json.put("genre", album.genre)
+    json.put("recordLabel", album.recordLabel)
+
+    return json
+}

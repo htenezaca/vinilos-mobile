@@ -38,6 +38,18 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun postAlbum(newAlbum: Album) {
+        try {
+            viewModelScope.launch(Dispatchers.Default) {
+                withContext(Dispatchers.IO) {
+                    val data = vinilosRepository.postAlbum(newAlbum)
+                }
+            }
+        } catch (e: Exception) {
+            Log.d("NETWORK_ERROR", e.toString())
+        }
+    }
+
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(AlbumViewModel::class.java)) {

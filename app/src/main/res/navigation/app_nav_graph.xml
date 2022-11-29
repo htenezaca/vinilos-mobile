@@ -16,6 +16,9 @@
         <action
             android:id="@+id/app_action_album_list_to_performer_list"
             app:destination="@id/app_fragment_performer_list" />
+        <action
+            android:id="@+id/action_app_fragment_album_list_to_createAlbumFragment"
+            app:destination="@id/createAlbumFragment" />
 
     </fragment>
     <fragment
@@ -28,4 +31,9 @@
         android:name="com.example.vinilos_mobile.view.CollectorListFragment"
         android:label="fragment_performer_list"
         tools:layout="@layout/fragment_performer_list" />
+    <fragment
+        android:id="@+id/createAlbumFragment"
+        android:name="com.example.vinilos_mobile.view.CreateAlbumFragment"
+        android:label="fragment_create_album"
+        tools:layout="@layout/fragment_create_album" />
 </navigation>
