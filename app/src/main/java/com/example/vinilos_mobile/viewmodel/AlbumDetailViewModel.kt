@@ -1,7 +1,7 @@
 package com.example.vinilos_mobile.viewmodel
 
-import android.util.Log
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.vinilos_mobile.model.models.AlbumDetail
 import com.example.vinilos_mobile.model.repository.VinilosRepository
@@ -20,6 +20,12 @@ class AlbumDetailViewModel(application: Application, albumId: Int) : AndroidView
         get() = _album
 
     init {
+        viewModelScope.launch {
+            refreshDataFromNetwork(albumId)
+        }
+    }
+
+    fun revalidate(albumId: Int) {
         viewModelScope.launch {
             refreshDataFromNetwork(albumId)
         }

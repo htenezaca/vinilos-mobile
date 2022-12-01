@@ -1,88 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:baselineAligned="false"
+    android:padding="0dp"
     android:orientation="vertical"
-    android:padding="20dp"
     android:scrollbarAlwaysDrawHorizontalTrack="false"
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:scrollbars="vertical"
     tools:context=".view.AlbumDetailFragment">
 
-    <ImageView
-        android:id="@+id/album_cover"
-        android:layout_width="342dp"
-        android:layout_height="247dp"
-        android:layout_gravity="center"
-        android:adjustViewBounds="true"
-        android:maxHeight="300dp"
-        tools:ignore="ImageContrastCheck"
-        tools:src="@drawable/app_logo" />
-
-    <!-- Artist name full width, turns into two lines if too long -->
-    <TextView
-        android:id="@+id/artist_name"
-        android:layout_width="match_parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_track"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:enabled="true"
-        android:maxLines="2"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:text="The Beatles" />
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        app:elevation="6dp"
+        app:fabSize="normal"
+        app:rippleColor="@color/black"
+        app:srcCompat="@drawable/ic_plus_24"
+        android:contentDescription="@string/button_add_tracks" />
 
-    <!-- Album name and to the right the year -->
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="10dp">
+        android:baselineAligned="false"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbars="vertical"
+        tools:context=".view.AlbumDetailFragment">
 
-        <TextView
-            android:id="@+id/album_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:enabled="true"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            tools:text="Abbey Road" />
+        <ImageView
+            android:id="@+id/album_cover"
+            android:layout_width="283dp"
+            android:layout_height="169dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:maxHeight="300dp"
+            tools:ignore="ImageContrastCheck"
+            tools:src="@drawable/app_logo" />
 
+        <!-- Artist name full width, turns into two lines if too long -->
         <TextView
-            android:id="@+id/album_year"
-            android:layout_width="wrap_content"
+            android:id="@+id/artist_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginTop="8dp"
             android:enabled="true"
+            android:maxLines="2"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold"
-            tools:text="1969" />
-    </LinearLayout>
+            tools:text="The Beatles" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <!-- Album name and to the right the year -->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/album_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="true"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="Abbey Road" />
+
+            <TextView
+                android:id="@+id/album_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="true"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="1969" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/album_description_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:background="@color/white"
                 android:enabled="true"
                 android:paddingTop="5dp"
                 android:text="@string/album_detail_description_title"
-                android:background="@color/white"
                 android:textColor="@color/main_orange"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -94,46 +116,47 @@
                 android:layout_gravity="top"
                 android:layout_marginTop="8dp"
                 android:enabled="true"
-                android:maxLines="5"
-                android:paddingTop="10dp"
-                android:scrollbars="vertical"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:text="Este fue un gran album con muchas ediciones, que funcionó muy muy bien" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/album_genre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:paddingTop="10dp"
-                app:chipEndPadding="10dp"
-                app:chipStartPadding="10dp"
-                tools:text="rock" />
-
-            <TextView
-                android:id="@+id/tracks_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:enabled="true"
-                android:paddingTop="5dp"
-                android:text="@string/album_detail_listado_title"
-                android:textColor="@color/main_orange"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/trackRecyclerView"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/track_item" />
+                android:orientation="vertical">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/album_genre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:paddingTop="10dp"
+                    app:chipEndPadding="10dp"
+                    app:chipStartPadding="10dp"
+                    tools:text="rock" />
+
+                <TextView
+                    android:id="@+id/tracks_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:enabled="true"
+                    android:paddingTop="5dp"
+                    android:text="@string/album_detail_listado_title"
+                    android:textColor="@color/main_orange"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/trackRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/track_item" />
+
+            </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
 
-    <!-- Put chip in a layout to avoid the chip being too wide -->
+    </LinearLayout>
 
-    <!-- List of tracks -->
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

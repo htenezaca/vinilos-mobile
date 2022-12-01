@@ -81,4 +81,11 @@ class VinilosRepository(private val applicationContext: Application) {
         }
     }
 
+    suspend fun addTrackToAlbum(albumId: Int, track: Track): Track {
+        val response = VinilosApiService.getInstance(applicationContext).addTrackToAlbum(albumId, track)
+        Log.d("addTrackToAlbum", "Got response: ${response.toString()}, now removing cache")
+        CacheManager.getInstance(applicationContext).removeAlbum(albumId)
+        return response
+    }
+
 }

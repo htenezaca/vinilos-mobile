@@ -9,6 +9,8 @@
     <string name="placeholer_label_dropdown">Seleccione la disquera</string>
     <string name="album_detail_lista_canciones">Lista de Canciones</string>
     <string name="album_detail_description_title">Descripción</string>
+    <string name="track_add_name_label">Agregar canción</string>
+    <string name="track_add_duration_label">Duración:</string>
     <string name="album_detail_listado_title">Lista de Canciones</string>
     <string name="album_cover">Imagen de portada de un álbum</string>
     <string name="albums_button_description">Mirar la lista de albumes</string>
@@ -29,6 +31,7 @@
     <string name="track_duration_label">Duración de la canción</string>
     <string name="text_input_user">Texto de entrada para el usuario</string>
     <string name="performers_favorite">Artistas y bandas favoritas</string>
+    <string name="albums_title">Álbumes</string>
 
     <string name="chevron">chevron</string>
     <string name="add_a_new_album_button_text">Crear un nuevo album</string>
@@ -36,4 +39,12 @@
     <string name="albumes">Álbumes</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="track_add_second_label" />
+    <string name="track_add_duration_minute_label" />
+    <string name="track_add_second_title">seg</string>
+    <string name="track_add_duration_minute_title">min</string>
+    <string name="track_add_cancel">Cancelar</string>
+    <string name="track_add_accept">Aceptar</string>
+    <string name="track_add_name_hint">Nombre de la canción</string>
+    <string name="button_add_tracks">Agregar canciones</string>
 </resources>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/popup_border"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".view.AddTrackAlbumFragment">
+
+        <TextView
+            android:id="@+id/track_add_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:background="@color/white"
+            android:contentDescription="@string/track_add_name_label"
+            android:enabled="true"
+            android:paddingTop="5dp"
+            android:text="@string/track_add_name_label"
+            android:textColor="@color/main_orange"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/track_add_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:hint="@string/track_add_name_hint"
+            android:background="@drawable/input_text_border"
+            android:inputType="text"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/track_add_duration_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:background="@color/white"
+            android:enabled="true"
+            android:paddingTop="5dp"
+            android:text="@string/track_add_duration_label"
+            android:textColor="@color/main_orange"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/track_add_duration_minute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:background="@drawable/input_text_border"
+                android:hint="0"
+                android:inputType="number"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:padding="15dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/track_add_minute_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:background="@null"
+                android:enabled="true"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:padding="5dp"
+                android:text="@string/track_add_duration_minute_title"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/track_add_duration_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:background="@drawable/input_text_border"
+                android:hint="00"
+                android:inputType="number"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:padding="15dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/track_add_second_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:background="@null"
+                android:inputType="number"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:padding="5dp"
+                android:text="@string/track_add_second_title"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/track_add_cancel"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="4dp"
+                android:paddingTop="8dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="8dp"
+                android:text="@string/track_add_cancel"
+                android:textColor="@color/main_orange"
+                android:textSize="18sp"
+                app:cornerRadius="8dp"
+                app:strokeColor="@color/main_orange"
+                app:strokeWidth="2dp"
+                tools:ignore="TextContrastCheck" />
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/track_add_accept"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="4dp"
+                android:paddingTop="8dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="8dp"
+                android:text="@string/track_add_accept"
+                android:textSize="18sp"
+                app:cornerRadius="8dp"
+                tools:ignore="TextContrastCheck" />
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>
