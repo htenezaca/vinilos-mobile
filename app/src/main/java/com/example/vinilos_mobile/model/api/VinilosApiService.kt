@@ -192,7 +192,7 @@ class VinilosApiService constructor(context: Context) {
     suspend fun postAlbum(newAlbum: JSONObject) = suspendCoroutine<Album> { cont ->
         requestQueue.add(
             postRequest(ALBUMS_PATH, newAlbum, { response ->
-                val album = deserializeAlbum(response)
+                val album = deserializeAlbum(JSONObject(response))
 
                 cont.resume(album)
             }, {

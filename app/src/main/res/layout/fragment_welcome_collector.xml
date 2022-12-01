@@ -45,6 +45,7 @@
 
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/enter_collector"
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -106,7 +106,6 @@ class CreateAlbumFragment : Fragment(), View.OnClickListener {
                         )
                     }
                 }
-                Log.d("ola", "ola")
             }
 
         })
