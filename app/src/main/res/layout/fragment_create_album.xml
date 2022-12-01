@@ -48,6 +48,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
+            android:textColorHint="#696969"
             app:boxBackgroundColor="@android:color/transparent"
             app:boxBackgroundMode="outline"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,9 +56,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/album_name_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre" />
+                android:hint="Nombre"
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -67,6 +70,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
+            android:textColorHint="#696969"
             app:boxBackgroundColor="@android:color/transparent"
             app:boxBackgroundMode="outline"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,6 +78,7 @@
             app:layout_constraintTop_toBottomOf="@+id/new_album_name">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/album_image_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Portada" />
@@ -86,6 +91,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
+            android:textColorHint="#696969"
             app:boxBackgroundColor="@android:color/transparent"
             app:boxBackgroundMode="outline"
             app:layout_constraintEnd_toEndOf="parent"
@@ -93,9 +99,11 @@
             app:layout_constraintTop_toBottomOf="@+id/new_album_image">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/album_date_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Fecha de lanzamiento" />
+                android:hint="Fecha de lanzamiento"
+                android:inputType="date" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -105,6 +113,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
+            android:textColorHint="#696969"
             app:boxBackgroundColor="@android:color/transparent"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/main_orange"
@@ -113,6 +122,7 @@
             app:layout_constraintTop_toBottomOf="@+id/new_album_date">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/album_description_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start|left"
@@ -132,6 +142,7 @@
             android:contentDescription="@string/text_input_user"
             android:hint="@string/placeholer_gender_dropdown"
             android:importantForAccessibility="no"
+            android:textColorHint="#696969"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/new_album_description"
@@ -157,6 +168,7 @@
             android:contentDescription="@string/text_input_user"
             android:hint="@string/placeholer_label_dropdown"
             android:importantForAccessibility="no"
+            android:textColorHint="#696969"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/new_album_gender"
