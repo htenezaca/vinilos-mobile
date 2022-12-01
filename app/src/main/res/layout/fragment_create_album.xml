@@ -79,7 +79,8 @@
                 android:id="@+id/album_image_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Portada" />
+                android:hint="Portada"
+                android:inputType="textUri" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
