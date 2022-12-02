@@ -15,9 +15,11 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 class AlbumTest {
+
 
     @get:Rule
     val activityRule = ActivityScenarioRule(WelcomeActivity::class.java)
@@ -76,5 +78,56 @@ class AlbumTest {
         onView(withId(R.id.track_add_duration_minute)).perform(typeText("1"))
         onView(withId(R.id.track_add_duration_second)).perform(typeText("30"))
         onView(withId(R.id.track_add_accept)).perform(click())
+    }
+
+
+    @Test
+    fun createAlbum() {
+
+        val guestButton = onView(withId(R.id.userIsGuestButton))
+        guestButton.perform(click())
+
+        Thread.sleep(1000)
+        onView(withId(R.id.buttonnew)).perform(click())
+        Thread.sleep(1000)
+        val albumName = (1..10).map { kotlin.random.Random.nextInt(0, 10) }.joinToString("")
+        val albumDescription = (1..10).map { kotlin.random.Random.nextInt(0, 10) }.joinToString("")
+        onView(withId(R.id.album_name_edit)).perform(typeText(albumName))
+        onView(withId(R.id.album_date_edit)).perform(click())
+        Thread.sleep(1000)
+        onView(withText("OK")).perform(click())
+        Thread.sleep(1000)
+        onView(withId(R.id.album_description_edit)).perform(typeText(albumDescription))
+        onView(withId(R.id.genderDropdown)).perform(click())
+        Thread.sleep(1500)
+        onView(withId(R.id.genderDropdown)).perform(
+            typeText(
+                "Rock"
+            )
+        )
+        onView(withId(R.id.genderDropdown)).perform(typeText("\t"))
+        onView(withId(R.id.labelDropdown)).perform(click())
+        Thread.sleep(1500)
+        onView(withId(R.id.labelDropdown)).perform(
+            typeText(
+                "Sony Music"
+            )
+        )
+        Thread.sleep(1500)
+        // close keyboard with back button
+        onView(withId(R.id.labelDropdown)).perform(typeText("\t"))
+        onView(withId(R.id.labelDropdown)).perform(typeText("\t"))
+        onView(withId(R.id.cancel_button)).perform(click())
+        Thread.sleep(1500)
+        onView(withId(R.id.buttonpost)).perform(
+            typeText(
+                "\n"
+            )
+        )
+
+
+        onView(withId(R.id.buttonpost)).perform(click())
+
+
     }
 }
