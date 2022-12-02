@@ -17,11 +17,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
+        android:layout_margin="20dp"
         app:elevation="6dp"
-        app:fabSize="normal"
         app:rippleColor="@color/black"
-        app:srcCompat="@drawable/ic_plus_24"
+        android:src="@android:drawable/ic_input_add"
+        app:maxImageSize="50dp"
+        app:tint="#FFFFFF"
+        app:fabCustomSize="80dp"
+        app:fabSize="auto"
+        android:scaleType="fitCenter"
         android:contentDescription="@string/button_add_tracks" />
 
     <LinearLayout
