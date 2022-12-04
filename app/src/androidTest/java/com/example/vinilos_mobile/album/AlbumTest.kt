@@ -1,8 +1,7 @@
 package com.example.vinilos_mobile.album
 
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
@@ -73,7 +72,7 @@ class AlbumTest {
         onView(withText("Nevermind")).check(matches(isDisplayed()))
         onView(withId(R.id.fab_add_track)).perform(click())
         Thread.sleep(1000)
-        val randomString = (1..10).map { kotlin.random.Random.nextInt(0, 10) }.joinToString("")
+        val randomString = System.currentTimeMillis().toString()
         onView(withId(R.id.track_add_name)).perform(typeText(randomString))
         onView(withId(R.id.track_add_duration_minute)).perform(typeText("1"))
         onView(withId(R.id.track_add_duration_second)).perform(typeText("30"))
@@ -90,44 +89,44 @@ class AlbumTest {
         Thread.sleep(1000)
         onView(withId(R.id.buttonnew)).perform(click())
         Thread.sleep(1000)
-        val albumName = (1..10).map { kotlin.random.Random.nextInt(0, 10) }.joinToString("")
+        // Album name from unix timestamp
+        val albumName = System.currentTimeMillis().toString()
         val albumDescription = (1..10).map { kotlin.random.Random.nextInt(0, 10) }.joinToString("")
         onView(withId(R.id.album_name_edit)).perform(typeText(albumName))
+        onView(withId(R.id.album_image_edit)).perform(typeText("https://cdns-images.dzcdn.net/images/cover/231c66c0ed260c708163eff3bb8458da/264x264.jpg"))
         onView(withId(R.id.album_date_edit)).perform(click())
         Thread.sleep(1000)
         onView(withText("OK")).perform(click())
         Thread.sleep(1000)
         onView(withId(R.id.album_description_edit)).perform(typeText(albumDescription))
-        onView(withId(R.id.genderDropdown)).perform(click())
-        Thread.sleep(1500)
+        onView(isRoot()).perform(closeSoftKeyboard())
         onView(withId(R.id.genderDropdown)).perform(
             typeText(
-                "Rock"
+                "Rock\t"
             )
         )
-        onView(withId(R.id.genderDropdown)).perform(typeText("\t"))
-        onView(withId(R.id.labelDropdown)).perform(click())
-        Thread.sleep(1500)
+        onView(isRoot()).perform(closeSoftKeyboard())
         onView(withId(R.id.labelDropdown)).perform(
             typeText(
-                "Sony Music"
+                "Sony Music\t"
             )
         )
+        onView(isRoot()).perform(closeSoftKeyboard())
         Thread.sleep(1500)
-        // close keyboard with back button
-        onView(withId(R.id.labelDropdown)).perform(typeText("\t"))
-        onView(withId(R.id.labelDropdown)).perform(typeText("\t"))
-        onView(withId(R.id.cancel_button)).perform(click())
-        Thread.sleep(1500)
-        onView(withId(R.id.buttonpost)).perform(
-            typeText(
-                "\n"
-            )
-        )
-
-
         onView(withId(R.id.buttonpost)).perform(click())
 
+        // Move to collectionist
+        Thread.sleep(1500)
+        onView(withId(R.id.buttonIconCollectors)).perform(click())
+        onView(withId(R.id.buttonIconAlbums)).perform(click())
+
+        // Find it in the album_recycler_view
+        Thread.sleep(1500)
+        // Swipe down
+        onView(withId(R.id.album_recycler_view)).perform(swipeUp())
+        Thread.sleep(1000)
+        onView(withId(R.id.album_recycler_view)).check(matches(hasDescendant(withId(R.id.album_list_album_name))))
+        onView(allOf(withId(R.id.album_list_album_name), withText(albumName))).check(matches(isDisplayed()))
 
     }
 }

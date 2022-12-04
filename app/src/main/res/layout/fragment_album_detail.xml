@@ -117,6 +117,8 @@
                 android:id="@+id/album_description_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLines="5"
+                android:scrollbars="vertical"
                 android:layout_gravity="top"
                 android:layout_marginTop="8dp"
                 android:enabled="true"
