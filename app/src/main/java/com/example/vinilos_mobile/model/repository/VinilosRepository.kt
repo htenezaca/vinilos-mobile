@@ -45,6 +45,11 @@ class VinilosRepository(private val applicationContext: Application) {
         }
     }
 
+    suspend fun postAlbum(newAlbum: Album): Album {
+        val albumJson = serializeAlbum(newAlbum)
+        return VinilosApiService.getInstance(applicationContext).postAlbum(albumJson)
+    }
+
     suspend fun getPerformers(): Array<Performer> {
         val performersList = mutableListOf<Performer>()
 

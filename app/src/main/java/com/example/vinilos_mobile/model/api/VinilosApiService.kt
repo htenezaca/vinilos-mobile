@@ -6,6 +6,7 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.vinilos_mobile.model.models.*
@@ -183,6 +184,21 @@ class VinilosApiService constructor(context: Context) {
 
                 cont.resume(musician)
             }, {
+                cont.resumeWithException(it)
+            })
+        )
+    }
+
+    suspend fun postAlbum(newAlbum: JSONObject) = suspendCoroutine<Album> { cont ->
+        requestQueue.add(
+            postRequest(ALBUMS_PATH, newAlbum, { response ->
+                val album = deserializeAlbum(JSONObject(response))
+
+                cont.resume(album)
+            }, {
+                Log.d("NetErr", it.networkResponse.toString())
+                Log.d("NetErr", it.networkResponse.data.toString())
+                Log.d("NetErr", it.localizedMessage)
                 cont.resumeWithException(it)
             })
         )
