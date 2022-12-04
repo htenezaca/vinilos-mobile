@@ -28,6 +28,12 @@ class CacheManager(context: Context) {
         }
     }
 
+    fun removeAlbum(albumId: Int){
+        if (albums[albumId] != null){
+            albums.remove(albumId)
+        }
+    }
+
     private var performers: LruCache<Int, PerformerDetail> = LruCache(5)
 
     fun getPerformer(performerId: Int): PerformerDetail?{

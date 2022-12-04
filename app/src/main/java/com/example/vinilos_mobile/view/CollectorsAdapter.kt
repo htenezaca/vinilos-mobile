@@ -1,5 +1,6 @@
 package com.example.vinilos_mobile.view
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,14 +8,13 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.CollectorItemBinding
 import com.example.vinilos_mobile.model.models.Collector
 
 class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHolder>() {
-    private var iconCollector:String = "https://firebasestorage.googleapis.com/v0/b/storage-cdabb.appspot.com/o/%E2%86%B3%20Image.png?alt=media&token=b474bbd7-8a90-45e1-8cfa-fa35bb6cc600"
     var collectors: Array<Collector> = emptyArray()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -43,9 +43,6 @@ class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHo
             it.collector = collectors[position]
         }
         Log.d("CollectorsAdapter", "onBindViewHolder: ${collectors[position].name}")
-        Glide.with(holder.viewDataBinding.root)
-            .load(iconCollector)
-            .into(holder.viewDataBinding.collectorImageView)
         holder.viewDataBinding.root.setOnClickListener {
             // Use the fragment manager to replace the main fragment view
             // Get the child fragmentManager

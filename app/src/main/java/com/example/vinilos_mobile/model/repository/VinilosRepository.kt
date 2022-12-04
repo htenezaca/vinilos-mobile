@@ -45,6 +45,11 @@ class VinilosRepository(private val applicationContext: Application) {
         }
     }
 
+    suspend fun postAlbum(newAlbum: Album): Album {
+        val albumJson = serializeAlbum(newAlbum)
+        return VinilosApiService.getInstance(applicationContext).postAlbum(albumJson)
+    }
+
     suspend fun getPerformers(): Array<Performer> {
         val performersList = mutableListOf<Performer>()
 
@@ -70,11 +75,17 @@ class VinilosRepository(private val applicationContext: Application) {
             }
             CacheManager.getInstance(applicationContext).addPerformer(performerId, apiResp)
             return apiResp
-        }
-        else {
+        } else {
             Log.d("getAlbum decision", "from cache")
             return cacheResp
         }
+    }
+
+    suspend fun addTrackToAlbum(albumId: Int, track: Track): Track {
+        val response = VinilosApiService.getInstance(applicationContext).addTrackToAlbum(albumId, track)
+        Log.d("addTrackToAlbum", "Got response: ${response.toString()}, now removing cache")
+        CacheManager.getInstance(applicationContext).removeAlbum(albumId)
+        return response
     }
 
 }

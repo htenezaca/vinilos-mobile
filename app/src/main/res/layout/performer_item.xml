@@ -44,7 +44,8 @@
                 app:layout_constraintVertical_bias="0.0"
                 app:shapeAppearance="@style/ShapeAppearance.ImageView"
                 app:srcCompat="@drawable/ic_album_dark"
-                tools:srcCompat="@drawable/ic_album_dark" />
+                tools:srcCompat="@drawable/ic_album_dark"
+                android:contentDescription="Performer image"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
@@ -72,21 +73,23 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
-                    tools:text="Performer name" />
+                    tools:text="Performer name"
+                    android:contentDescription="@null"
+                    android:labelFor="@string/performer_name_label" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
                 android:id="@+id/chevron2"
                 android:layout_width="20dp"
                 android:layout_height="0dp"
-                android:contentDescription="@string/chevron"
                 android:src="@drawable/chevron"
                 app:layout_constraintBottom_toBottomOf="@+id/performer_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ImageContrastCheck"
-                tools:srcCompat="@drawable/chevron" />
+                tools:srcCompat="@drawable/chevron"
+                android:contentDescription="@string/performer_img_description"/>
 
             <View
                 android:id="@+id/divider2"
