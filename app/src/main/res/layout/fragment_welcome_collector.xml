@@ -25,8 +25,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:id="@+id/textInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:labelFor="@+id/textInputLayout"
+                android:contentDescription="@string/text_input_user"
+                android:importantForAccessibility="no"
                 android:hint="@string/placeholer_collector_dropdown"
                 app:strokeColor="@color/main_orange"
                 app:strokeWidth="2dp">
@@ -41,6 +45,7 @@
 
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/enter_collector"
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

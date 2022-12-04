@@ -32,7 +32,7 @@
                 android:paddingRight="4dp"
                 android:paddingBottom="8dp"
                 android:text="@string/ingresar_como_visitante"
-                android:textSize="23sp"
+                android:textSize="22sp"
                 app:cornerRadius="8dp"
                 tools:ignore="TextContrastCheck" />
 
@@ -47,7 +47,7 @@
                 android:paddingBottom="8dp"
                 android:text="@string/soy_coleccionista"
                 android:textColor="@color/main_orange"
-                android:textSize="23sp"
+                android:textSize="22sp"
                 app:cornerRadius="8dp"
                 app:strokeColor="@color/main_orange"
                 app:strokeWidth="2dp"

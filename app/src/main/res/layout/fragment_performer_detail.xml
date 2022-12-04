@@ -71,13 +71,15 @@
             android:textSize="16sp"
             android:textStyle="normal"
             tools:text="performer description" />
+
         <TextView
             android:id="@+id/tracks_title"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@null"
             android:enabled="true"
-            android:paddingTop="5dp"
             android:text="@string/performer_detail_list_album_title"
             android:textColor="@color/main_orange"
             android:textSize="20sp"
@@ -90,7 +92,6 @@
             android:persistentDrawingCache="all"
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/album_item">
-        </androidx.recyclerview.widget.RecyclerView>
+            tools:listitem="@layout/album_item" />
     </LinearLayout>
 </FrameLayout>

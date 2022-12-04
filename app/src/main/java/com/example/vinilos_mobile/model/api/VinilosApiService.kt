@@ -1,9 +1,12 @@
 package com.example.vinilos_mobile.model.api
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.vinilos_mobile.model.models.*
@@ -36,7 +39,7 @@ class VinilosApiService constructor(context: Context) {
         Volley.newRequestQueue(context.applicationContext)
     }
 
-    suspend fun getAlbums() = suspendCoroutine<Array<Album>> { cont ->
+    suspend fun getAlbums() = suspendCoroutine { cont ->
         requestQueue.add(
             getRequest(ALBUMS_PATH, { response ->
                 val resp = JSONArray(response)
@@ -56,7 +59,7 @@ class VinilosApiService constructor(context: Context) {
         )
     }
 
-    suspend fun getCollectors() = suspendCoroutine<Array<Collector>> { cont ->
+    suspend fun getCollectors() = suspendCoroutine { cont ->
         requestQueue.add(
             getRequest(COLLECTORS_PATH, { response ->
                 val resp = JSONArray(response)
@@ -76,7 +79,7 @@ class VinilosApiService constructor(context: Context) {
         )
     }
 
-    suspend fun getBands() = suspendCoroutine<Array<Band>> { cont ->
+    suspend fun getBands() = suspendCoroutine { cont ->
         requestQueue.add(
             getRequest(BANDS_PATH, { response ->
                 val resp = JSONArray(response)
@@ -96,7 +99,7 @@ class VinilosApiService constructor(context: Context) {
         )
     }
 
-    suspend fun getMusicians() = suspendCoroutine<Array<Musician>> { cont ->
+    suspend fun getMusicians() = suspendCoroutine { cont ->
         requestQueue.add(
             getRequest(MUSICIANS_PATH, { response ->
                 val resp = JSONArray(response)
@@ -158,6 +161,20 @@ class VinilosApiService constructor(context: Context) {
         )
     }
 
+    @SuppressLint("LongLogTag")
+    suspend fun addTrackToAlbum(albumId: Int, track: Track) = suspendCoroutine<Track> { cont ->
+        requestQueue.add(
+            postRequest("$ALBUMS_PATH/$albumId/tracks", serializeTrack(track), { response ->
+                val resp = JSONObject(response)
+                val resTrack = deserializeTrack(resp)
+                cont.resume(resTrack)
+            }, {
+                Log.e("Error adding track to album", it.toString())
+                cont.resumeWithException(it)
+            })
+        )
+    }
+
     suspend fun getBandDetail(bandId: Int) = suspendCoroutine<PerformerDetail> { cont ->
         requestQueue.add(
             getRequest("$BANDS_PATH/$bandId", { response ->
@@ -172,12 +189,47 @@ class VinilosApiService constructor(context: Context) {
         )
     }
 
+    suspend fun postAlbum(newAlbum: JSONObject) = suspendCoroutine<Album> { cont ->
+        requestQueue.add(
+            postRequest(ALBUMS_PATH, newAlbum, { response ->
+                val album = deserializeAlbum(JSONObject(response))
+
+                cont.resume(album)
+            }, {
+                Log.d("NetErr", it.networkResponse.toString())
+                Log.d("NetErr", it.networkResponse.data.toString())
+                Log.d("NetErr", it.localizedMessage)
+                cont.resumeWithException(it)
+            })
+        )
+    }
+
     private fun getRequest(
         path: String,
         responseListener: Response.Listener<String>,
         errorListener: Response.ErrorListener
     ): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL + path, responseListener, errorListener)
+    }
+
+    private fun postRequest(
+        path: String,
+        body: JSONObject,
+        responseListener: Response.Listener<String>,
+        errorListener: Response.ErrorListener,
+    ): StringRequest {
+        return object : StringRequest(
+            Method.POST, BASE_URL + path, responseListener, errorListener
+        ) {
+            override fun getBodyContentType(): String {
+                return "application/json; charset=utf-8"
+            }
+
+            override fun getBody(): ByteArray {
+                Log.d("Sending body", body.toString())
+                return body.toString().toByteArray()
+            }
+        }
     }
 }
 

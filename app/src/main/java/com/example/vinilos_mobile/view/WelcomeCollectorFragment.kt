@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.vinilos_mobile.R
 import com.example.vinilos_mobile.databinding.FragmentWelcomeCollectorBinding
 import com.example.vinilos_mobile.viewmodel.CollectorViewModel
 
-class WelcomeCollectorFragment : Fragment() {
+class WelcomeCollectorFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentWelcomeCollectorBinding? = null
     private val binding get() = _binding!!
@@ -52,6 +54,24 @@ class WelcomeCollectorFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val btn: Button = view.findViewById(R.id.enter_collector)
+        btn.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.enter_collector -> {
+                val action = WelcomeCollectorFragmentDirections.actionWelcomeCollectorFragmentToAlbumActivity()
+
+                v.findNavController().navigate(action)
+            }
+
+        }
     }
 
 }
